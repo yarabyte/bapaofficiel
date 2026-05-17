@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette Bapa ── */
+  --color-brand:        #593414;
+  --color-brand-light:  #7A4E2D;
+  --color-brand-dark:   #3D2210;
+
+  --color-forest:       #2A5F3A;
+  --color-forest-light: #3D7A52;
+
+  --color-gold:         #C07830;
+  --color-gold-light:   #D4943E;
+  --color-gold-dark:    #8F5820;
+
+  --color-cream:        #F7F2EA;
+  --color-cream-dark:   #EDE3D2;
+  --color-parchment:    #E4D9C4;
+
+  --color-rock:         #8C7B6E;
+
+  /* ── Typography ── */
+  --font-heading: var(--font-playfair);
+  --font-body:    var(--font-inter);
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-cream);
+  color: #1C1208;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-playfair), Georgia, serif;
+  line-height: 1.15;
+}
+
+/* ── Section label pill ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 1.25rem;
+  height: 1.5px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+/* ── Bamileke geometric pattern ── */
+.pattern-geo {
+  background-image:
+    repeating-linear-gradient(
+      45deg, transparent, transparent 8px,
+      rgba(89,52,20,0.05) 8px, rgba(89,52,20,0.05) 9px
+    ),
+    repeating-linear-gradient(
+      -45deg, transparent, transparent 8px,
+      rgba(89,52,20,0.05) 8px, rgba(89,52,20,0.05) 9px
+    );
+}
+
+/* ── Gradient text ── */
+.text-gradient {
+  background: linear-gradient(135deg, #C07830 0%, #8F5820 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card lift ── */
+.card-lift {
+  transition: transform 0.22s cubic-bezier(.22,.61,.36,1),
+              box-shadow 0.22s cubic-bezier(.22,.61,.36,1);
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(89,52,20,0.13);
+}
+
+/* ── Nav underline ── */
+.nav-link-ul {
+  position: relative;
+}
+.nav-link-ul::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  transition: width 0.22s ease;
+}
+.nav-link-ul:hover::after { width: 70%; }
+
+/* ── Prose ── */
+.prose-bapa {
+  max-width: 68ch;
+  line-height: 1.82;
+  font-size: 1.0625rem;
+  color: #3C2A1C;
+}
+
+/* ── Drawer overlay ── */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  z-index: 40;
+}
+
+/* ── Hero slider caption ── */
+@keyframes hero-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-caption-in {
+  animation: hero-caption-in 520ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-caption-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

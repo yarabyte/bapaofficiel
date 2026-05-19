@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 /** Vague courbe entre sections — `fill` = couleur de la section en dessous du séparateur */
 export type SectionFill = 'cream' | 'white' | 'brand-dark';
 
@@ -14,14 +16,20 @@ const WAVE_PATH =
 interface SectionDividerProps {
   fill?: SectionFill;
   position?: 'top' | 'bottom';
+  /** Dégradé crème → brand → brand-dark (transition Communauté → Médiathèque, etc.) */
+  blend?: boolean;
   className?: string;
 }
 
 export default function SectionDivider({
   fill = 'cream',
   position = 'bottom',
+  blend = false,
   className = '',
 }: SectionDividerProps) {
+  const rawId = useId();
+  const gradId = `wave-blend-${rawId.replace(/:/g, '')}`;
+
   return (
     <div
       className={`block w-full leading-[0] pointer-events-none shrink-0 overflow-hidden ${
@@ -31,11 +39,32 @@ export default function SectionDivider({
     >
       <svg
         viewBox="0 0 1440 64"
-        className={`w-full block ${fillClass[fill]} ${position === 'top' ? 'rotate-180' : ''}`}
+        className={`w-full block ${!blend ? fillClass[fill] : ''} ${position === 'top' ? 'rotate-180' : ''}`}
         preserveAspectRatio="none"
+        shapeRendering="geometricPrecision"
         style={{ height: '52px', display: 'block' }}
       >
-        <path d={WAVE_PATH} />
+        {blend ? (
+          <>
+            <defs>
+              <linearGradient
+                id={gradId}
+                gradientUnits="userSpaceOnUse"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="64"
+              >
+                <stop offset="0%" stopColor="var(--color-cream-dark)" />
+                <stop offset="38%" stopColor="var(--color-brand)" />
+                <stop offset="100%" stopColor="var(--color-brand-dark)" />
+              </linearGradient>
+            </defs>
+            <path fill={`url(#${gradId})`} d={WAVE_PATH} />
+          </>
+        ) : (
+          <path d={WAVE_PATH} />
+        )}
       </svg>
     </div>
   );

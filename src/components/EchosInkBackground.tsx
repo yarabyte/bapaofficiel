@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ECHOS_BACKDROP_IMAGE } from '@/lib/echos';
 
 /** Tache d'encre — fond blanc masqué via multiply, opacité faible */
 export default function EchosInkBackground() {
@@ -6,10 +7,10 @@ export default function EchosInkBackground() {
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" aria-hidden>
       <div className="absolute inset-0 mix-blend-multiply opacity-[0.035]">
         <Image
-          src="/images/echos-bg.jpg"
+          src={ECHOS_BACKDROP_IMAGE}
           alt=""
           fill
-          className="object-contain object-left-bottom scale-105"
+          className="object-cover object-[center_35%] scale-105"
           sizes="(max-width: 1280px) 80vw, 1200px"
           unoptimized
         />

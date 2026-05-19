@@ -1,5 +1,23 @@
 export type EchoCategory = 'Culture' | 'Développement' | 'Festival' | 'Institution' | 'Diaspora';
 
+export const ECHO_CATEGORIES: EchoCategory[] = [
+  'Culture',
+  'Développement',
+  'Festival',
+  'Institution',
+  'Diaspora',
+];
+
+export function isEchoCategory(value: string): value is EchoCategory {
+  return (ECHO_CATEGORIES as readonly string[]).includes(value);
+}
+
+/** Image de fond : bandeau « Echos » et texture du bloc actualités (accueil + liste). */
+export const ECHOS_BACKDROP_IMAGE = '/images/hero-slide-cortege-traditionnel.png';
+
+/** Rochers / paysage Grassfields sous le dégradé du bandeau Echos (liste + article). */
+export const ECHOS_HEADER_ROCKS_IMAGE = '/images/hero-slide-architecture-patrimoine.png';
+
 export interface EchoArticle {
   slug: string;
   title: string;
@@ -22,7 +40,7 @@ export const echoArticles: EchoArticle[] = [
     ],
     date: '2026-04-12',
     category: 'Festival',
-    image: '/images/paa-ngouook-2028.jpg',
+    image: '/images/festival-ngouook-procession.png',
   },
   {
     slug: 'ouverture-musee-case-patrimoniale',
@@ -30,12 +48,12 @@ export const echoArticles: EchoArticle[] = [
     excerpt:
       "Un nouveau lieu de mémoire ouvre ses portes pour présenter l'histoire Bamiléké et les trésors du royaume de Bapa.",
     content: [
-      "La Case Patrimoniale accueille désormais collections d'objets royaux, archives photographiques et espaces pédagogiques dédiés aux jeunes générations. L'inauguration s'est tenue en présence du Fon et des autorités du département du Ndé.",
+      "La Case Patrimoniale accueille désormais collections d'objets royaux, archives photographiques et espaces pédagogiques dédiés aux jeunes générations. L'inauguration s'est tenue en présence du Fon et des autorités du département des Hauts-Plateaux.",
       "Le musée s'inscrit dans la stratégie touristique du village et propose boutique artisanale, visites guidées et ateliers culturels pour les groupes scolaires.",
     ],
     date: '2026-03-05',
     category: 'Culture',
-    image: '/images/apropos.jpg',
+    image: '/images/musee-exposition-artefacts.png',
   },
   {
     slug: 'forum-diaspora-solidarite',
@@ -48,7 +66,7 @@ export const echoArticles: EchoArticle[] = [
     ],
     date: '2026-02-18',
     category: 'Diaspora',
-    image: '/images/bapa-02.jpg',
+    image: '/images/hero-slide-architecture-patrimoine.png',
   },
   {
     slug: 'projet-eau-grassfield',
@@ -61,7 +79,7 @@ export const echoArticles: EchoArticle[] = [
     ],
     date: '2026-01-22',
     category: 'Développement',
-    image: '/images/bapa-03.jpg',
+    image: '/images/mot-du-roi-header-palais.png',
   },
   {
     slug: 'message-fon-nouvelle-annee',
@@ -74,7 +92,7 @@ export const echoArticles: EchoArticle[] = [
     ],
     date: '2025-12-30',
     category: 'Institution',
-    image: '/images/roi-trone.jpg',
+    image: '/images/hero-slide-cortege-traditionnel.png',
   },
   {
     slug: 'nkeng-festival-culturel',
@@ -87,12 +105,28 @@ export const echoArticles: EchoArticle[] = [
     ],
     date: '2025-11-08',
     category: 'Culture',
-    image: '/images/bapa-01.jpg',
+    image: '/images/musee-celebration-culturelle.png',
   },
 ];
 
 export function getEchoBySlug(slug: string): EchoArticle | undefined {
   return echoArticles.find((a) => a.slug === slug);
+}
+
+/** Articles connexes : même rubrique en priorité, puis les autres (ordre du fil). */
+export function getRelatedEchoes(slug: string, limit = 3): EchoArticle[] {
+  const current = getEchoBySlug(slug);
+  if (!current) return [];
+  const others = echoArticles.filter((a) => a.slug !== slug);
+  const sameCat = others.filter((a) => a.category === current.category);
+  const diffCat = others.filter((a) => a.category !== current.category);
+  return [...sameCat, ...diffCat].slice(0, limit);
+}
+
+export function estimateEchoReadingMinutes(article: EchoArticle): number {
+  const text = `${article.excerpt} ${article.content.join(' ')}`;
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
 }
 
 export function formatEchoDate(isoDate: string): string {

@@ -16,30 +16,123 @@
   --color-cream:        #F7F2EA;
   --color-cream-dark:   #EDE3D2;
   --color-parchment:    #E4D9C4;
+  --color-surface:      #f2f0e9;
 
   --color-rock:         #8C7B6E;
 
+  --color-success:      #2A5F3A;
+  --color-warning:      #C07830;
+  --color-error:        #9B2C2C;
+  --color-info:         #1D4E72;
+
   /* ── Typography ── */
-  --font-heading: var(--font-playfair);
-  --font-body:    var(--font-inter);
+  --font-family-heading: var(--font-playfair), Georgia, 'Times New Roman', serif;
+  --font-family-body:    var(--font-inter), system-ui, sans-serif;
+
+  /* ── Radius ── */
+  --radius-sm:  0.5rem;
+  --radius-md:  0.75rem;
+  --radius-lg:  1rem;
+  --radius-xl:  1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 3px rgba(61, 34, 16, 0.06);
+  --shadow-md:  0 8px 24px -8px rgba(89, 52, 20, 0.12);
+  --shadow-lg:  0 20px 48px -20px rgba(61, 34, 16, 0.22);
+
+  /* ── Layout ── */
+  --navbar-offset: 7rem;
+  --navbar-offset-md: 8rem;
+  --announcement-bar: 2.5rem;
 }
 
 /* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 body {
-  background-color: var(--color-cream);
-  color: #1C1208;
-  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  background-color: var(--color-surface);
+  color: #1c1208;
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: var(--font-playfair), Georgia, serif;
-  line-height: 1.15;
+  font-family: var(--font-family-heading);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.font-heading {
+  font-family: var(--font-family-heading);
+}
+
+/* ── Page offset (navbar fixe) ── */
+.page-top {
+  padding-top: calc(var(--announcement-bar) + var(--navbar-offset));
+}
+
+@media (min-width: 768px) {
+  .page-top-md {
+    padding-top: calc(var(--announcement-bar) + var(--navbar-offset-md));
+  }
+}
+
+.scroll-anchor {
+  scroll-margin-top: calc(var(--announcement-bar) + var(--navbar-offset) + 1rem);
+}
+
+@media (min-width: 1024px) {
+  .scroll-anchor {
+    scroll-margin-top: calc(var(--announcement-bar) + var(--navbar-offset-md) + 1.5rem);
+  }
+}
+
+/* ── Section spacing ── */
+.section-y {
+  padding-block: clamp(3rem, 8vw, 5rem);
+}
+
+/* ── Accessible muted text (≥ 4.5:1 on surface) ── */
+.text-muted {
+  color: #57534e;
+}
+
+.text-muted-on-dark {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Liens secondaires — contraste renforcé sur fond clair */
+.link-muted {
+  color: #57534e;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.link-muted:hover {
+  color: var(--color-brand);
 }
 
 /* ── Section label pill ── */
@@ -53,6 +146,7 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   color: var(--color-gold-dark);
 }
+
 .section-label::before {
   content: '';
   display: block;
@@ -67,36 +161,40 @@ h1, h2, h3, h4, h5 {
   background-image:
     repeating-linear-gradient(
       45deg, transparent, transparent 8px,
-      rgba(89,52,20,0.05) 8px, rgba(89,52,20,0.05) 9px
+      rgba(89, 52, 20, 0.05) 8px, rgba(89, 52, 20, 0.05) 9px
     ),
     repeating-linear-gradient(
       -45deg, transparent, transparent 8px,
-      rgba(89,52,20,0.05) 8px, rgba(89,52,20,0.05) 9px
+      rgba(89, 52, 20, 0.05) 8px, rgba(89, 52, 20, 0.05) 9px
     );
 }
 
 /* ── Gradient text ── */
 .text-gradient {
-  background: linear-gradient(135deg, #C07830 0%, #8F5820 100%);
+  background: linear-gradient(135deg, #c07830 0%, #8f5820 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Card lift ── */
+/* ── Card lift (legacy + aligné design system) ── */
 .card-lift {
-  transition: transform 0.22s cubic-bezier(.22,.61,.36,1),
-              box-shadow 0.22s cubic-bezier(.22,.61,.36,1);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.2s ease;
 }
+
 .card-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(89,52,20,0.13);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* ── Nav underline ── */
 .nav-link-ul {
   position: relative;
 }
+
 .nav-link-ul::after {
   content: '';
   position: absolute;
@@ -107,25 +205,48 @@ h1, h2, h3, h4, h5 {
   height: 2px;
   background: var(--color-gold);
   border-radius: 2px;
-  transition: width 0.22s ease;
+  transition: width 0.2s ease-out;
 }
-.nav-link-ul:hover::after { width: 70%; }
+
+.nav-link-ul:hover::after {
+  width: 70%;
+}
 
 /* ── Prose ── */
 .prose-bapa {
   max-width: 68ch;
-  line-height: 1.82;
+  line-height: 1.75;
   font-size: 1.0625rem;
-  color: #3C2A1C;
+  color: #2f2116;
 }
 
 /* ── Drawer overlay ── */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
   z-index: 40;
+}
+
+/* ── Page transition (App Router) ── */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+main > * {
+  animation: page-fade-in 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > * {
+    animation: none;
+  }
 }
 
 /* ── Hero slider caption ── */
@@ -150,4 +271,51 @@ h1, h2, h3, h4, h5 {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ── Section Festival Pa'a Ngouook ── */
+@keyframes festival-bg-a {
+  0%, 40% { opacity: 1; }
+  46%, 88% { opacity: 0; }
+  94%, 100% { opacity: 1; }
+}
+
+@keyframes festival-bg-b {
+  0%, 40% { opacity: 0; }
+  46%, 88% { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+
+.festival-bg-crossfade-a {
+  animation: festival-bg-a 18s ease-in-out infinite;
+}
+
+.festival-bg-crossfade-b {
+  animation: festival-bg-b 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .festival-bg-crossfade-a,
+  .festival-bg-crossfade-b {
+    animation: none;
+  }
+
+  .festival-bg-crossfade-a {
+    opacity: 1;
+  }
+
+  .festival-bg-crossfade-b {
+    opacity: 0;
+  }
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes skeleton-shimmer {
+  0% { opacity: 0.55; }
+  50% { opacity: 0.85; }
+  100% { opacity: 0.55; }
+}
+
+.skeleton-shimmer {
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
 }

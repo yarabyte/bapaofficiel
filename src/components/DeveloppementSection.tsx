@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import SectionDivider from '@/components/SectionDivider';
 
 const CORNER_MOTIFS = ['/images/dev-card-motif-a.png', '/images/dev-card-motif-b.png'] as const;
 
@@ -12,7 +11,7 @@ export const developpementInitiatives = [
     tagline: 'Santé · Éducation · Projets',
     desc: 'Santé communautaire, infrastructure scolaire et grands projets structurants pour le village.',
     href: '/developpement/adevipa',
-    image: '/images/bapa-03.jpg',
+    image: '/images/mot-du-roi-header-palais.png',
     accent: '#2A5F3A',
   },
   {
@@ -20,7 +19,7 @@ export const developpementInitiatives = [
     tagline: 'Vision · Stratégie · Futur',
     desc: "Réflexion prospective pour orienter le Bapa de demain jusqu'à l'horizon 2050.",
     href: '/developpement/forum-h2050',
-    image: '/images/bapa-02.jpg',
+    image: '/images/hero-slide-architecture-patrimoine.png',
     accent: '#593414',
   },
   {
@@ -28,7 +27,7 @@ export const developpementInitiatives = [
     tagline: 'Eau · Électricité · Environnement',
     desc: 'Recherche et action pour les ressources vitales et la protection des Grassfields.',
     href: '/developpement/grassfield',
-    image: '/images/bapa-04.jpg',
+    image: '/images/festival-ngouook-procession.png',
     accent: '#1D4E72',
   },
   {
@@ -36,7 +35,7 @@ export const developpementInitiatives = [
     tagline: 'Numérique · Diaspora · Réseau',
     desc: 'Relier la communauté Bapa au Cameroun et dans le monde entier.',
     href: '/developpement/bapa-connect',
-    image: '/images/bapa-01.jpg',
+    image: '/images/musee-celebration-culturelle.png',
     accent: '#7A4E2D',
   },
 ] as const;
@@ -98,8 +97,8 @@ function DevCard({
           {init.tagline}
         </p>
         <h3
-          className="text-lg font-bold text-brand mb-2 leading-snug tracking-tight line-clamp-2 group-hover:text-brand-light transition-colors duration-300"
-          style={{ fontFamily: 'var(--font-playfair)' }}
+          className="font-heading text-lg font-bold text-brand mb-2 leading-snug tracking-tight line-clamp-2 group-hover:text-brand-light transition-colors duration-300"
+          
         >
           {init.name}
         </h3>
@@ -149,8 +148,8 @@ export default function DeveloppementSection() {
           <div>
             <span className="section-label mb-3 inline-flex">Avenir</span>
             <h2
-              className="mt-2 mb-3 text-4xl font-bold leading-[1.12] tracking-tight text-brand sm:text-[2.625rem] md:text-5xl"
-              style={{ fontFamily: 'var(--font-playfair)' }}
+              className="font-heading mt-2 mb-3 text-4xl font-bold leading-[1.12] tracking-tight text-brand sm:text-[2.625rem] md:text-5xl"
+              
             >
               Développement
             </h2>
@@ -175,7 +174,6 @@ export default function DeveloppementSection() {
         </ul>
       </div>
 
-      <SectionDivider fill="brand-dark" position="bottom" className="relative z-10" />
     </section>
   );
 }

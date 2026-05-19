@@ -15,15 +15,15 @@ export default function EchosSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <header className="text-center mb-10 md:mb-12">
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand leading-tight mb-5"
-            style={{ fontFamily: 'var(--font-playfair)' }}
+            className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-brand leading-tight mb-5"
+            
           >
             Echos{' '}
             <span className="text-gradient italic font-medium">de Bapa</span>
           </h2>
           <p
-            className="max-w-xl mx-auto text-stone-600 text-sm sm:text-base leading-relaxed italic px-6 py-4 rounded-3xl bg-transparent border border-stone-200/40"
-            style={{ fontFamily: 'var(--font-playfair)' }}
+            className="font-heading max-w-xl mx-auto text-stone-600 text-sm sm:text-base leading-relaxed italic px-6 py-4 rounded-3xl bg-transparent border border-stone-200/40"
+            
           >
             Les nouvelles du royaume — événements, projets, culture et vie de la communauté.
           </p>

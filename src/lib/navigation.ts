@@ -1,48 +1,54 @@
-export interface NavLink {
+/** Entrée de menu : lien seul ou nœud avec sous-menus. */
+export interface NavChild {
   label: string;
-  href: string;
+  href?: string;
+  children?: NavChild[];
 }
 
 export interface NavItem {
   label: string;
   href?: string;
-  children?: NavLink[];
+  children?: NavChild[];
 }
 
 export const navItems: NavItem[] = [
   { label: 'Accueil', href: '/' },
+  { label: 'Échos de Bapa', href: '/communaute/echos' },
   {
     label: 'Le Royaume',
     children: [
-      { label: 'Histoire', href: '/royaume/histoire' },
-      { label: 'Traditions', href: '/royaume/traditions' },
-      { label: 'Culture', href: '/royaume/culture' },
       { label: 'Mot du Roi', href: '/royaume/mot-du-roi' },
-      { label: 'Dynastie Royale', href: '/royaume/dynastie' },
-      { label: 'Administration', href: '/royaume/administration' },
+      { label: 'Histoire', href: '/royaume/histoire' },
       { label: 'Organisation de la Chefferie', href: '/royaume/chefferie' },
+      { label: 'Administration', href: '/royaume/administration' },
+      { label: 'Traditions', href: '/royaume/traditions' },
+      { label: 'Langues et Cultures', href: '/royaume/langues-et-cultures' },
     ],
   },
   {
     label: 'Développement',
     children: [
-      { label: 'ADEVIPA · Introduction', href: '/developpement/adevipa' },
-      { label: 'ADEVIPA · Santé et éducation', href: '/developpement/adevipa/sante' },
-      { label: 'ADEVIPA · Projets', href: '/developpement/adevipa/projets' },
-      { label: 'Rock Futura Finance', href: '/developpement/rock-futura' },
-      { label: 'Forum Bapa H2050', href: '/developpement/forum-h2050' },
-      { label: 'Bapa Connect', href: '/developpement/bapa-connect' },
-      { label: 'Grassfield · Introduction', href: '/developpement/grassfield' },
-      { label: 'Grassfield · Programme environnemental', href: '/developpement/grassfield/programme' },
-      { label: 'Grassfield · Réseau électrique', href: '/developpement/grassfield/electricite' },
-      { label: "Grassfield · Accès à l'eau", href: '/developpement/grassfield/eau' },
-      { label: "Grassfield · Associations d'appui", href: '/developpement/grassfield/associations' },
-      { label: 'Cremepa', href: '/developpement/cremepa' },
-      { label: 'Tourisme · Introduction & enjeux', href: '/economie/tourisme' },
-      { label: 'Tourisme · Organisation et promotion', href: '/economie/tourisme/organisation' },
-      { label: 'Tourisme · Musée Case Patrimoniale', href: '/economie/tourisme/musee' },
-      { label: 'Tourisme · Restaurant Patrimoniale', href: '/economie/tourisme/restaurant' },
-      { label: 'Tourisme · Sites touristiques', href: '/economie/tourisme/sites' },
+      { label: 'ADEVIPA', href: '/developpement/adevipa' },
+      { label: 'Santé et éducation', href: '/developpement/adevipa/sante' },
+      {
+        label: 'Projets',
+        children: [
+          { label: 'Rock Futura Finance', href: '/developpement/rock-futura' },
+          { label: 'Forum Bapa H2050', href: '/developpement/forum-h2050' },
+          { label: 'Bapa Connect', href: '/developpement/bapa-connect' },
+          { label: 'Grassfield Research I.', href: '/developpement/grassfield' },
+          { label: 'Programme env.', href: '/developpement/grassfield/programme' },
+          {
+            label: 'Développement Réseau électrique',
+            href: '/developpement/grassfield/electricite',
+          },
+          {
+            label: "Amélioration de l'accès à l'eau",
+            href: '/developpement/grassfield/eau',
+          },
+        ],
+      },
+      { label: 'Économie', href: '/economie/tourisme' },
     ],
   },
   {
@@ -55,16 +61,15 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    label: 'La Communauté',
+    label: 'Tourisme',
     children: [
-      { label: 'Rôles de communautés', href: '/communaute/roles' },
-      { label: 'Communauté Bapa du Cameroun', href: '/communaute/cameroun' },
-      { label: 'Communauté de la diaspora', href: '/communaute/diaspora' },
-      { label: 'Activités des communautés', href: '/communaute/activites' },
-      { label: 'Echos de Bapa', href: '/communaute/echos' },
-      { label: 'Partenaires', href: '/communaute/partenaires' },
-      { label: 'Contacts', href: '/communaute/contacts' },
+      { label: 'Introduction et enjeux', href: '/economie/tourisme' },
+      { label: 'Organisation et promotion', href: '/economie/tourisme/organisation' },
+      { label: 'Le Musée Case Patrimoniale', href: '/tourisme/musee' },
+      { label: 'Le Restaurant Patrimoniale', href: '/economie/tourisme/restaurant' },
+      { label: 'Les Sites Touristiques', href: '/economie/tourisme/sites' },
+      { label: 'Visitez Bapa', href: '/#visitez-bapa' },
     ],
   },
-  { label: 'Médiathèque', href: '/mediatheque' },
+  { label: 'La Communauté', href: '/communaute' },
 ];

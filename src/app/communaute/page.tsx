@@ -7,7 +7,7 @@ import EchoCard from '@/components/EchoCard';
 import { echoArticles } from '@/lib/echos';
 
 export const metadata: Metadata = {
-  title: 'La Communauté | Bapa Officiel',
+  title: 'Les Communautés | Bapa Officiel',
   description:
     'Communautés du Royaume de Bapa au Cameroun et dans la diaspora : rôles, activités, actualités et contacts.',
 };
@@ -94,24 +94,31 @@ function HubIcon({ id, className }: { id: HubIconId; className?: string }) {
 
 const hubSections = [
   {
-    id: 'communautes',
-    title: 'Qui sommes-nous',
-    subtitle: 'Village, diaspora et rôles au sein du royaume.',
+    id: 'roles',
+    title: 'Rôles de communautés',
+    subtitle: 'Missions, responsabilités et organisation des groupes au sein du royaume.',
     items: [
       {
         label: 'Rôles de communautés',
         href: '/communaute/roles',
         icon: 'roles' as HubIconId,
-        description: 'Missions, responsabilités et organisation des groupes.',
+        description: 'Fonctions, mandats et articulation entre village, diaspora et institutions.',
       },
+    ],
+  },
+  {
+    id: 'communautes',
+    title: 'Les communautés',
+    subtitle: 'Royaume de Bapa et diaspora — deux piliers de la solidarité Bapa.',
+    items: [
       {
         label: 'Communauté Bapa du Cameroun',
         href: '/communaute/cameroun',
         icon: 'cameroun' as HubIconId,
-        description: 'Vie locale, initiatives et ancrage au village royal.',
+        description: 'Vie locale, initiatives et ancrage au Royaume de Bapa.',
       },
       {
-        label: 'Communauté de la diaspora',
+        label: 'Communauté Bapa de la diaspora',
         href: '/communaute/diaspora',
         icon: 'diaspora' as HubIconId,
         description: 'Réseau mondial, solidarité et projets à distance.',
@@ -151,7 +158,7 @@ const hubSections = [
       },
       {
         label: 'Contacts',
-        href: '/communaute/contacts',
+        href: '/contacts',
         icon: 'contacts' as HubIconId,
         description: 'Écrire au secrétariat, rejoindre ou poser une question.',
         featured: true,
@@ -161,7 +168,7 @@ const hubSections = [
 ] as const;
 
 const pillars = [
-  { label: 'Village royal', icon: 'village' as HubIconId },
+  { label: 'Royaume de Bapa', icon: 'village' as HubIconId },
   { label: 'Diaspora', icon: 'diaspora' as HubIconId },
   { label: 'Solidarité', icon: 'lien' as HubIconId },
 ] as const;
@@ -202,10 +209,10 @@ export default function CommunauteHubPage() {
             className="font-heading mb-4 text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl md:text-[3.15rem]"
             
           >
-            La Communauté
+            Les Communautés
           </h1>
           <p className="mx-auto max-w-2xl text-[1.05rem] leading-relaxed text-white/90 md:mx-0">
-            Cohésion du village royal et de la diaspora — actualités, entraide et projets communs pour le Royaume de
+            Cohésion du Royaume de Bapa et de la diaspora — actualités, entraide et projets communs pour le Royaume de
             Bapa.
           </p>
 
@@ -245,7 +252,7 @@ export default function CommunauteHubPage() {
           </Link>
 
           <Link
-            href="/communaute/contacts"
+            href="/contacts"
             className="group flex flex-col justify-between rounded-2xl border border-stone-200/80 bg-white/95 p-6 shadow-sm ring-1 ring-stone-100 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-gold-dark/30 hover:shadow-md sm:p-8"
           >
             <div>
@@ -351,7 +358,7 @@ export default function CommunauteHubPage() {
           <Link href="/" className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline">
             ← Accueil
           </Link>
-          <Link href="/communaute/contacts" className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline">
+          <Link href="/contacts" className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline">
             Contacts
           </Link>
         </nav>

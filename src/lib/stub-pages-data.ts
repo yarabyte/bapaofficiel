@@ -1,7 +1,7 @@
 import type { StubPageConfig } from '@/lib/stub-page';
 
 const defaultMessage =
-  'Cette rubrique sera publiée prochainement par le secrétariat du village royal et les partenaires institutionnels.';
+  'Cette rubrique sera publiée prochainement par le secrétariat du Royaume de Bapa et les partenaires institutionnels.';
 
 export const stubPagesByPath: Record<string, StubPageConfig> = {
   'royaume/traditions': {
@@ -23,17 +23,37 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
   },
   'developpement/adevipa/sante': {
     title: 'Développement',
-    heading: 'Santé et éducation',
+    heading: 'Santé',
     label: 'ADEVIPA',
-    description: 'Actions ADEVIPA en santé communautaire et éducation à Bapa.',
-    intro: 'Campagnes de santé, équipements scolaires et accompagnement des jeunes.',
+    description: 'Actions ADEVIPA en santé communautaire à Bapa.',
+    intro: 'Campagnes de santé, prévention et équipements au service des familles du village.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
       { label: 'ADEVIPA', href: '/developpement/adevipa' },
-      { label: 'Santé et éducation' },
+      { label: 'Santé' },
     ],
-    footerLinks: [{ href: '/developpement/adevipa', label: '← ADEVIPA' }],
+    footerLinks: [
+      { href: '/developpement/adevipa/education', label: 'Éducation' },
+      { href: '/developpement/adevipa', label: '← ADEVIPA' },
+    ],
+  },
+  'developpement/adevipa/education': {
+    title: 'Développement',
+    heading: 'Éducation',
+    label: 'ADEVIPA',
+    description: 'Actions ADEVIPA en éducation et formation à Bapa.',
+    intro: 'Infrastructures scolaires, soutien aux élèves et accompagnement des jeunes générations.',
+    message: defaultMessage,
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'ADEVIPA', href: '/developpement/adevipa' },
+      { label: 'Éducation' },
+    ],
+    footerLinks: [
+      { href: '/developpement/adevipa/sante', label: 'Santé' },
+      { href: '/developpement/adevipa', label: '← ADEVIPA' },
+    ],
   },
   'developpement/rock-futura': {
     title: 'Développement',
@@ -77,7 +97,7 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
   },
   'developpement/grassfield': {
     title: 'Développement',
-    heading: 'Grassfield Research',
+    heading: 'Grassfield Research Institute',
     label: 'Projets',
     description: 'Recherche et action pour l’eau, l’électricité et l’environnement.',
     intro: 'Réseaux vitaux et protection des Grassfields au service du village.',
@@ -85,155 +105,194 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
       { label: 'Développement', href: '/developpement' },
-      { label: 'Grassfield Research' },
+      { label: 'Grassfield Research Institute' },
     ],
     footerLinks: [{ href: '/developpement', label: '← Tous les projets' }],
   },
   'developpement/grassfield/programme': {
     title: 'Développement',
-    heading: 'Programme environnemental',
-    label: 'Grassfield Research',
-    description: 'Programme de protection de l’environnement et des sources naturelles.',
-    message: defaultMessage,
-    breadcrumbs: [
-      { label: 'Accueil', href: '/' },
-      { label: 'Grassfield Research', href: '/developpement/grassfield' },
-      { label: 'Programme env.' },
-    ],
-    footerLinks: [{ href: '/developpement/grassfield', label: '← Grassfield' }],
-  },
-  'developpement/grassfield/electricite': {
-    title: 'Développement',
-    heading: 'Réseau électrique',
-    label: 'Grassfield Research',
-    description: 'Développement du réseau électrique communautaire à Bapa.',
-    message: defaultMessage,
-    breadcrumbs: [
-      { label: 'Accueil', href: '/' },
-      { label: 'Grassfield Research', href: '/developpement/grassfield' },
-      { label: 'Réseau électrique' },
-    ],
-    footerLinks: [{ href: '/developpement/grassfield', label: '← Grassfield' }],
-  },
-  'developpement/grassfield/eau': {
-    title: 'Développement',
-    heading: "Accès à l'eau",
-    label: 'Grassfield Research',
-    description: "Amélioration de l'accès à l'eau potable dans le village royal.",
-    message: defaultMessage,
-    breadcrumbs: [
-      { label: 'Accueil', href: '/' },
-      { label: 'Grassfield Research', href: '/developpement/grassfield' },
-      { label: "Accès à l'eau" },
-    ],
-    footerLinks: [{ href: '/developpement/grassfield', label: '← Grassfield' }],
-  },
-  'developpement/cremepa': {
-    title: 'Développement',
-    heading: 'Cremepa',
-    label: 'Projets',
-    description: 'Projet Cremepa au service de la cohésion et du développement local.',
+    heading: 'Gestion environnement',
+    label: 'Développement',
+    description: 'Gestion et protection de l’environnement et des sources naturelles.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
       { label: 'Développement', href: '/developpement' },
-      { label: 'Cremepa' },
+      { label: 'Gestion environnement' },
     ],
-    footerLinks: [{ href: '/developpement', label: '← Tous les projets' }],
+    footerLinks: [{ href: '/developpement', label: '← Développement' }],
   },
-  'economie/tourisme': {
-    title: 'Tourisme',
-    heading: 'Introduction et enjeux',
-    label: 'Économie & tourisme',
-    description: 'Tourisme culturel et patrimonial au Royaume de Bapa.',
-    intro: 'Enjeux, opportunités et stratégie de mise en valeur du village royal.',
+  'developpement/grassfield/electricite': {
+    title: 'Développement',
+    heading: 'Réseau électrique',
+    label: 'Développement',
+    description: 'Développement du réseau électrique communautaire à Bapa.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'Tourisme', href: '/economie/tourisme' },
-      { label: 'Introduction' },
+      { label: 'Développement', href: '/developpement' },
+      { label: 'Réseau électrique' },
+    ],
+    footerLinks: [{ href: '/developpement', label: '← Développement' }],
+  },
+  'developpement/grassfield/eau': {
+    title: 'Développement',
+    heading: "Accès à l'eau",
+    label: 'Développement',
+    description: "Amélioration de l'accès à l'eau potable dans le Royaume de Bapa.",
+    message: defaultMessage,
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'Développement', href: '/developpement' },
+      { label: "Accès à l'eau" },
+    ],
+    footerLinks: [{ href: '/developpement', label: '← Développement' }],
+  },
+  'developpement/cremepa': {
+    title: 'Développement',
+    heading: 'CREMEPA',
+    label: 'Développement',
+    description: 'CREMEPA au service de la cohésion et du développement local à Bapa.',
+    message: defaultMessage,
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'Développement', href: '/developpement' },
+      { label: 'CREMEPA' },
+    ],
+    footerLinks: [{ href: '/developpement', label: '← Développement' }],
+  },
+  'developpement/ajeepa': {
+    title: 'Développement',
+    heading: 'AJEEPA',
+    label: 'Développement',
+    description: 'AJEEPA — association et initiatives au service du village de Bapa.',
+    intro: 'Programmes, actions et partenariats portés par AJEEPA (contenu à compléter).',
+    message: defaultMessage,
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'Développement', href: '/developpement' },
+      { label: 'AJEEPA' },
+    ],
+    footerLinks: [{ href: '/developpement', label: '← Développement' }],
+  },
+  'developpement/tourisme': {
+    title: 'Développement',
+    heading: 'Introduction et Enjeux',
+    label: 'Développement',
+    description: 'Tourisme culturel et patrimonial au Royaume de Bapa.',
+    intro: 'Enjeux, opportunités et stratégie de mise en valeur du Royaume de Bapa.',
+    message: defaultMessage,
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'Développement', href: '/developpement' },
+      { label: 'Introduction et Enjeux' },
     ],
     footerLinks: [
+      { href: '/developpement/tourisme/visitez-bapa', label: 'Visitez Bapa' },
       { href: '/tourisme/musee', label: 'Musée Case Patrimoniale' },
-      { href: '/', label: 'Accueil' },
+      { href: '/developpement', label: '← Développement' },
     ],
   },
-  'economie/tourisme/organisation': {
-    title: 'Tourisme',
+  'developpement/tourisme/organisation': {
+    title: 'Développement',
     heading: 'Organisation et promotion',
     label: 'Économie & tourisme',
     description: 'Organisation touristique et promotion du village de Bapa.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'Tourisme', href: '/economie/tourisme' },
-      { label: 'Organisation' },
+      { label: 'Développement', href: '/developpement' },
+      { label: 'Organisation et promotion' },
     ],
-    footerLinks: [{ href: '/economie/tourisme', label: '← Introduction' }],
+    footerLinks: [{ href: '/developpement/tourisme', label: '← Introduction et Enjeux' }],
   },
-  'economie/tourisme/restaurant': {
-    title: 'Tourisme',
-    heading: 'Restaurant Patrimoniale',
+  'developpement/tourisme/restaurant': {
+    title: 'Développement',
+    heading: 'Restaurant Patrimonial',
     label: 'Économie & tourisme',
-    description: 'Le restaurant patrimonial du village royal de Bapa.',
+    description:
+      'Restaurant Patrimonial de Bapa : carte, commande en ligne, interview du gestionnaire et formulaire de commande.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'Tourisme', href: '/economie/tourisme' },
+      { label: 'Développement', href: '/developpement' },
       { label: 'Restaurant' },
     ],
     footerLinks: [{ href: '/tourisme/musee', label: 'Musée' }],
   },
-  'economie/tourisme/sites': {
-    title: 'Tourisme',
+  'developpement/tourisme/sites': {
+    title: 'Développement',
     heading: 'Sites touristiques',
     label: 'Économie & tourisme',
     description: 'Sites naturels et culturels à découvrir à Bapa.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'Tourisme', href: '/economie/tourisme' },
+      { label: 'Développement', href: '/developpement' },
       { label: 'Sites touristiques' },
     ],
-    footerLinks: [{ href: '/#visitez-bapa', label: 'Visitez Bapa' }],
+    footerLinks: [
+      { href: '/developpement/tourisme/visitez-bapa', label: 'Carte — Visitez Bapa' },
+      { href: '/developpement/tourisme', label: '← Introduction et Enjeux' },
+    ],
   },
   mediatheque: {
     title: 'Médiathèque',
     heading: 'Médiathèque',
     label: 'Ressources',
-    description: 'Archives photo, vidéo et documents officiels du Royaume de Bapa.',
+    description:
+      'Médiathèque du Royaume de Bapa : photos, documentation PDF, vidéos et audio classés par thème.',
     message: defaultMessage,
     breadcrumbs: [{ label: 'Accueil', href: '/' }, { label: 'Médiathèque' }],
     footerLinks: [{ href: '/communaute/echos', label: 'Échos de Bapa' }],
   },
-  'communaute/partenaires': {
-    title: 'La Communauté',
-    heading: 'Partenaires',
-    label: 'Communauté',
-    description: 'Partenaires institutionnels et associatifs du village royal.',
+  'communaute/roles': {
+    title: 'Les Communautés',
+    heading: 'Rôles de communautés',
+    label: 'Les Communautés',
+    description:
+      'Rôles et missions des communautés du Royaume de Bapa : village, diaspora, institutions et groupes d’action.',
+    intro:
+      'Organisation des responsabilités au service du Royaume de Bapa, de la diaspora et des partenaires institutionnels.',
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'La Communauté', href: '/communaute' },
-      { label: 'Partenaires' },
+      { label: 'Les Communautés', href: '/communaute' },
+      { label: 'Rôles de communautés' },
     ],
-    footerLinks: [{ href: '/communaute', label: '← Communauté' }],
+    footerLinks: [
+      { href: '/communaute/cameroun', label: 'Communauté au Cameroun' },
+      { href: '/communaute', label: '← Les Communautés' },
+    ],
   },
-  'communaute/contacts': {
-    title: 'La Communauté',
-    heading: 'Contacts',
-    label: 'Communauté',
-    description: 'Coordonnées et formulaire de contact du secrétariat de Bapa.',
-    message:
-      'Les coordonnées officielles et le formulaire de contact seront publiés prochainement. En attendant, suivez les actualités dans les Échos.',
+  'communaute/partenaires': {
+    title: 'Les Communautés',
+    heading: 'Partenaires',
+    label: 'Les Communautés',
+    description:
+      'Partenaires du Royaume de Bapa par thème : institutionnel, entreprises, médias et associatif.',
+    message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'La Communauté', href: '/communaute' },
+      { label: 'Les Communautés', href: '/communaute' },
+      { label: 'Partenaires' },
+    ],
+    footerLinks: [{ href: '/communaute', label: '← Les Communautés' }],
+  },
+  contacts: {
+    title: 'Les Communautés',
+    heading: 'Contacts',
+    label: 'Les Communautés',
+    description:
+      'Téléphones et e-mail du secrétariat du Royaume de Bapa, formulaire de contact en ligne.',
+    breadcrumbs: [
+      { label: 'Accueil', href: '/' },
+      { label: 'Les Communautés', href: '/communaute' },
       { label: 'Contacts' },
     ],
     footerLinks: [
       { href: '/communaute/echos', label: 'Échos de Bapa' },
-      { href: '/communaute', label: '← Communauté' },
+      { href: '/communaute', label: '← Les Communautés' },
     ],
   },
 };

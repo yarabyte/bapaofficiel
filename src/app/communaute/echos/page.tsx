@@ -7,14 +7,14 @@ import EchosMotifBackground from '@/components/EchosMotifBackground';
 import {
   ECHO_CATEGORIES,
   echoArticles,
-  isEchoCategory,
+  normalizeEchoCategory,
   type EchoCategory,
 } from '@/lib/echos';
 
 export const metadata: Metadata = {
   title: 'Echos de Bapa | Actualités du Royaume',
   description:
-    'Actualités, annonces et nouvelles du village royal de Bapa : culture, développement, festival et communauté.',
+    'Actualités, annonces et nouvelles du Royaume de Bapa : culture, développement, festival et communauté.',
 };
 
 interface EchosPageProps {
@@ -43,7 +43,8 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
   if (typeof categorieRaw === 'string' && categorieRaw.trim()) {
     try {
       const decoded = decodeURIComponent(categorieRaw.trim());
-      if (isEchoCategory(decoded)) activeCategory = decoded;
+      const normalized = normalizeEchoCategory(decoded);
+      if (normalized) activeCategory = normalized;
     } catch {
       activeCategory = undefined;
     }
@@ -81,7 +82,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
                   href="/communaute"
                   className="rounded-md px-1.5 py-1 transition-colors hover:text-brand hover:underline"
                 >
-                  Communauté
+                  Les Communautés
                 </Link>
               </li>
               <li className="flex items-center gap-1">
@@ -102,7 +103,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
               Echos de Bapa
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-stone-600 md:mx-0 md:text-[1.0625rem]">
-              Nouvelles du village royal : initiatives, culture, développement et voix de la diaspora.
+              Nouvelles du Royaume de Bapa : initiatives, culture, développement et voix de la diaspora.
               Utilisez les thèmes ci-dessous pour parcourir les articles plus vite.
             </p>
           </div>
@@ -240,7 +241,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
             </p>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Link
-                href="/communaute/contacts"
+                href="/contacts"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand-dark hover:shadow-xl"
               >
                 Nous contacter
@@ -250,7 +251,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
                 href="/communaute"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-brand/25 px-8 py-3 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand hover:text-white"
               >
-                Page Communauté
+                Les Communautés
               </Link>
             </div>
           </aside>

@@ -1,6 +1,6 @@
 /**
- * Structure commune des pages d’édition du Festival Pa’a Ngouook
- * (ordre imposé : Introduction → … → le PCO).
+ * Structure commune des pages d’édition du Festival Pa’a Ngouo'ok
+ * (ordre imposé : Introduction → … → Mot du PCO).
  */
 
 export type FestivalSlug =
@@ -37,7 +37,7 @@ const sectionOrder = [
     draft: (
       edition: Pick<FestivalEdition, 'year'>
     ): string[] => [
-      `Le Festival Pa’a Ngouook est le grand rassemblement biennal qui célèbre l’identité bamiléké au village royal de Bapa. L’édition ${edition.year} s’inscrit dans cette continuité vivante où se mêlent culture, développement local et lien avec la diaspora.`,
+      `Le Festival Pa’a Ngouo'ok est le grand rassemblement biennal qui célèbre l’identité bamiléké au Royaume de Bapa. L’édition ${edition.year} s’inscrit dans cette continuité vivante où se mêlent culture, développement local et lien avec la diaspora.`,
       `Cette page recense les grands chantiers préparatoires et le déroulé prévu ou accompli : thème officiel, activités majeures et documents de mémoire.`,
     ],
   },
@@ -117,15 +117,15 @@ const sectionOrder = [
     title: 'Médiathèque',
     draft: (): string[] => [
       'La Médiathèque du portal regroupe clichés officiels et bandes anonymisées des moments forts après accord des personnes filmées lorsque la loi l’exige.',
-      `Les documents produits peuvent également nourrir les contenus Échos · communautés et préparer une base patrimoine « Pa’a Ngouook ».`,
+      `Les documents produits peuvent également nourrir les contenus Échos · communautés et préparer une base patrimoine « Pa’a Ngouo'ok ».`,
     ],
   },
   {
     slug: 'pco',
-    title: 'le PCO',
+    title: 'Mot du PCO — Président du comité d’organisation',
     draft: (edition: Pick<FestivalEdition, 'year'>): string[] => [
-      `Le Poste Central d’Orchestration (PCO ${edition.year}) rassemble téléphonie décisionnelle, liaisons santé‑secours et cartographie temps réel lors des grandes affluences.`,
-      'Ses procédures s’harmonisent avec le plan événementiel du ministère territorial compétent et avec les représentants de la chefferie chargés des issues de secours rituel(le)s.',
+      `Le PCO (Président du Comité d’Organisation) de l’édition ${edition.year} adresse ici sa parole à la communauté : remerciements, priorités logistiques et appel à la mobilisation collective.`,
+      'Le message officiel du président sera publié après validation par le comité et la chefferie. Il rappellera le sens du festival, le rôle des partenaires et l’engagement attendu de chaque quartier et de la diaspora.',
     ],
   },
 ] as const;
@@ -133,7 +133,7 @@ const sectionOrder = [
 function buildEdition(year: 2018 | 2023 | 2028): FestivalEdition {
   const edition: FestivalEdition = {
     year,
-    label: `Pa’a Ngouook ${year}`,
+    label: `Pa’a Ngouo'ok ${year}`,
     statusLabel: year === 2028 ? 'Édition à venir · préparation' : 'Édition réalisée · bilan communautaire',
     heroLead:
       year === 2028

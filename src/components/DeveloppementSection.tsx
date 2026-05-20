@@ -23,7 +23,7 @@ export const developpementInitiatives = [
     accent: '#593414',
   },
   {
-    name: 'Grassfield Research',
+    name: 'Grassfield Research Institute',
     tagline: 'Eau · Électricité · Environnement',
     desc: 'Recherche et action pour les ressources vitales et la protection des Grassfields.',
     href: '/developpement/grassfield',

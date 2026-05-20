@@ -8,9 +8,9 @@ import Card from '@/components/ui/Card';
 import ChevronRight from '@/components/ui/ChevronRight';
 
 export const metadata: Metadata = {
-  title: "Festival Pa'a Ngouook | Économie & culture | Bapa",
+  title: "Festival Pa'a Ngouo'ok | Économie & culture | Bapa",
   description:
-    "Présentation des éditions du festival biennal Pa'a Ngouook : introductions, programmes, bilan et médias officiels.",
+    "Présentation des éditions du festival biennal Pa'a Ngouo'ok : introductions, programmes, bilan et médias officiels.",
 };
 
 export default function FestivalHubPage() {
@@ -18,11 +18,11 @@ export default function FestivalHubPage() {
     <PageShell>
       <PageHeroSimple
         label="Économie & culture"
-        title="Pa'a Ngouook"
-        description="Chaque édition dispose de sa page structurée (introduction, thème, présentation, programme, comité, réalisation, partenaires, médiathèque, PCO). Choisissez une édition pour consulter le détail."
+        title="Pa'a Ngouo'ok"
+        description="Chaque édition dispose de sa page structurée (introduction, thème, présentation, programme, comité, réalisation, partenaires, médiathèque, mot du PCO). Choisissez une édition pour consulter le détail."
         breadcrumbs={[
           { label: 'Accueil', href: '/' },
-          { label: "Festival Pa'a Ngouook" },
+          { label: "Festival Pa'a Ngouo'ok" },
         ]}
       />
       <PageSection containerSize="md" spacing="default">

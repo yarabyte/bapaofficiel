@@ -5,6 +5,7 @@ import DeveloppementSection from '@/components/DeveloppementSection';
 import EchosSection from '@/components/EchosSection';
 import RoyaumeSection from '@/components/RoyaumeSection';
 import SectionDivider from '@/components/SectionDivider';
+import VisitezBapaSection from '@/components/VisitezBapaSection';
 
 
 /* ════════════════════════════════════════
@@ -76,7 +77,7 @@ function IntroSection() {
 
 
 /* ════════════════════════════════════════
-   ÉCONOMIE & CULTURE — Festival Pa'a Ngouook
+   ÉCONOMIE & CULTURE — Festival Pa'a Ngouo'ok
 ═══════════════════════════════════════ */
 function FestivalSection() {
   return (
@@ -118,7 +119,7 @@ function FestivalSection() {
             >
               Festival
               <br />
-              Pa&apos;a Ngouook
+              Pa&apos;a Ngouo&apos;ok
             </h2>
             <div className="mb-6 h-px w-16 bg-gradient-to-r from-gold to-transparent opacity-90" aria-hidden />
             <p className="mb-10 max-w-md text-base leading-relaxed text-white/74 md:text-[1.0625rem]">
@@ -137,7 +138,7 @@ function FestivalSection() {
                 href="/economie/festival/2028"
                 className="inline-flex justify-center rounded-full border-2 border-gold-dark/60 bg-brand-dark/30 px-7 py-3.5 text-sm font-semibold text-gold-light transition-colors hover:border-gold-light hover:bg-gold-dark/35"
               >
-                Pa&apos;a Ngouook 2028 <span aria-hidden className="ml-1">→</span>
+                Pa&apos;a Ngouo&apos;ok 2028 <span aria-hidden className="ml-1">→</span>
               </Link>
             </div>
           </div>
@@ -164,7 +165,7 @@ function FestivalSection() {
                   {ed.year}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-white">Pa&apos;a Ngouook</p>
+                  <p className="text-sm font-semibold text-white">Pa&apos;a Ngouo&apos;ok</p>
                   <p
                     className={
                       ed.featured
@@ -201,160 +202,6 @@ function FestivalSection() {
 }
 
 /* ════════════════════════════════════════
-   TOURISME
-═══════════════════════════════════════ */
-function TourismeSection() {
-  const sites = [
-    {
-      title: 'Le Musée Case Patrimoniale',
-      desc: 'Espaces culturels, boutique, archives vivantes de l\'histoire Bamiléké.',
-      href: '/tourisme/musee',
-      icon: '🏛️',
-    },
-    {
-      title: 'Les Roches de Bapa',
-      desc: 'Formations granitiques monumentales, emblèmes du paysage de Bapa.',
-      href: '/economie/tourisme/sites',
-      icon: '🗿',
-    },
-    {
-      title: 'Le Restaurant Patrimoniale',
-      desc: 'Cuisine Bamiléké authentique avec vue panoramique sur les montagnes.',
-      href: '/economie/tourisme/restaurant',
-      icon: '🍽️',
-    },
-  ];
-
-  return (
-    <section id="visitez-bapa" className="visite-bapa-section relative overflow-hidden bg-gradient-to-b from-cream via-white to-cream-dark/25 scroll-mt-[calc(2.5rem+7rem)]">
-      <div className="pointer-events-none absolute inset-0 select-none" aria-hidden>
-        <Image
-          src="/images/hero-slide-architecture-patrimoine.png"
-          alt=""
-          fill
-          className="object-cover object-center opacity-[0.07]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/90 via-white/75 to-cream/88" />
-        <div className="absolute inset-0 pattern-geo opacity-[0.04]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-        <div className="mb-12 flex flex-col gap-8 md:mb-16 md:flex-row md:items-end md:justify-between lg:mb-[4.25rem]">
-          <div className="max-w-2xl text-center md:text-left">
-            <span className="section-label mx-auto mb-4 md:mx-0">Visitez Bapa</span>
-            <h2
-              className="font-heading mb-4 text-4xl font-bold leading-[1.1] text-brand md:text-5xl lg:text-[3.25rem]"
-              
-            >
-              Tourisme & Découverte
-            </h2>
-            <div className="mx-auto mb-5 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent md:mx-0 md:from-gold md:via-gold-dark md:to-transparent" />
-            <p className="mx-auto max-w-lg text-base leading-relaxed text-stone-600 md:mx-0 md:max-w-xl md:text-[1.0625rem]">
-              Un territoire entre roches ancestrales et prairies des Grassfields — paysages à couper le
-              souffle, patrimoine vivant et hospitalité.
-            </p>
-          </div>
-          <Link
-            href="/economie/tourisme"
-            className="inline-flex shrink-0 items-center justify-center gap-2 self-center rounded-full border-2 border-brand/20 bg-white/80 px-6 py-3 text-sm font-semibold text-brand shadow-sm transition-all hover:border-gold-dark/45 hover:bg-white hover:shadow-md md:self-auto"
-          >
-            Tout le tourisme
-            <span aria-hidden>→</span>
-          </Link>
-        </div>
-
-        <div className="mb-12 grid gap-4 sm:gap-5 lg:mb-14 lg:grid-cols-3">
-          <Link
-            href="/economie/tourisme/sites"
-            className="group relative flex min-h-[17rem] overflow-hidden rounded-[1.35rem] shadow-[0_12px_40px_-12px_rgba(89,52,20,0.25)] ring-1 ring-stone-200/60 transition-shadow hover:shadow-[0_20px_50px_-12px_rgba(89,52,20,0.35)] sm:min-h-[19rem] lg:col-span-2 lg:min-h-[22rem]"
-          >
-            <Image
-              src="/images/hero-slide-architecture-patrimoine.png"
-              alt="Montagnes et paysage autour du village royal de Bapa"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes="(max-width: 1024px) 100vw, 66vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/88 via-brand-dark/15 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/20" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-              <p className="mb-1 text-[10px] font-bold tracking-[0.2em] text-gold-light uppercase">Nature</p>
-              <p className="font-heading mb-1 text-2xl font-bold text-white">
-                Les sites naturels
-              </p>
-              <p className="mb-4 max-w-md text-sm text-white/70">Roches, forêts & panoramas des hauts plateaux.</p>
-              <span className="inline-flex items-center gap-2 text-xs font-bold tracking-wide text-gold-light uppercase">
-                Explorer
-                <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
-                  →
-                </span>
-              </span>
-            </div>
-          </Link>
-
-          <Link
-            href="/tourisme/musee"
-            className="group relative flex min-h-[17rem] overflow-hidden rounded-[1.35rem] shadow-[0_12px_40px_-12px_rgba(89,52,20,0.25)] ring-1 ring-stone-200/60 transition-shadow hover:shadow-[0_20px_50px_-12px_rgba(89,52,20,0.35)] sm:min-h-[19rem] lg:min-h-[22rem]"
-          >
-            <Image
-              src="/images/musee-exposition-artefacts.png"
-              alt="Patrimoine culturel de Bapa"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              sizes="(max-width: 1024px) 100vw, 34vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/88 via-brand-dark/20 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/20" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-              <p className="mb-1 text-[10px] font-bold tracking-[0.2em] text-gold-light uppercase">Culture</p>
-              <p className="font-heading mb-1 text-2xl font-bold text-white">
-                Patrimoine
-              </p>
-              <p className="mb-4 text-sm text-white/70">Musée, mémoire & traditions.</p>
-              <span className="inline-flex items-center gap-2 text-xs font-bold tracking-wide text-gold-light uppercase">
-                Découvrir
-                <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
-                  →
-                </span>
-              </span>
-            </div>
-          </Link>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {sites.map((s) => (
-            <Link
-              key={s.title}
-              href={s.href}
-              className="group flex min-h-full flex-col rounded-2xl border border-stone-200/70 bg-white/90 p-6 shadow-sm transition-all card-lift hover:border-gold-dark/35 hover:shadow-[0_12px_36px_-14px_rgba(89,52,20,0.18)] sm:p-7"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold-dark/20 bg-gradient-to-br from-cream to-parchment/80 text-2xl shadow-sm transition-transform group-hover:scale-105">
-                {s.icon}
-              </div>
-              <h3
-                className="font-heading mb-2 text-base font-bold leading-snug text-brand transition-colors group-hover:text-brand-light"
-                
-              >
-                {s.title}
-              </h3>
-              <p className="mb-5 flex-1 text-sm leading-relaxed text-stone-600">{s.desc}</p>
-              <span className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.12em] text-gold-dark uppercase transition-colors group-hover:text-gold">
-                En savoir plus
-                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <SectionDivider fill="cream" position="bottom" className="relative z-10" />
-    </section>
-  );
-}
-
-/* ════════════════════════════════════════
    COMMUNAUTÉ
 ═══════════════════════════════════════ */
 function CommunauteSection() {
@@ -382,7 +229,7 @@ function CommunauteSection() {
               className="font-heading mb-6 mt-3 text-4xl font-bold leading-[1.1] text-brand md:text-5xl lg:text-[3rem]"
               
             >
-              La Communauté
+              Les Communautés
               <br />
               Bapa
             </h2>
@@ -450,7 +297,7 @@ function CommunauteSection() {
                   ))}
                 </ul>
                 <Link
-                  href="/communaute/contacts"
+                  href="/contacts"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand shadow-lg shadow-black/20 transition-colors hover:bg-cream"
                 >
                   Nous rejoindre <span aria-hidden>→</span>
@@ -495,7 +342,7 @@ function MediathequeSection() {
         <div className="mb-10 flex flex-col gap-8 lg:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl text-center lg:text-left">
             <span className="section-label mx-auto mb-4 text-gold-light/90 before:bg-gold-light/65 lg:mx-0">
-              Photos & Vidéos
+              Photos · PDF · Vidéos
             </span>
             <h2
               className="font-heading mt-2 text-4xl font-bold leading-[1.08] text-white md:text-5xl lg:text-[3.15rem]"
@@ -508,7 +355,7 @@ function MediathequeSection() {
               aria-hidden
             />
             <p className="text-[1.0625rem] leading-relaxed text-white/72 md:text-[1.075rem]">
-              Regards sur le village royal — archives visuelles, moments du quotidien et du patrimoine
+              Regards sur le Royaume de Bapa — archives visuelles, moments du quotidien et du patrimoine
               pour documenter et transmettre Bapa au-delà des frontières.
             </p>
           </div>
@@ -607,7 +454,7 @@ function CTASection() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
-            href="/communaute/contacts"
+            href="/contacts"
             className="px-8 py-4 bg-brand text-white font-bold rounded-full hover:bg-brand-dark transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-sm"
           >
             Contactez-nous
@@ -637,7 +484,7 @@ export default function HomePage() {
       <RoyaumeSection />
       <DeveloppementSection />
       <FestivalSection />
-      <TourismeSection />
+      <VisitezBapaSection />
       <CommunauteSection />
       <MediathequeSection />
       <CTASection />

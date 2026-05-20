@@ -12,6 +12,9 @@ const KNOWN_IMAGES: Record<string, string> = {
   '/images/paa-ngouook-2028.jpg': '/images/festival-ngouook-procession.png',
 };
 
+/** Portrait officiel du Fon — page Mot du Roi et section Royaume. */
+export const ROI_PORTRAIT_IMAGE = '/images/roi-trone.jpg' as const;
+
 /** Résout un chemin d’image ; renvoie un fallback si le fichier n’est pas mappé localement. */
 export function resolveImage(src: string): string {
   return KNOWN_IMAGES[src] ?? src;

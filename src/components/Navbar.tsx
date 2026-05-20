@@ -95,10 +95,26 @@ function IconContact({ className = '' }: { className?: string }) {
   );
 }
 
+function IconPartenaires({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M7 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM17 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM4 20v-1a4 4 0 0 1 4-4h0M16 15a4 4 0 0 1 4 4v1"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 /* ── Barre secondaire ── */
 function SecondaryQuickNav({ variant, pathname }: { variant: 'header' | 'drawer'; pathname: string }) {
   const medActive = pathname === '/mediatheque' || pathname.startsWith('/mediatheque/');
-  const contactActive = pathname === '/communaute/contacts' || pathname.startsWith('/communaute/contacts/');
+  const partenairesActive =
+    pathname === '/communaute/partenaires' || pathname.startsWith('/communaute/partenaires/');
+  const contactActive = pathname === '/contacts' || pathname.startsWith('/contacts/');
 
   if (variant === 'drawer') {
     return (
@@ -121,7 +137,26 @@ function SecondaryQuickNav({ variant, pathname }: { variant: 'header' | 'drawer'
           <span className={`text-xs font-semibold ${medActive ? 'text-brand' : 'text-brand'}`}>Médiathèque</span>
         </Link>
         <Link
-          href="/communaute/contacts"
+          href="/communaute/partenaires"
+          className={`flex flex-1 items-center justify-center gap-2 rounded-xl border py-2.5 shadow-sm transition-all ${
+            partenairesActive
+              ? 'border-gold-dark/55 bg-cream shadow-md ring-1 ring-gold-dark/25'
+              : 'border-stone-200/90 bg-white hover:border-gold-dark/35 hover:bg-cream hover:shadow-md'
+          }`}
+        >
+          <span
+            className={`flex h-8 w-8 items-center justify-center rounded-lg ring-1 ${
+              partenairesActive
+                ? 'bg-forest/15 text-forest ring-forest/25'
+                : 'bg-forest/8 text-forest ring-forest/15'
+            }`}
+          >
+            <IconPartenaires className="h-4 w-4" />
+          </span>
+          <span className="text-xs font-semibold text-brand">Partenaires</span>
+        </Link>
+        <Link
+          href="/contacts"
           className={`flex flex-1 items-center justify-center gap-2 rounded-xl border py-2.5 shadow-sm transition-all ${
             contactActive
               ? 'border-gold-dark/55 bg-cream shadow-md ring-1 ring-gold-dark/25'
@@ -171,7 +206,28 @@ function SecondaryQuickNav({ variant, pathname }: { variant: 'header' | 'drawer'
         </Link>
         <span className="mx-0.5 hidden h-3.5 w-px bg-white/[0.18] sm:block" aria-hidden />
         <Link
-          href="/communaute/contacts"
+          href="/communaute/partenaires"
+          className={`group flex items-center gap-1.5 rounded-full px-1.5 py-0.5 transition-colors hover:bg-white/[0.12] sm:gap-2 sm:px-2.5 sm:py-1 ${
+            partenairesActive ? 'bg-white/12' : ''
+          }`}
+          aria-current={partenairesActive ? 'page' : undefined}
+        >
+          <span
+            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md ring-1 transition-[background-color,color,box-shadow] ${
+              partenairesActive ? pillActive : pillInactive
+            }`}
+          >
+            <IconPartenaires className="h-[13px] w-[13px]" />
+          </span>
+          <span
+            className={`hidden text-[10px] font-medium tracking-normal sm:inline ${partenairesActive ? 'text-white' : 'text-white/92 group-hover:text-white'}`}
+          >
+            Partenaires
+          </span>
+        </Link>
+        <span className="mx-0.5 hidden h-3.5 w-px bg-white/[0.18] sm:block" aria-hidden />
+        <Link
+          href="/contacts"
           className={`group flex items-center gap-1.5 rounded-full px-1.5 py-0.5 transition-colors hover:bg-white/[0.12] sm:gap-2 sm:px-2.5 sm:py-1 ${
             contactActive ? 'bg-white/12' : ''
           }`}
@@ -501,7 +557,7 @@ export default function Navbar() {
               ))}
             </nav>
             <div className="bg-cream-dark p-4">
-              <Link href="/communaute/contacts" onClick={closeDrawer} className="block w-full rounded-full bg-brand py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+              <Link href="/contacts" onClick={closeDrawer} className="block w-full rounded-full bg-brand py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
                 Nous contacter
               </Link>
             </div>

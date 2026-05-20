@@ -218,7 +218,7 @@ export default function RoyaumeAdministrationPage() {
               Selon la description donnée dans l&apos;article Wikipédia sur Bapa — en particulier à propos du musée case
               patrimoniale —, l&apos;organisation fait référence à la{' '}
               <strong>coordination générale assurée par le chef supérieur</strong>, le musée servant de pôle au sein
-              d&apos;<strong>ADEVIPA&apos;A</strong> (appui au développement du village) et s&apos;inscrivant dans une
+              d&apos;<strong>ADEVIPA</strong> (appui au développement du village) et s&apos;inscrivant dans une
               section de <strong>PA&apos;CTA</strong>, présentée comme une association à caractère culturel et touristique.
             </p>
             <p className="text-sm text-stone-500">
@@ -232,7 +232,7 @@ export default function RoyaumeAdministrationPage() {
           <h2 className="mb-3 text-base font-bold text-brand">Sources</h2>
           <p>
             Les informations administratives (région, département, commune, population 2005, coordonnées) et le passage sur
-            le fonctionnement du musée relatif au chef supérieur, ADEVIPA&apos;A et PA&apos;CTA sont synthétisées à partir
+            le fonctionnement du musée relatif au chef supérieur, ADEVIPA et PA&apos;CTA sont synthétisées à partir
             de l&apos;article{' '}
             <a
               href={wikiArticleUrl}

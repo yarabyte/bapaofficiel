@@ -1,15 +1,38 @@
-export type EchoCategory = 'Culture' | 'Développement' | 'Festival' | 'Institution' | 'Diaspora';
+export type EchoCategory =
+  | 'Culture et traditions'
+  | 'Sport et loisir'
+  | 'Tourisme'
+  | 'Développement'
+  | 'Festival'
+  | 'Communautés'
+  | 'Diaspora';
 
 export const ECHO_CATEGORIES: EchoCategory[] = [
-  'Culture',
+  'Culture et traditions',
+  'Sport et loisir',
+  'Tourisme',
   'Développement',
   'Festival',
-  'Institution',
+  'Communautés',
   'Diaspora',
 ];
 
+/** Anciennes valeurs d’URL (?categorie=Culture, Institution…) */
+const CATEGORY_ALIASES: Record<string, EchoCategory> = {
+  Culture: 'Culture et traditions',
+  Institution: 'Communautés',
+};
+
+export function normalizeEchoCategory(value: string): EchoCategory | undefined {
+  const trimmed = value.trim();
+  if ((ECHO_CATEGORIES as readonly string[]).includes(trimmed)) {
+    return trimmed as EchoCategory;
+  }
+  return CATEGORY_ALIASES[trimmed];
+}
+
 export function isEchoCategory(value: string): value is EchoCategory {
-  return (ECHO_CATEGORIES as readonly string[]).includes(value);
+  return normalizeEchoCategory(value) !== undefined;
 }
 
 /** Image de fond : bandeau « Echos » et texture du bloc actualités (accueil + liste). */
@@ -31,11 +54,11 @@ export interface EchoArticle {
 export const echoArticles: EchoArticle[] = [
   {
     slug: 'preparatifs-paa-ngouook-2028',
-    title: "Les préparatifs du Pa'a Ngouook 2028 sont lancés",
+    title: "Les préparatifs du Pa'a Ngouo'ok 2028 sont lancés",
     excerpt:
       "Le comité d'organisation du festival biennal réunit chefs traditionnels, associations et diaspora pour une édition ambitieuse.",
     content: [
-      "Le village royal de Bapa a officiellement lancé les préparatifs de la prochaine édition du festival Pa'a Ngouook, prévue en 2028. Une réunion plénière a réuni le conseil des notables, les responsables des associations culturelles et des représentants de la diaspora.",
+      "Le Royaume de Bapa a officiellement lancé les préparatifs de la prochaine édition du festival Pa'a Ngouo'ok, prévue en 2028. Une réunion plénière a réuni le conseil des notables, les responsables des associations culturelles et des représentants de la diaspora.",
       "Au programme : renforcement des infrastructures d'accueil, coordination des troupes de danse traditionnelle et valorisation de la gastronomie locale. Les habitants et visiteurs sont invités à contribuer aux chantiers communautaires annoncés dès le printemps.",
     ],
     date: '2026-04-12',
@@ -52,7 +75,7 @@ export const echoArticles: EchoArticle[] = [
       "Le musée s'inscrit dans la stratégie touristique du village et propose boutique artisanale, visites guidées et ateliers culturels pour les groupes scolaires.",
     ],
     date: '2026-03-05',
-    category: 'Culture',
+    category: 'Tourisme',
     image: '/images/musee-exposition-artefacts.png',
   },
   {
@@ -91,7 +114,7 @@ export const echoArticles: EchoArticle[] = [
       "Le souverain a invité les fils et filles du royaume à honorer les valeurs ancestrales tout en embrassant les opportunités offertes par l'éducation et l'innovation.",
     ],
     date: '2025-12-30',
-    category: 'Institution',
+    category: 'Communautés',
     image: '/images/hero-slide-cortege-traditionnel.png',
   },
   {
@@ -104,7 +127,7 @@ export const echoArticles: EchoArticle[] = [
       "Cet événement confirme le rôle central de la culture vivante dans l'identité de Bapa et annonce une programmation riche en vue du prochain festival.",
     ],
     date: '2025-11-08',
-    category: 'Culture',
+    category: 'Culture et traditions',
     image: '/images/musee-celebration-culturelle.png',
   },
 ];
@@ -138,10 +161,12 @@ export function formatEchoDate(isoDate: string): string {
 }
 
 const categoryStyles: Record<EchoCategory, string> = {
-  Culture: 'bg-forest/10 text-forest',
+  'Culture et traditions': 'bg-forest/10 text-forest',
+  'Sport et loisir': 'bg-teal-100 text-teal-900',
+  Tourisme: 'bg-sky-100 text-sky-900',
   Développement: 'bg-blue-100 text-blue-800',
   Festival: 'bg-gold/15 text-gold-dark',
-  Institution: 'bg-brand/10 text-brand',
+  Communautés: 'bg-brand/10 text-brand',
   Diaspora: 'bg-purple-100 text-purple-800',
 };
 

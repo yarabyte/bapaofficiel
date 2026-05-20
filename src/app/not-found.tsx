@@ -19,7 +19,7 @@ export default function NotFound() {
               Accueil
             </Button>
             <Button href="/communaute" variant="secondary">
-              La Communauté
+              Les Communautés
             </Button>
           </div>
         </Card>

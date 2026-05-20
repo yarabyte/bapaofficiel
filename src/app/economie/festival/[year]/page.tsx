@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const edition = getFestivalEdition(y);
   if (!edition) return { title: 'Édition introuvable | Bapa' };
   return {
-    title: `${edition.label} | Festival Pa'a Ngouook | Bapa`,
+    title: `${edition.label} | Festival Pa'a Ngouo'ok | Bapa`,
     description: edition.heroLead,
   };
 }
@@ -46,7 +46,7 @@ export default async function FestivalYearPage({ params }: { params: Params }) {
             </Link>
             <span aria-hidden>/</span>
             <Link href="/economie/festival" className="hover:text-gold-light">
-              Pa&apos;a Ngouook
+              Pa&apos;a Ngouo&apos;ok
             </Link>
             <span aria-hidden>/</span>
             <span className="text-gold-light">{edition.year}</span>

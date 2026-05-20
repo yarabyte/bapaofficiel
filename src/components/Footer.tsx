@@ -1,56 +1,48 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import SectionDivider from '@/components/SectionDivider';
+import {
+  bapaContactEmail,
+  bapaContactLocation,
+  bapaContactPhones,
+  bapaContactPostalAddress,
+} from '@/lib/contacts';
 import { footerSocialHref } from '@/lib/footer-social';
+import {
+  siteConcepteursPath,
+  siteCopyrightHolder,
+  siteCopyrightTerritory,
+} from '@/lib/site-credits';
 
-const links = {
-  'Le Royaume': [
-    { label: 'Mot du Roi', href: '/royaume/mot-du-roi' },
-    { label: 'Histoire', href: '/royaume/histoire' },
-    { label: 'Organisation de la Chefferie', href: '/royaume/chefferie' },
-    { label: 'Administration', href: '/royaume/administration' },
-    { label: 'Traditions', href: '/royaume/traditions' },
-    { label: 'Langues et Cultures', href: '/royaume/langues-et-cultures' },
-  ],
-  Développement: [
-    { label: 'ADEVIPA', href: '/developpement/adevipa' },
-    { label: 'Santé et éducation', href: '/developpement/adevipa/sante' },
-    { label: 'Rock Futura Finance', href: '/developpement/rock-futura' },
-    { label: 'Forum Bapa H2050', href: '/developpement/forum-h2050' },
-    { label: 'Bapa Connect', href: '/developpement/bapa-connect' },
-    { label: 'Grassfield Research I.', href: '/developpement/grassfield' },
-    { label: 'Programme env.', href: '/developpement/grassfield/programme' },
-    {
-      label: 'Développement Réseau électrique',
-      href: '/developpement/grassfield/electricite',
-    },
-    {
-      label: "Amélioration de l'accès à l'eau",
-      href: '/developpement/grassfield/eau',
-    },
-    { label: 'Économie', href: '/economie/tourisme' },
-  ],
-  "Festival Pa'a Ngouook": [
-    { label: 'Présentation', href: '/economie/festival' },
-    { label: "Pa'a Ngouook 2018", href: '/economie/festival/2018' },
-    { label: "Pa'a Ngouook 2023", href: '/economie/festival/2023' },
-    { label: "Pa'a Ngouook 2028", href: '/economie/festival/2028' },
-  ],
-  Tourisme: [
-    { label: 'Introduction et enjeux', href: '/economie/tourisme' },
-    { label: 'Organisation et promotion', href: '/economie/tourisme/organisation' },
-    { label: 'Le Musée Case Patrimoniale', href: '/tourisme/musee' },
-    { label: 'Le Restaurant Patrimoniale', href: '/economie/tourisme/restaurant' },
-    { label: 'Les Sites Touristiques', href: '/economie/tourisme/sites' },
-    { label: 'Visitez Bapa', href: '/#visitez-bapa' },
-  ],
-  Liens: [
-    { label: 'La Communauté', href: '/communaute' },
-    { label: 'Médiathèque', href: '/mediatheque' },
-    { label: 'Partenaires', href: '/communaute/partenaires' },
-    { label: 'Contacts', href: '/communaute/contacts' },
-  ],
-};
+function IconPhone({ className = 'h-5 w-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.5 4h3l2 5-2.2 1.4a12 12 0 0 0 5.3 5.3L14 13.5l5 2v3a1.5 1.5 0 0 1-1.5 1.5A15 15 0 0 1 4 6.5 1.5 1.5 0 0 1 5.5 5Z"
+      />
+    </svg>
+  );
+}
+
+function IconMail({ className = 'h-5 w-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16v12H4V6Z" />
+      <path strokeLinecap="round" d="m4 7 8 6 8-6" />
+    </svg>
+  );
+}
+
+function IconMap({ className = 'h-5 w-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
 
 function IconFacebook({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -100,63 +92,95 @@ export default function Footer() {
     <footer className="bg-brand-dark text-white">
       <SectionDivider fill="cream" position="top" />
 
-      <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 lg:px-8 lg:pb-14 lg:pt-12">
-        {/* Grille détaillée + marque */}
-        <div className="mb-14 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-7 lg:gap-10 xl:gap-12">
-          <div className="lg:col-span-2">
-            <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-9 lg:pt-9">
+        <div className="flex flex-col gap-6 border-b border-white/12 pb-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+          <div className="flex shrink-0 flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:text-left lg:max-w-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
                 <Image
                   src="/images/logo.png"
                   alt="Logo Bapa Officiel"
                   width={766}
                   height={780}
-                  className="max-h-10 max-w-10 object-contain"
+                  className="max-h-8 max-w-8 object-contain"
                   style={{ width: 'auto', height: 'auto' }}
                 />
               </div>
               <div>
-                <p className="font-heading text-xl font-bold tracking-wider">
-                  BAPA
-                </p>
-                <p className="text-xs uppercase tracking-[0.2em] text-white/55">Officiel</p>
+                <p className="font-heading text-lg font-bold tracking-wider leading-none">BAPA</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/55">Officiel</p>
               </div>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed text-white/72">
-              Portail officiel du Village Royal de Bapa — montagnes de l&apos;Ouest Cameroun. Terre
-              ancestrale, culture vivante, avenir partagé.
+            <p className="text-xs leading-snug text-white/65 sm:pl-1">
+              Portail officiel du Royaume de Bapa — culture vivante, avenir partagé.
             </p>
           </div>
 
-          {Object.entries(links).map(([section, items]) => (
-            <div key={section}>
-              <h3 className="mb-4 border-b border-white/10 pb-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/95">
-                {section}
-              </h3>
-              <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="inline-flex min-h-11 items-center py-1 text-sm text-white/60 transition-colors hover:text-gold-light"
+          <div className="grid flex-1 gap-4 text-center text-xs sm:grid-cols-3 sm:gap-5 sm:text-left lg:max-w-2xl lg:gap-6">
+            <div>
+              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
+                <IconPhone className="size-3.5 shrink-0" />
+                Téléphone
+              </p>
+              <ul className="space-y-0.5">
+                {bapaContactPhones.map((phone) => (
+                  <li key={phone.tel} className="leading-snug">
+                    <a
+                      href={`tel:${phone.tel}`}
+                      className="font-semibold text-white/88 transition-colors hover:text-gold-light"
                     >
-                      {item.label}
-                    </Link>
+                      {phone.display}
+                    </a>
+                    <span className="text-white/40"> ({phone.label})</span>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+
+            <div>
+              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
+                <IconMail className="size-3.5 shrink-0" />
+                E-mail
+              </p>
+              <p className="leading-snug">
+                <a
+                  href={bapaContactEmail.href}
+                  className="font-semibold text-white/88 transition-colors hover:text-gold-light"
+                >
+                  {bapaContactEmail.display}
+                </a>
+                <span className="text-white/35"> · </span>
+                <Link
+                  href="/contacts"
+                  className="font-semibold text-gold-light transition-colors hover:text-white hover:underline"
+                >
+                  Écrire un message →
+                </Link>
+              </p>
+            </div>
+
+            <div className="sm:col-span-1">
+              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
+                <IconMap className="size-3.5 shrink-0" />
+                Localisation
+              </p>
+              <p className="leading-snug text-white/72">
+                {bapaContactLocation}
+                <br />
+                <span className="text-white/55">Adresse : {bapaContactPostalAddress}</span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Réseaux sociaux + copyright */}
-        <div className="flex flex-col gap-8 border-t border-white/12 pt-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-light/85 whitespace-nowrap">
+        <div className="flex flex-col items-center gap-4 pt-5">
+          <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-6">
+          <div className="flex items-center gap-3">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gold-light/85 whitespace-nowrap">
               Suivez-nous
             </p>
             {socialEntries.length > 0 ? (
-              <ul className="flex flex-wrap gap-3">
+              <ul className="flex flex-wrap justify-center gap-2">
                 {socialEntries.map(({ label, href, Icon }) => (
                   <li key={label}>
                     <a
@@ -164,41 +188,58 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${label} — nouvelle fenêtre`}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/18 bg-white/[0.07] text-white/85 transition-all hover:border-gold-light/55 hover:bg-gold-dark/25 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/18 bg-white/[0.07] text-white/85 transition-all hover:border-gold-light/55 hover:bg-gold-dark/25 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
                     >
-                      <Icon className="h-5 w-5" />
+                      <Icon className="h-4 w-4" />
                     </a>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="max-w-md text-xs leading-relaxed text-white/45">
-                Les liens vers les réseaux officiels seront affichés ici une fois configurés (voir{' '}
-                <code className="rounded bg-white/10 px-1 py-0.5 text-[10px] text-white/70">
-                  .env.example
-                </code>{' '}
-                — variables{' '}
-                <span className="text-white/55">NEXT_PUBLIC_FOOTER_SOCIAL_*</span>).
+              <p className="text-[11px] leading-snug text-white/45">
+                Réseaux à configurer (
+                <code className="rounded bg-white/10 px-1 text-[10px] text-white/70">.env.example</code>
+                )
               </p>
             )}
           </div>
 
-          <div className="flex flex-col gap-3 text-center lg:max-w-xl lg:text-right">
-            <p className="text-sm font-medium leading-snug text-white/88">
+          <div className="flex flex-col items-center gap-2 text-center sm:items-end sm:text-right">
+            <nav
+              aria-label="Informations légales"
+              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/55 sm:justify-end"
+            >
+              <Link href="/mentions-legales" className="transition-colors hover:text-gold-light">
+                Mentions légales
+              </Link>
+              <span className="text-white/25" aria-hidden>
+                ·
+              </span>
+              <Link
+                href="/politique-de-confidentialite"
+                className="transition-colors hover:text-gold-light"
+              >
+                Politique de confidentialité
+              </Link>
+            </nav>
+            <p className="text-xs font-medium text-white/80">
               © {year}{' '}
-              <span className="font-heading text-white">
-                Bapa Officiel
-              </span>
+              <span className="font-heading text-white">{siteCopyrightHolder}</span>
               {' — '}
-              Village royal de Bapa.
-            </p>
-            <p className="flex items-center justify-center gap-2 text-xs text-white/42 lg:justify-end">
-              <span aria-hidden className="text-base opacity-70">
-                📍
-              </span>
-              <span>Bapa — Département des Hauts-Plateaux, commune de Bangou, région de l&apos;Ouest, Cameroun</span>
+              {siteCopyrightTerritory}. Tous droits réservés.
             </p>
           </div>
+          </div>
+          <p className="w-full text-center text-[11px] text-white/50">
+            Design et réalisation du site —{' '}
+            <Link
+              href={siteConcepteursPath}
+              className="text-white/70 transition-colors hover:text-gold-light"
+              aria-label="En savoir plus sur le design et la réalisation du site"
+            >
+              en savoir plus
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const developpementMore = {
-  name: 'Cremepa',
+  name: 'CREMEPA',
   tagline: 'Communauté · Solidarité',
   desc: "Projet d'appoint au service de la cohésion et du développement local.",
   href: '/developpement/cremepa',

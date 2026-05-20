@@ -20,7 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Bapa Officiel | Bienvenue au Royaume de Bapa',
   description:
-    'Portail officiel du Village Royal de Bapa, niché dans les montagnes de l\'Ouest Cameroun, terre ancestrale des Bamiléké.',
+    'Portail officiel du Royaume de Bapa, niché dans les montagnes de l\'Ouest Cameroun, terre ancestrale des Bamiléké.',
   keywords: ['Bapa', 'Cameroun', 'Bamiléké', 'Royaume', 'Village', 'Tourisme', 'Culture'],
 };
 

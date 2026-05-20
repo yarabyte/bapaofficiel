@@ -80,7 +80,7 @@ export default async function EchoArticlePage({ params }: PageProps) {
                   href="/communaute"
                   className="rounded-md px-1.5 py-1 transition-colors hover:text-brand hover:underline"
                 >
-                  Communauté
+                  Les Communautés
                 </Link>
               </li>
               <li className="flex items-center gap-1">
@@ -169,7 +169,7 @@ export default async function EchoArticlePage({ params }: PageProps) {
               ← Retour au fil d&apos;actualités
             </Link>
             <Link
-              href="/communaute/contacts"
+              href="/contacts"
               className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-brand/22 px-6 py-3 text-center text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand hover:text-white"
             >
               Proposer une annonce

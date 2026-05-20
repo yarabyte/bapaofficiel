@@ -4,17 +4,18 @@ import Link from 'next/link';
 import PageShell from '@/components/layout/PageShell';
 
 export const metadata: Metadata = {
-  title: 'ADEVIPA’A | Développement du village | Bapa',
+  title: 'ADEVIPA | Développement du village | Bapa',
   description:
-    'ADEVIPA’A — association pour le développement du village de Bapa : histoire, présidence, projets et réalisations.',
+    'ADEVIPA — association pour le développement du village de Bapa : historique, présidence, projets, réalisations et partenaires.',
 };
 
 const navSections = [
-  { id: 'intro', label: 'Introduction' },
-  { id: 'histoire', label: 'Histoire' },
+  { id: 'a-propos', label: "À propos de l'ADEVIPA" },
+  { id: 'historique', label: 'Historique' },
   { id: 'presidents', label: 'Présidents' },
   { id: 'interview', label: 'Interview' },
   { id: 'realisations', label: 'Réalisations' },
+  { id: 'partenaires', label: 'Partenaires' },
 ] as const;
 
 /** Données provisoires — à remplacer par les informations validées par l’association. */
@@ -55,6 +56,13 @@ const realisationsPlaceholders = [
   },
 ] as const;
 
+const partenairesPlaceholders = [
+  { name: 'Chefferie de Bapa', type: 'Institution coutumière — appui et légitimité des actions' },
+  { name: 'Commune de Bangou', type: 'Collectivité territoriale — coordination locale' },
+  { name: 'Diaspora Bapa', type: 'Solidarité et financement des projets structurants' },
+  { name: 'À compléter', type: 'Partenaires institutionnels, ONG, entreprises ou mécènes' },
+] as const;
+
 export default function AdevipaPage() {
   return (
     <PageShell>
@@ -83,7 +91,7 @@ export default function AdevipaPage() {
             className="font-heading mb-4 text-4xl font-bold tracking-tight drop-shadow-sm md:text-5xl"
             
           >
-            ADEVIPA’A
+            ADEVIPA
           </h1>
           <p className="mx-auto max-w-xl text-[1.05rem] leading-relaxed text-white/90">
             Association pour le développement du village <span className="whitespace-nowrap">BAPA</span> — moteur de
@@ -107,17 +115,14 @@ export default function AdevipaPage() {
       </header>
 
       <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 md:py-18">
-        {/* Intro */}
-        <section id="intro" className="mb-16 scroll-mt-[calc(2.5rem+6rem)]">
-          <h2
-            className="font-heading mb-5 text-2xl font-bold text-brand md:text-3xl"
-            
-          >
-            Introduction
+        {/* À propos de l'ADEVIPA */}
+        <section id="a-propos" className="mb-16 scroll-mt-[calc(2.5rem+6rem)]">
+          <h2 className="font-heading mb-5 text-2xl font-bold text-brand md:text-3xl">
+            À propos de l&apos;ADEVIPA
           </h2>
           <div className="prose-bapa max-w-none space-y-4 text-stone-600">
             <p>
-              <strong>ADEVIPA’A</strong> (appui au développement du village de Bapa) regroupe une dynamique associative
+              <strong>ADEVIPA</strong> (appui au développement du village de Bapa) regroupe une dynamique associative
               tournée vers la santé, l&apos;éducation, le patrimoine et les projets structurants. Elle travaille en lien
               avec la <strong>chefferie traditionnelle</strong>, les habitants et les partenaires pour prioriser les
               besoins du village et suivre les réalisations dans la durée.
@@ -129,13 +134,13 @@ export default function AdevipaPage() {
           </div>
         </section>
 
-        {/* Histoire */}
-        <section id="histoire" className="mb-16 scroll-mt-[calc(2.5rem+6rem)]">
+        {/* Historique */}
+        <section id="historique" className="mb-16 scroll-mt-[calc(2.5rem+6rem)]">
           <h2
             className="font-heading mb-5 text-2xl font-bold text-brand md:text-3xl"
             
           >
-            Histoire
+            Historique
           </h2>
           <div className="prose-bapa max-w-none space-y-4 text-stone-600">
             <p>
@@ -144,7 +149,7 @@ export default function AdevipaPage() {
               partenariats) peut compléter ce paragraphe.
             </p>
             <p className="text-sm text-stone-500">
-              Matière à fournir par ADEVIPA’A — cette section est volontairement ouverte pour accueillir le récit validé
+              Matière à fournir par ADEVIPA — cette section est volontairement ouverte pour accueillir le récit validé
               par les membres fondateurs ou le conseil d&apos;administration.
             </p>
           </div>
@@ -207,7 +212,7 @@ export default function AdevipaPage() {
             </p>
             <dl className="space-y-8">
               <div>
-                <dt className="mb-2 font-bold text-brand">Quelles sont les priorités d&apos;ADEVIPA’A pour les mois à venir&nbsp;?</dt>
+                <dt className="mb-2 font-bold text-brand">Quelles sont les priorités d&apos;ADEVIPA pour les mois à venir&nbsp;?</dt>
                 <dd className="border-l-2 border-gold-dark/35 pl-4 text-stone-600 leading-relaxed">
                   [Réponse du président — à rédiger ou à transcrire depuis l&apos;enregistrement.]
                 </dd>
@@ -255,6 +260,50 @@ export default function AdevipaPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Partenaires */}
+        <section id="partenaires" className="mb-16 scroll-mt-[calc(2.5rem+6rem)]">
+          <h2 className="font-heading mb-5 text-2xl font-bold text-brand md:text-3xl">Partenaires</h2>
+          <p className="mb-8 text-stone-600">
+            ADEVIPA agit en synergie avec la chefferie, les autorités locales et les acteurs de la diaspora. Cette
+            section recense les partenaires qui accompagnent les chantiers santé, éducation et développement du
+            village — liste à compléter par le bureau de l&apos;association.
+          </p>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {partenairesPlaceholders.map((p) => (
+              <li
+                key={p.name}
+                className="flex flex-col rounded-xl border border-stone-200/80 bg-white/95 px-5 py-6 text-center shadow-sm ring-1 ring-stone-100 sm:text-left"
+              >
+                <span
+                  className="mx-auto mb-3 flex size-11 items-center justify-center rounded-full bg-forest/10 text-brand sm:mx-0"
+                  aria-hidden
+                >
+                  ◆
+                </span>
+                <p className="font-bold text-brand">{p.name}</p>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600">{p.type}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center text-sm text-stone-500 sm:text-left">
+            Vous souhaitez devenir partenaire&nbsp;?{' '}
+            <Link
+              href="/contacts"
+              className="font-semibold text-gold-dark hover:text-brand hover:underline"
+            >
+              Contactez le secrétariat
+            </Link>
+            {' '}ou consultez la page{' '}
+            <Link
+              href="/communaute/partenaires"
+              className="font-semibold text-gold-dark hover:text-brand hover:underline"
+            >
+              Partenaires du village
+            </Link>
+            .
+          </p>
         </section>
 
         <nav className="flex flex-col items-center gap-4 border-t border-stone-200/70 pt-12 text-center sm:flex-row sm:justify-center sm:gap-10">

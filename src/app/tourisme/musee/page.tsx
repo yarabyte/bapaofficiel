@@ -148,7 +148,7 @@ const equipePlaceholders = [
 
 const partenairesPlaceholders = [
   { name: 'Chefferie de Bapa', type: 'Institution coutumière' },
-  { name: 'ADEVIPA’A / PA’CTA', type: 'Développement culturel & touristique' },
+  { name: 'ADEVIPA / PA’CTA', type: 'Développement culturel & touristique' },
   { name: 'À compléter', type: 'Partenaires institutionnels, académiques ou internationaux' },
 ] as const;
 
@@ -448,7 +448,7 @@ export default function MuseePage() {
             Partenaires
           </h2>
           <p className="mb-8 text-stone-600">
-            Le musée s’inscrit dans la dynamique du village royal et collabore avec des acteurs du développement
+            Le musée s’inscrit dans la dynamique du Royaume de Bapa et collabore avec des acteurs du développement
             culturel et touristique.
           </p>
           <ul className="grid gap-4 sm:grid-cols-3">

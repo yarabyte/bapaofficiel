@@ -16,7 +16,7 @@ export default function RoyaumeChefferiePage() {
       <PageHeroSimple
         label="Le Royaume"
         title="La Chefferie"
-        description="Structure de la chefferie, conseil des notables et articulation avec les institutions du village royal."
+        description="Structure de la chefferie, conseil des notables et articulation avec les institutions du Royaume de Bapa."
         breadcrumbs={[
           { label: 'Accueil', href: '/' },
           { label: 'Le Royaume', href: '/royaume/mot-du-roi' },

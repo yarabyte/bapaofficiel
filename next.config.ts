@@ -8,6 +8,21 @@ const nextConfig: NextConfig = {
         destination: '/tourisme/musee',
         permanent: true,
       },
+      {
+        source: '/economie/tourisme',
+        destination: '/developpement/tourisme',
+        permanent: true,
+      },
+      {
+        source: '/economie/tourisme/:path*',
+        destination: '/developpement/tourisme/:path*',
+        permanent: true,
+      },
+      {
+        source: '/communaute/contacts',
+        destination: '/contacts',
+        permanent: true,
+      },
     ];
   },
   images: {

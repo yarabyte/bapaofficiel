@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button';
 
 export default function ComingSoon({
   title = 'Page en préparation',
-  message = 'Cette rubrique sera publiée prochainement par le secrétariat du village royal.',
+  message = 'Cette rubrique sera publiée prochainement par le secrétariat du Royaume de Bapa.',
 }: {
   title?: string;
   message?: string;
@@ -17,7 +17,7 @@ export default function ComingSoon({
         <Button href="/" variant="primary" size="md">
           Accueil
         </Button>
-        <Button href="/communaute/contacts" variant="secondary" size="md">
+        <Button href="/contacts" variant="secondary" size="md">
           Nous contacter
         </Button>
       </div>

@@ -7,7 +7,7 @@ import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
 export const metadata: Metadata = {
   title: 'Mot du Roi | Le Royaume de Bapa',
   description:
-    'Message de Sa Majesté SIMEU David II, Roi des BAPA : unité, traditions et avenir du village royal.',
+    'Message de Sa Majesté SIMEU David II, Roi des BAPA : unité, traditions et avenir du Royaume de Bapa.',
 };
 
 export default function MotDuRoiPage() {
@@ -42,11 +42,11 @@ export default function MotDuRoiPage() {
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/35" aria-hidden />
               <div className="aspect-[4/5] w-full sm:aspect-[3/4]">
                 <Image
-                  src="/images/hero-slide-cortege-traditionnel.png"
-                  alt="Sa Majesté SIMEU David II, Roi des BAPA"
+                  src="/images/roi-trone.jpg"
+                  alt="Sa Majesté SIMEU David II, Roi des BAPA, sur le trône royal"
                   fill
                   priority
-                  className="object-cover object-[center_18%]"
+                  className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 480px"
                 />
               </div>
@@ -107,7 +107,7 @@ export default function MotDuRoiPage() {
                 <p className="text-sm font-semibold tracking-wide text-muted">Sa Majesté,</p>
                 <p className="font-heading mt-3 text-2xl font-bold text-brand md:text-3xl">SIMEU David II</p>
                 <p className="font-heading mt-1 text-lg italic text-gold-dark">Roi des BAPA</p>
-                <p className="mt-6 text-sm text-muted">Village royal de Bapa — Hauts-Plateaux, Cameroun</p>
+                <p className="mt-6 text-sm text-muted">Royaume de Bapa — Hauts-Plateaux, Cameroun</p>
               </footer>
             </div>
           </article>

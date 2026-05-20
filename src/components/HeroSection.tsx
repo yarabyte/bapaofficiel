@@ -17,11 +17,21 @@ const slides = [
     src: '/images/hero-bapa.png',
     alt: 'Paysage rocheux de Bapa',
     objectPosition: 'object-cover object-[center_40%]',
-    kicker: 'Village royal · Grassfields camerounais',
+    kicker: 'Royaume de Bapa · Grassfields camerounais',
     subtitle: 'Terre des Rois, mémoire des Ancêtres',
     blurb:
       "Nichée à plus de 1 400 m d'altitude, entre ciel immense et formations granitiques, Bapa incarne la majesté des hautes terres bamiléké.",
     priority: true,
+  },
+  {
+    src: '/images/hero-slide-palais-bapa.png',
+    alt: 'Ensemble du palais royal de Bapa : case à toiture de chaume, allée pavée et bâtiments du site',
+    objectPosition: 'object-cover object-[center_45%]',
+    kicker: 'Site royal · Chefferie supérieure',
+    subtitle: 'Le palais, les cases et la mémoire du royaume',
+    blurb:
+      "Allée pavée, case traditionnelle et symboles du pouvoir : le cœur du Royaume de Bapa accueille visiteurs, cérémonies et transmission de la dynastie.",
+    priority: false,
   },
   {
     src: '/images/hero-slide-cortege-traditionnel.png',
@@ -141,7 +151,7 @@ export default function HeroSection() {
             Découvrir le Royaume
           </Link>
           <Link
-            href="/economie/tourisme"
+            href="/developpement/tourisme"
             className="px-7 py-3.5 bg-white/10 text-white text-sm font-semibold rounded-full border border-white/25 hover:bg-white/20 transition-all duration-200 backdrop-blur-sm"
           >
             Explorer Bapa →

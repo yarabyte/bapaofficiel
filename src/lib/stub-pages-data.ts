@@ -279,20 +279,4 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
     ],
     footerLinks: [{ href: '/communaute', label: '← Les Communautés' }],
   },
-  contacts: {
-    title: 'Les Communautés',
-    heading: 'Contacts',
-    label: 'Les Communautés',
-    description:
-      'Téléphones et e-mail du secrétariat du Royaume de Bapa, formulaire de contact en ligne.',
-    breadcrumbs: [
-      { label: 'Accueil', href: '/' },
-      { label: 'Les Communautés', href: '/communaute' },
-      { label: 'Contacts' },
-    ],
-    footerLinks: [
-      { href: '/communaute/echos', label: 'Échos de Bapa' },
-      { href: '/communaute', label: '← Les Communautés' },
-    ],
-  },
 };

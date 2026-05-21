@@ -28,14 +28,14 @@ function SiteCard({
   icon: (typeof bapaSitesCulturels)[number]['icon'];
   href?: string;
 }) {
-  const Wrapper = href ? Link : 'div';
-  return (
-    <Wrapper
-      {...(href ? { href } : {})}
-      className={`group overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm ring-1 ring-stone-100 ${
-        href ? 'transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark' : ''
-      }`}
-    >
+  const cardClass = `group overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm ring-1 ring-stone-100${
+    href
+      ? ' transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark'
+      : ''
+  }`;
+
+  const inner = (
+    <>
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
         <Image
           src={image}
@@ -56,8 +56,18 @@ function SiteCard({
           <p className="mt-3 text-xs font-semibold text-gold-dark group-hover:text-brand">Visiter →</p>
         )}
       </div>
-    </Wrapper>
+    </>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className={cardClass}>
+        {inner}
+      </Link>
+    );
+  }
+
+  return <div className={cardClass}>{inner}</div>;
 }
 
 export default function VisitezBapaContent() {

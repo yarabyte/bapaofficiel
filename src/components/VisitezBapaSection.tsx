@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import SectionDivider from '@/components/SectionDivider';
-import { CARTE_TOURISTIQUE_IMAGE } from '@/lib/visitez-bapa';
+import { CARTE_TOURISTIQUE_IMAGE, VISITEZ_BAPA_PATH } from '@/lib/visitez-bapa';
 
-const VISITEZ_BAPA_HREF = '/developpement/tourisme/visitez-bapa';
+const VISITEZ_BAPA_HREF = VISITEZ_BAPA_PATH;
 
 /** Aperçu accueil — contenu complet sur la page Tourisme « Visitez Bapa ». */
 export default function VisitezBapaSection() {
@@ -70,8 +70,8 @@ export default function VisitezBapaSection() {
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[
             { label: 'Musée', href: '/tourisme/musee' },
-            { label: 'Restaurant', href: '/developpement/tourisme/restaurant' },
-            { label: 'Sites touristiques', href: '/developpement/tourisme/sites' },
+            { label: 'Restaurant', href: '/tourisme/restaurant' },
+            { label: 'Sites touristiques', href: '/tourisme/sites' },
           ].map((item) => (
             <Link
               key={item.href}

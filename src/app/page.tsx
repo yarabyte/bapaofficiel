@@ -5,7 +5,13 @@ import DeveloppementSection from '@/components/DeveloppementSection';
 import EchosSection from '@/components/EchosSection';
 import RoyaumeSection from '@/components/RoyaumeSection';
 import SectionDivider from '@/components/SectionDivider';
-import VisitezBapaSection from '@/components/VisitezBapaSection';
+import Button from '@/components/ui/Button';
+import {
+  bapaContactEmail,
+  bapaContactPhones,
+  bapaContactPostalAddress,
+} from '@/lib/contacts';
+import { footerSocialHref } from '@/lib/footer-social';
 
 
 /* ════════════════════════════════════════
@@ -26,14 +32,22 @@ function IntroSection() {
         {/* Texte */}
         <div className="order-2 lg:order-1">
           <span className="section-label mb-5">Notre village</span>
-          <h2
-            className="font-heading text-4xl md:text-5xl xl:text-6xl font-bold text-brand mt-3 mb-6 leading-[1.1]"
-            
-          >
-            Bapa, entre<br />ciel et granite
+          <h2 className="font-heading mt-3 mb-6 text-4xl font-bold leading-[1.1] text-brand md:text-5xl xl:text-6xl">
+            Bienvenue
+            <br />
+            sur{' '}
+            <span className="text-gold-dark">
+              «&nbsp;la terre
+              <br />
+              des rochers&nbsp;»
+            </span>
           </h2>
-          <p className="text-stone-600 leading-[1.85] mb-9 text-[1.0625rem]">
-            Bapa est un village de l&apos;Ouest-Cameroun situé dans le département des Hauts-Plateaux et rattaché à la commune de Bangou. Fondé dans les années 1600, ce groupement traditionnel est célèbre pour son riche patrimoine culturel et ses paysages vallonnés abritant des grottes et de grands rochers.
+          <p className="mb-9 text-[1.0625rem] leading-[1.85] text-stone-600">
+            Niché au cœur d&apos;un paysage roccailleux et vallonné, Bapa vous invite à découvrir ses charmes
+            authentiques. Explorez sa grotte aux 07 merveilles, arpentez ses rochers majestueux et laissez-vous
+            envoûter par la beauté naturelle de ses panoramas. Venez goûter à la vie paisible du village, rencontrez
+            ses habitants chaleureux, plongez dans la culture riche et vibrante de l&apos;Ouest Cameroun et faites une
+            immersion dans sa riche et authentique culture.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -436,37 +450,131 @@ function MediathequeSection() {
    CTA CONTACT
 ═══════════════════════════════════════ */
 function CTASection() {
+  const whatsapp = footerSocialHref('whatsapp');
+  const primaryPhone = bapaContactPhones[0];
+
   return (
-    <section className="bg-cream py-20 md:py-28 px-6">
-      <div className="max-w-2xl mx-auto text-center">
-        {/* Déco */}
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-8" />
-        <span className="section-label mb-5 justify-center">Contact</span>
-        <h2
-          className="font-heading text-4xl md:text-5xl font-bold text-brand mt-3 mb-5"
-          
-        >
-          Vous avez des<br />questions ?
-        </h2>
-        <p className="text-stone-500 leading-relaxed mb-10 text-base">
-          Notre équipe est disponible pour répondre à vos questions sur le village, les
-          événements, les partenariats et les opportunités de visite.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/contacts"
-            className="px-8 py-4 bg-brand text-white font-bold rounded-full hover:bg-brand-dark transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/25 text-sm"
-          >
-            Contactez-nous
-          </Link>
-          <Link
-            href="/communaute/partenaires"
-            className="px-8 py-4 border-2 border-brand/25 text-brand font-bold rounded-full hover:border-brand hover:bg-brand hover:text-white transition-all text-sm"
-          >
-            Devenir partenaire
-          </Link>
+    <section className="relative overflow-hidden bg-cream px-4 py-20 md:py-28 sm:px-6">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(212,148,62,0.08),transparent_55%)]"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute -right-24 top-1/4 h-64 w-64 rounded-full bg-forest/[0.04] blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-brand/[0.05] blur-3xl" aria-hidden />
+
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+        <div className="text-center lg:text-left">
+          <span className="section-label mb-5 lg:mx-0">Contact</span>
+          <h2 className="font-heading mt-3 text-4xl font-bold leading-[1.08] text-brand md:text-5xl xl:text-[3.25rem]">
+            Vous avez des
+            <br />
+            <span className="text-gold-dark">questions ?</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-lg text-[1.0625rem] leading-[1.85] text-stone-600 lg:mx-0">
+            Le secrétariat du Royaume de Bapa répond à vos demandes sur les visites, les partenariats,
+            la diaspora et les événements culturels.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
+            <Button href="/contacts" size="lg">
+              Contactez-nous
+            </Button>
+            <Button href="/communaute/partenaires" variant="secondary" size="lg">
+              Devenir partenaire
+            </Button>
+          </div>
+
+          <ul className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
+            <li>
+              <a
+                href={`tel:${primaryPhone.tel}`}
+                className="inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white px-4 py-2 text-sm font-semibold text-brand shadow-sm transition-colors hover:border-gold-dark/35 hover:bg-white"
+              >
+                <span className="text-forest" aria-hidden>
+                  ☎
+                </span>
+                {primaryPhone.display}
+              </a>
+            </li>
+            <li>
+              <a
+                href={bapaContactEmail.href}
+                className="inline-flex items-center gap-2 rounded-full border border-stone-200/90 bg-white px-4 py-2 text-sm font-semibold text-brand shadow-sm transition-colors hover:border-gold-dark/35"
+              >
+                <span className="text-forest" aria-hidden>
+                  ✉
+                </span>
+                <span className="max-w-[14rem] truncate sm:max-w-none">{bapaContactEmail.display}</span>
+              </a>
+            </li>
+            {whatsapp && (
+              <li>
+                <a
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-forest/[0.06] px-4 py-2 text-sm font-semibold text-forest transition-colors hover:border-forest/35"
+                >
+                  WhatsApp →
+                </a>
+              </li>
+            )}
+          </ul>
         </div>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-12" />
+
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:justify-self-end">
+          <div
+            className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-[1.65rem] bg-gold-dark/15 sm:translate-x-4 sm:translate-y-4"
+            aria-hidden
+          />
+          <div className="relative overflow-hidden rounded-[1.5rem] bg-brand shadow-[0_24px_56px_-20px_rgba(61,34,16,0.5)] ring-1 ring-white/15 sm:rounded-[1.65rem]">
+            <Image
+              src="/images/mot-du-roi-header-palais.png"
+              alt=""
+              fill
+              aria-hidden
+              className="object-cover object-center opacity-20"
+              sizes="(max-width: 1024px) 100vw, 480px"
+            />
+            <div className="pattern-geo absolute inset-0 opacity-[0.12]" aria-hidden />
+            <div className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/15" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent" />
+
+            <div className="relative z-10 p-8 md:p-10">
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-light">
+                Secrétariat
+              </p>
+              <h3 className="font-heading mt-2 mb-4 text-2xl font-bold text-white md:text-3xl">
+                Nous sommes à votre écoute
+              </h3>
+              <ul className="mb-8 space-y-3 text-sm text-white/80">
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
+                  Visites guidées et tourisme au Royaume de Bapa
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
+                  Partenariats, ADEVIPA et projets de développement
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
+                  Diaspora, culture et Festival Pa&apos;a Ngouo&apos;ok
+                </li>
+              </ul>
+              <p className="mb-6 text-xs leading-relaxed text-white/60">
+                {bapaContactPostalAddress} — Hauts-Plateaux, Cameroun
+              </p>
+              <Button
+                href="/contacts"
+                variant="secondary"
+                size="md"
+                className="border-white/30 bg-white text-brand hover:border-white hover:bg-cream"
+              >
+                Formulaire de message →
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -484,7 +592,6 @@ export default function HomePage() {
       <RoyaumeSection />
       <DeveloppementSection />
       <FestivalSection />
-      <VisitezBapaSection />
       <CommunauteSection />
       <MediathequeSection />
       <CTASection />

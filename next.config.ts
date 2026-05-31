@@ -10,7 +10,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/economie/tourisme',
-        destination: '/developpement/tourisme',
+        destination: '/tourisme/introductionenjeux',
+        permanent: true,
+      },
+      {
+        source: '/developpement/tourisme',
+        destination: '/tourisme/introductionenjeux',
+        permanent: true,
+      },
+      {
+        source: '/tourisme',
+        destination: '/tourisme/introductionenjeux',
         permanent: true,
       },
       {
@@ -21,6 +31,46 @@ const nextConfig: NextConfig = {
       {
         source: '/communaute/contacts',
         destination: '/contacts',
+        permanent: true,
+      },
+      {
+        source: '/developpement/tourisme/restaurant',
+        destination: '/tourisme/restaurant',
+        permanent: true,
+      },
+      {
+        source: '/economie/tourisme/restaurant',
+        destination: '/tourisme/restaurant',
+        permanent: true,
+      },
+      {
+        source: '/developpement/tourisme/sites',
+        destination: '/tourisme/sites',
+        permanent: true,
+      },
+      {
+        source: '/economie/tourisme/sites',
+        destination: '/tourisme/sites',
+        permanent: true,
+      },
+      {
+        source: '/developpement/tourisme/organisation',
+        destination: '/tourisme/organisation',
+        permanent: true,
+      },
+      {
+        source: '/economie/tourisme/organisation',
+        destination: '/tourisme/organisation',
+        permanent: true,
+      },
+      {
+        source: '/developpement/tourisme/visitez-bapa',
+        destination: '/tourisme/visitez-bapa',
+        permanent: true,
+      },
+      {
+        source: '/economie/tourisme/visitez-bapa',
+        destination: '/tourisme/visitez-bapa',
         permanent: true,
       },
     ];

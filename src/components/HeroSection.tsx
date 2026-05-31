@@ -151,7 +151,7 @@ export default function HeroSection() {
             Découvrir le Royaume
           </Link>
           <Link
-            href="/developpement/tourisme"
+            href="/tourisme/introductionenjeux"
             className="px-7 py-3.5 bg-white/10 text-white text-sm font-semibold rounded-full border border-white/25 hover:bg-white/20 transition-all duration-200 backdrop-blur-sm"
           >
             Explorer Bapa →

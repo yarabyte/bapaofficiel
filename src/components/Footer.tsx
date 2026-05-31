@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SectionDivider from '@/components/SectionDivider';
@@ -8,6 +9,7 @@ import {
   bapaContactPostalAddress,
 } from '@/lib/contacts';
 import { footerSocialHref } from '@/lib/footer-social';
+import { BAPA_LOGO, BAPA_LOGO_SIZE } from '@/lib/images';
 import {
   siteConcepteursPath,
   siteCopyrightHolder,
@@ -78,6 +80,23 @@ function IconWhatsApp({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
+function FooterBlockTitle({
+  icon: Icon,
+  children,
+}: {
+  icon: typeof IconPhone;
+  children: ReactNode;
+}) {
+  return (
+    <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-gold-light">
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-gold-dark/20 text-gold-light ring-1 ring-gold-light/25">
+        <Icon className="size-3.5" />
+      </span>
+      {children}
+    </p>
+  );
+}
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -89,157 +108,180 @@ export default function Footer() {
   ].filter((s): s is typeof s & { href: string } => Boolean(s.href));
 
   return (
-    <footer className="bg-brand-dark text-white">
+    <footer className="relative isolate overflow-hidden bg-brand-dark text-white">
       <SectionDivider fill="cream" position="top" />
 
-      <div className="mx-auto max-w-7xl px-4 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-9 lg:pt-9">
-        <div className="flex flex-col gap-6 border-b border-white/12 pb-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-          <div className="flex shrink-0 flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:text-left lg:max-w-xs">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(89,52,20,0.35)_0%,transparent_42%,rgba(14,9,6,0.5)_100%)]"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-0 pattern-geo opacity-[0.04]" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-light/40 to-transparent"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* Marque */}
+          <div className="flex flex-col items-center text-center lg:col-span-4 lg:items-start lg:text-left">
+            <Link href="/" className="group mb-5 flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark rounded-xl">
+              <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/20 transition group-hover:ring-gold-light/40">
                 <Image
-                  src="/images/logo.png"
-                  alt="Logo Bapa Officiel"
-                  width={766}
-                  height={780}
-                  className="max-h-8 max-w-8 object-contain"
-                  style={{ width: 'auto', height: 'auto' }}
+                  src={BAPA_LOGO}
+                  alt="Logo officiel du Royaume de Bapa"
+                  width={BAPA_LOGO_SIZE}
+                  height={BAPA_LOGO_SIZE}
+                  className="size-16 object-cover"
                 />
               </div>
               <div>
-                <p className="font-heading text-lg font-bold tracking-wider leading-none">BAPA</p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/55">Officiel</p>
+                <p className="font-heading text-xl font-bold tracking-[0.12em] text-white">BAPA</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-light/80">
+                  Officiel
+                </p>
               </div>
-            </div>
-            <p className="text-xs leading-snug text-white/65 sm:pl-1">
+            </Link>
+            <p className="max-w-xs text-sm leading-relaxed text-white/70">
               Portail officiel du Royaume de Bapa — culture vivante, avenir partagé.
             </p>
+            <div
+              className="mt-6 hidden h-px w-16 bg-gradient-to-r from-gold-light/60 to-transparent lg:block"
+              aria-hidden
+            />
           </div>
 
-          <div className="grid flex-1 gap-4 text-center text-xs sm:grid-cols-3 sm:gap-5 sm:text-left lg:max-w-2xl lg:gap-6">
-            <div>
-              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
-                <IconPhone className="size-3.5 shrink-0" />
-                Téléphone
-              </p>
-              <ul className="space-y-0.5">
-                {bapaContactPhones.map((phone) => (
-                  <li key={phone.tel} className="leading-snug">
-                    <a
-                      href={`tel:${phone.tel}`}
-                      className="font-semibold text-white/88 transition-colors hover:text-gold-light"
-                    >
-                      {phone.display}
-                    </a>
-                    <span className="text-white/40"> ({phone.label})</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Coordonnées */}
+          <div className="lg:col-span-8">
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-colors hover:border-gold-light/20 hover:bg-white/[0.06]">
+                <FooterBlockTitle icon={IconPhone}>Téléphone</FooterBlockTitle>
+                <ul className="space-y-2">
+                  {bapaContactPhones.map((phone) => (
+                    <li key={phone.tel}>
+                      <a
+                        href={`tel:${phone.tel}`}
+                        className="block text-sm font-semibold text-white transition-colors hover:text-gold-light"
+                      >
+                        {phone.display}
+                      </a>
+                      <span className="text-[11px] text-white/45">{phone.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <div>
-              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
-                <IconMail className="size-3.5 shrink-0" />
-                E-mail
-              </p>
-              <p className="leading-snug">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-colors hover:border-gold-light/20 hover:bg-white/[0.06]">
+                <FooterBlockTitle icon={IconMail}>E-mail</FooterBlockTitle>
                 <a
                   href={bapaContactEmail.href}
-                  className="font-semibold text-white/88 transition-colors hover:text-gold-light"
+                  className="break-all text-sm font-semibold text-white transition-colors hover:text-gold-light"
                 >
                   {bapaContactEmail.display}
                 </a>
-                <span className="text-white/35"> · </span>
                 <Link
                   href="/contacts"
-                  className="font-semibold text-gold-light transition-colors hover:text-white hover:underline"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-gold-light transition-colors hover:text-white"
                 >
-                  Écrire un message →
+                  Écrire un message
+                  <span aria-hidden>→</span>
                 </Link>
-              </p>
-            </div>
+              </div>
 
-            <div className="sm:col-span-1">
-              <p className="mb-1.5 flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold-light/90 sm:justify-start">
-                <IconMap className="size-3.5 shrink-0" />
-                Localisation
-              </p>
-              <p className="leading-snug text-white/72">
-                {bapaContactLocation}
-                <br />
-                <span className="text-white/55">Adresse : {bapaContactPostalAddress}</span>
-              </p>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-colors hover:border-gold-light/20 hover:bg-white/[0.06] sm:col-span-1">
+                <FooterBlockTitle icon={IconMap}>Localisation</FooterBlockTitle>
+                <p className="text-sm leading-relaxed text-white/75">{bapaContactLocation}</p>
+                <p className="mt-2 text-xs text-white/50">
+                  <span className="font-semibold text-white/60">Adresse</span>
+                  <br />
+                  {bapaContactPostalAddress}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 pt-5">
-          <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-6">
-          <div className="flex items-center gap-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gold-light/85 whitespace-nowrap">
-              Suivez-nous
-            </p>
-            {socialEntries.length > 0 ? (
-              <ul className="flex flex-wrap justify-center gap-2">
-                {socialEntries.map(({ label, href, Icon }) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${label} — nouvelle fenêtre`}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/18 bg-white/[0.07] text-white/85 transition-all hover:border-gold-light/55 hover:bg-gold-dark/25 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-[11px] leading-snug text-white/45">
-                Réseaux à configurer (
-                <code className="rounded bg-white/10 px-1 text-[10px] text-white/70">.env.example</code>
-                )
-              </p>
-            )}
+        {/* Barre inférieure */}
+        <div className="mt-10 border-t border-white/10 pt-8">
+          <div className="flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
+            <div className="flex flex-col items-center gap-3 sm:flex-row">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-gold-light/90">
+                Suivez-nous
+              </span>
+              {socialEntries.length > 0 ? (
+                <ul className="flex flex-wrap justify-center gap-2">
+                  {socialEntries.map(({ label, href, Icon }) => (
+                    <li key={label}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${label} — nouvelle fenêtre`}
+                        className="flex size-10 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-white/80 transition-all hover:-translate-y-0.5 hover:border-gold-light/45 hover:bg-gold-dark/30 hover:text-white hover:shadow-[0_4px_20px_-4px_rgba(212,148,62,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+                      >
+                        <Icon className="size-[18px]" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-xs text-white/45">
+                  Réseaux à configurer —{' '}
+                  <code className="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px]">.env.example</code>
+                </p>
+              )}
+            </div>
+
+            <nav
+              aria-label="Liens du site"
+              className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-xs"
+            >
+              {(
+                [
+                  { href: '/mediatheque', label: 'Médiathèque' },
+                  { href: '/communaute/partenaires', label: 'Partenaires' },
+                  { href: '/contacts', label: 'Nous contacter' },
+                  { href: '/mentions-legales', label: 'Mentions légales' },
+                  { href: '/politique-de-confidentialite', label: 'Politique de confidentialité' },
+                ] as const
+              ).map((link, i) => (
+                <span key={link.href} className="inline-flex items-center">
+                  {i > 0 && (
+                    <span className="mx-0.5 text-white/20" aria-hidden>
+                      |
+                    </span>
+                  )}
+                  <Link
+                    href={link.href}
+                    className="rounded-lg px-2.5 py-1 text-white/60 transition-colors hover:bg-white/5 hover:text-gold-light"
+                  >
+                    {link.label}
+                  </Link>
+                </span>
+              ))}
+            </nav>
           </div>
 
-          <div className="flex flex-col items-center gap-2 text-center sm:items-end sm:text-right">
-            <nav
-              aria-label="Informations légales"
-              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/55 sm:justify-end"
-            >
-              <Link href="/mentions-legales" className="transition-colors hover:text-gold-light">
-                Mentions légales
-              </Link>
-              <span className="text-white/25" aria-hidden>
-                ·
-              </span>
-              <Link
-                href="/politique-de-confidentialite"
-                className="transition-colors hover:text-gold-light"
-              >
-                Politique de confidentialité
-              </Link>
-            </nav>
-            <p className="text-xs font-medium text-white/80">
+          <div className="mt-8 flex flex-col items-center gap-3 text-center">
+            <p className="text-sm text-white/75">
               © {year}{' '}
-              <span className="font-heading text-white">{siteCopyrightHolder}</span>
-              {' — '}
-              {siteCopyrightTerritory}. Tous droits réservés.
+              <span className="font-heading font-semibold text-white">{siteCopyrightHolder}</span>
+              <span className="text-white/40"> · </span>
+              {siteCopyrightTerritory}
+              <span className="text-white/40"> · </span>
+              Tous droits réservés
+            </p>
+            <p className="text-[11px] text-white/45">
+              Design et réalisation du site —{' '}
+              <Link
+                href={siteConcepteursPath}
+                className="font-semibold text-gold-light/90 underline-offset-2 transition-colors hover:text-gold-light hover:underline"
+                aria-label="En savoir plus sur le design et la réalisation du site"
+              >
+                en savoir plus
+              </Link>
             </p>
           </div>
-          </div>
-          <p className="w-full text-center text-[11px] text-white/50">
-            Design et réalisation du site —{' '}
-            <Link
-              href={siteConcepteursPath}
-              className="text-white/70 transition-colors hover:text-gold-light"
-              aria-label="En savoir plus sur le design et la réalisation du site"
-            >
-              en savoir plus
-            </Link>
-          </p>
         </div>
       </div>
     </footer>

@@ -14,50 +14,49 @@ export default function EchoCard({ article, index = 0, variant = 'editorial' }: 
     return (
       <Link
         href={`/communaute/echos/${article.slug}`}
-        className="echo-featured group flex flex-col md:flex-row md:items-stretch bg-transparent rounded-[1.75rem] sm:rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(89,52,20,0.06)] card-lift border border-stone-200/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2"
+        className="group flex flex-col overflow-hidden rounded-3xl border border-stone-200/80 bg-white shadow-[0_20px_50px_-28px_rgba(61,34,16,0.35)] ring-1 ring-stone-100/80 transition-all card-lift hover:border-gold-dark/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2 md:flex-row md:items-stretch"
       >
-        <div className="relative w-full md:w-[46%] h-56 sm:h-64 md:min-h-[340px] md:h-full shrink-0 overflow-hidden bg-stone-200">
+        <div className="relative h-56 w-full shrink-0 overflow-hidden bg-stone-200 sm:h-64 md:h-auto md:min-h-[22rem] md:w-[44%] lg:w-[46%]">
           <Image
             src={article.image}
-            alt={article.title}
+            alt=""
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
             sizes="(max-width: 768px) 100vw, 520px"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-brand-dark/20" />
+          <span className="absolute left-4 top-4 rounded-full bg-gold-dark px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-sm">
+            À la une
+          </span>
         </div>
 
-        <div className="relative flex flex-col justify-center flex-1 p-6 sm:p-8 md:p-10 bg-transparent min-w-0">
+        <div className="relative flex min-w-0 flex-1 flex-col justify-center border-t border-stone-100 p-6 sm:p-8 md:border-t-0 md:border-l md:p-10">
           <span
-            className="font-heading hidden md:block absolute top-6 right-6 text-6xl font-bold text-brand/5 select-none pointer-events-none"
-            
+            className="font-heading pointer-events-none absolute right-6 top-4 hidden select-none text-7xl font-bold text-brand/[0.04] md:block"
             aria-hidden
           >
             01
           </span>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 relative">
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-gold-dark bg-gold/15 px-4 py-1.5 rounded-full border border-gold/25">
-              À la une
-            </span>
-            <span className={`text-xs font-semibold px-3 py-1 rounded-full ${getCategoryStyle(article.category)}`}>
+          <div className="relative mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getCategoryStyle(article.category)}`}>
               {article.category}
             </span>
-            <time className="text-stone-400 text-xs" dateTime={article.date}>
+            <time className="text-xs text-stone-500" dateTime={article.date}>
               {formatEchoDate(article.date)}
             </time>
           </div>
-          <h3
-            className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand mb-3 leading-snug group-hover:text-gold-dark transition-colors duration-300 relative"
-            
-          >
+          <h3 className="font-heading relative text-xl font-bold leading-snug text-brand transition-colors group-hover:text-gold-dark sm:text-2xl md:text-[1.75rem]">
             {article.title}
           </h3>
-          <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-6 line-clamp-3 sm:line-clamp-4 relative">
+          <p className="relative mt-3 line-clamp-3 text-sm leading-relaxed text-stone-600 sm:text-base sm:line-clamp-4">
             {article.excerpt}
           </p>
-          <span className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand text-white font-medium text-sm group-hover:bg-brand-dark transition-all duration-300 w-fit">
+          <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors group-hover:bg-brand-dark">
             Lire l&apos;article
-            <span aria-hidden className="group-hover:translate-x-0.5 transition-transform">→</span>
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
           </span>
         </div>
       </Link>
@@ -69,43 +68,41 @@ export default function EchoCard({ article, index = 0, variant = 'editorial' }: 
   return (
     <Link
       href={`/communaute/echos/${article.slug}`}
-      className="echo-editorial group flex flex-col h-full rounded-[1.75rem] sm:rounded-[2rem] bg-transparent overflow-hidden shadow-[0_2px_12px_rgba(89,52,20,0.05)] card-lift border border-stone-200/40 hover:border-gold/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm ring-1 ring-stone-100/60 transition-all card-lift hover:border-gold-dark/25 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2"
     >
-      <div className="relative h-48 sm:h-52 lg:h-44 overflow-hidden">
+      <div className="relative h-48 overflow-hidden sm:h-52">
         <Image
           src={article.image}
-          alt={article.title}
+          alt=""
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, 500px"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          sizes="(max-width: 640px) 100vw, 400px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/30 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/65 via-brand-dark/5 to-transparent" />
         <span
-          className="font-heading absolute top-4 left-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/70 backdrop-blur-sm text-brand font-bold text-sm shadow-sm border border-white/50"
-          
+          className="font-heading absolute left-4 top-4 flex size-9 items-center justify-center rounded-full border border-white/50 bg-white/90 text-sm font-bold text-brand shadow-sm backdrop-blur-sm"
           aria-hidden
         >
           {num}
         </span>
       </div>
 
-      <div className="flex flex-col flex-1 p-6 pt-5 sm:p-7 sm:pt-6">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${getCategoryStyle(article.category)}`}>
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${getCategoryStyle(article.category)}`}
+          >
             {article.category}
           </span>
-          <time className="text-stone-400 text-xs" dateTime={article.date}>
+          <time className="text-xs text-stone-500" dateTime={article.date}>
             {formatEchoDate(article.date)}
           </time>
         </div>
-        <h3
-          className="font-heading text-lg font-bold text-brand mb-2 line-clamp-2 group-hover:text-gold-dark transition-colors"
-          
-        >
+        <h3 className="font-heading mb-2 line-clamp-2 text-lg font-bold text-brand transition-colors group-hover:text-gold-dark">
           {article.title}
         </h3>
-        <p className="text-stone-500 text-sm leading-relaxed line-clamp-3 flex-1 mb-5">{article.excerpt}</p>
-        <span className="inline-flex items-center gap-2 text-brand text-sm font-medium w-fit px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-stone-200/40 group-hover:bg-gold/15 transition-colors">
+        <p className="mb-5 line-clamp-3 flex-1 text-sm leading-relaxed text-stone-600">{article.excerpt}</p>
+        <span className="inline-flex w-fit items-center gap-1 text-xs font-bold uppercase tracking-wide text-gold-dark group-hover:text-brand">
           Lire la suite →
         </span>
       </div>

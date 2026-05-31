@@ -45,13 +45,8 @@ const sectionOrder = [
     slug: 'theme',
     title: 'Thème',
     draft: (edition: Pick<FestivalEdition, 'year'>): string[] => {
-      const themes: Record<number, string> = {
-        2018: 'Transmission et jeunesse : les lignées culturelles face aux défis du présent.',
-        2023: 'Solidarités renouvelées : Bapa ouvert sur ses réseaux et ses territoires d’émigration.',
-        2028: 'Horizon commun : mémoire, économie culturelle et investissement localement ancré.',
-      };
       return [
-        `Thème officiel retenu pour l’édition ${edition.year} : « ${themes[edition.year] ?? themes[2028]} »`,
+        `Thème officiel retenu pour l’édition ${edition.year} : « ${FESTIVAL_THEMES[edition.year as FestivalYear]} »`,
         `Le thème irrigue interventions des notables, ateliers de réflexion et scènes festives pour donner une cohérence symbolique aux journées.`,
       ];
     },
@@ -154,6 +149,39 @@ function buildEdition(year: 2018 | 2023 | 2028): FestivalEdition {
 export const FESTIVAL_YEARS = [2018, 2023, 2028] as const;
 export type FestivalYear = (typeof FESTIVAL_YEARS)[number];
 
+export const FESTIVAL_HUB_PATH = '/economie/festival' as const;
+
+export const FESTIVAL_THEMES: Record<FestivalYear, string> = {
+  2018: 'Transmission et jeunesse : les lignées culturelles face aux défis du présent.',
+  2023: 'Solidarités renouvelées : Bapa ouvert sur ses réseaux et ses territoires d’émigration.',
+  2028: 'Horizon commun : mémoire, économie culturelle et investissement localement ancré.',
+};
+
+export const festivalEditionHubMeta: Record<
+  FestivalYear,
+  { image: string; imageAlt: string; featured?: boolean }
+> = {
+  2018: {
+    image: '/images/festival-ngouook-procession.png',
+    imageAlt: 'Procession traditionnelle — édition 2018',
+  },
+  2023: {
+    image: '/images/hero-slide-cortege-traditionnel.png',
+    imageAlt: 'Cortège royal — édition 2023',
+  },
+  2028: {
+    image: '/images/paa-ngouook-2028.jpg',
+    imageAlt: 'Affiche et préparation — édition 2028',
+    featured: true,
+  },
+};
+
+export const FESTIVAL_SECTION_LABELS = sectionOrder.map((s) => s.title);
+
+export function festivalYearPath(year: FestivalYear | number): string {
+  return `${FESTIVAL_HUB_PATH}/${year}`;
+}
+
 export const festivalEditions: Record<number, FestivalEdition> = {
   2018: buildEdition(2018),
   2023: buildEdition(2023),
@@ -164,4 +192,19 @@ export function getFestivalEdition(yearStr: string): FestivalEdition | null {
   const y = Number.parseInt(yearStr, 10);
   if (!FESTIVAL_YEARS.includes(y as FestivalYear)) return null;
   return festivalEditions[y];
+}
+
+export function getAdjacentFestivalYears(year: FestivalYear): {
+  prev: FestivalYear | null;
+  next: FestivalYear | null;
+} {
+  const idx = FESTIVAL_YEARS.indexOf(year);
+  return {
+    prev: idx > 0 ? FESTIVAL_YEARS[idx - 1]! : null,
+    next: idx < FESTIVAL_YEARS.length - 1 ? FESTIVAL_YEARS[idx + 1]! : null,
+  };
+}
+
+export function isFestivalYearUpcoming(year: FestivalYear): boolean {
+  return year === 2028;
 }

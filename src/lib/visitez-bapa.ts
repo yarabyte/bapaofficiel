@@ -1,3 +1,4 @@
+export const VISITEZ_BAPA_PATH = '/tourisme/visitez-bapa' as const;
 export const CARTE_TOURISTIQUE_IMAGE = '/images/carte-touristique-royaume-bapa.png' as const;
 
 export type VisitezSectionIconId =
@@ -5,7 +6,6 @@ export type VisitezSectionIconId =
   | 'localisation'
   | 'quartiers'
   | 'sites'
-  | 'infrastructure'
   | 'credits'
   | 'culture'
   | 'nature'
@@ -21,7 +21,6 @@ export const visitezBapaNavSections = [
   { id: 'localisation', label: 'Localisation', icon: 'localisation' as VisitezSectionIconId },
   { id: 'quartiers', label: 'Quartiers', icon: 'quartiers' as VisitezSectionIconId },
   { id: 'sites', label: 'Sites', icon: 'sites' as VisitezSectionIconId },
-  { id: 'infrastructure', label: 'Équipements', icon: 'infrastructure' as VisitezSectionIconId },
   { id: 'credits', label: 'Crédits', icon: 'credits' as VisitezSectionIconId },
 ] as const;
 
@@ -147,19 +146,6 @@ export const bapaSitesNaturels = [
   },
 ] as const;
 
-export const bapaInfrastructure = [
-  { label: 'Routes principales & secondaires', icon: 'route' as VisitezSectionIconId },
-  { label: 'Sentiers, pistes et rivières', icon: 'nature' as VisitezSectionIconId },
-  { label: 'Westland Hôtel — Famtouh', icon: 'hotel' as VisitezSectionIconId },
-  { label: 'Lycée — Toupah', icon: 'ecole' as VisitezSectionIconId },
-  { label: 'Paroisse Saint-Luc & églises', icon: 'eglise' as VisitezSectionIconId },
-  { label: 'Centre de santé', icon: 'sante' as VisitezSectionIconId },
-  { label: 'Centre multimédia', icon: 'culture' as VisitezSectionIconId },
-  { label: 'Place du marché & place des fêtes', icon: 'marche' as VisitezSectionIconId },
-  { label: 'Complexe multisport & bars-restaurants', icon: 'infrastructure' as VisitezSectionIconId },
-  { label: 'Aires de pique-nique', icon: 'nature' as VisitezSectionIconId },
-] as const;
-
 export const bapaPaysages = [
   { label: 'Zones agricoles', color: '#c5e1a5', icon: 'nature' as VisitezSectionIconId },
   { label: 'Forêts', color: '#2d5a3d', icon: 'nature' as VisitezSectionIconId },
@@ -189,16 +175,16 @@ export const visitezBapaQuickLinks = [
     icon: 'culture' as VisitezSectionIconId,
   },
   {
-    title: 'Restaurant Patrimonial',
+    title: 'Les Saveurs du Palais',
     desc: 'Cuisine locale et hospitalité bamiléké.',
-    href: '/developpement/tourisme/restaurant',
+    href: '/tourisme/restaurant',
     image: '/images/musee-celebration-culturelle.png',
     icon: 'hotel' as VisitezSectionIconId,
   },
   {
     title: 'Introduction tourisme',
     desc: 'Enjeux et stratégie de développement touristique.',
-    href: '/developpement/tourisme',
+    href: '/tourisme/introductionenjeux',
     image: '/images/hero-slide-architecture-patrimoine.png',
     icon: 'carte' as VisitezSectionIconId,
   },

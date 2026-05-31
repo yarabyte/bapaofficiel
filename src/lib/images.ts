@@ -1,3 +1,7 @@
+/** Logo officiel du Royaume de Bapa (header, footer, menu mobile). */
+export const BAPA_LOGO = '/images/logo.png' as const;
+export const BAPA_LOGO_SIZE = 296;
+
 /** Images présentes dans public/images — fallback pour chemins historiques du dépôt. */
 export const IMAGE_FALLBACK = '/images/hero-slide-architecture-patrimoine.png' as const;
 

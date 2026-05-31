@@ -38,13 +38,6 @@ export default function VisitezBapaIcon({
           <path strokeLinecap="round" d="M9 21v-6h6v6" />
         </svg>
       );
-    case 'infrastructure':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" d="M3 21h18M5 21V9l7-4 7 4v12" />
-          <path strokeLinecap="round" d="M9 13h2v8M13 11h2v10" />
-        </svg>
-      );
     case 'credits':
       return (
         <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
@@ -121,13 +114,13 @@ function SectionHeading({
   subtitle?: string;
 }) {
   return (
-    <div className="mb-6 flex items-start gap-4">
-      <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand/8 text-brand ring-1 ring-brand/15">
-        <VisitezBapaIcon id={icon} className="size-6" />
+    <div className="mb-6 flex items-start gap-4 border-l-[3px] border-gold-dark/50 pl-4 md:mb-8 md:pl-5">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-forest/8 text-brand ring-1 ring-brand/10 md:size-12">
+        <VisitezBapaIcon id={icon} className="size-5 md:size-6" />
       </span>
-      <div>
-        <h2 className="font-heading text-xl font-bold text-brand md:text-2xl">{title}</h2>
-        {subtitle && <p className="mt-1 text-sm text-stone-500">{subtitle}</p>}
+      <div className="min-w-0 pt-0.5">
+        <h2 className="font-heading text-xl font-bold leading-tight text-brand md:text-2xl">{title}</h2>
+        {subtitle && <p className="mt-1.5 text-sm leading-relaxed text-stone-500">{subtitle}</p>}
       </div>
     </div>
   );

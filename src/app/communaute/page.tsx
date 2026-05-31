@@ -1,9 +1,18 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import PagePremiumBackdrop from '@/components/layout/PagePremiumBackdrop';
-import PageShell from '@/components/layout/PageShell';
+import CommunauteHubIcon from '@/components/communaute/CommunauteHubIcon';
 import EchoCard from '@/components/EchoCard';
+import PageHeroPremium from '@/components/layout/PageHeroPremium';
+import PagePremiumBackdrop from '@/components/layout/PagePremiumBackdrop';
+import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
+import Button from '@/components/ui/Button';
+import {
+  communauteHubGallery,
+  communauteHubNavItems,
+  communauteHubPillars,
+  communauteHubSections,
+} from '@/lib/communaute-hub';
 import { echoArticles } from '@/lib/echos';
 
 export const metadata: Metadata = {
@@ -12,356 +21,315 @@ export const metadata: Metadata = {
     'Communautés du Royaume de Bapa au Cameroun et dans la diaspora : rôles, activités, actualités et contacts.',
 };
 
-type HubIconId =
-  | 'roles'
-  | 'cameroun'
-  | 'diaspora'
-  | 'activites'
-  | 'echos'
-  | 'partenaires'
-  | 'contacts'
-  | 'village'
-  | 'lien';
+const scrollMt = 'scroll-mt-[calc(var(--navbar-offset)+5rem)]';
 
-function HubIcon({ id, className }: { id: HubIconId; className?: string }) {
-  const cn = className ?? 'size-6';
-  switch (id) {
-    case 'roles':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <circle cx="9" cy="7" r="3" />
-          <circle cx="17" cy="8" r="2.5" />
-          <path strokeLinecap="round" d="M4 20c0-2.5 2.2-4 5-4M14 20c0-2-1.8-3.5-4-3.5" />
-        </svg>
-      );
-    case 'cameroun':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s-7-4.5-7-11a7 7 0 1 1 14 0c0 6.5-7 11-7 11Z" />
-          <circle cx="12" cy="10" r="2.5" />
-        </svg>
-      );
-    case 'diaspora':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <circle cx="12" cy="12" r="9" />
-          <path strokeLinecap="round" d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
-        </svg>
-      );
-    case 'activites':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <rect x="4" y="5" width="16" height="14" rx="1.5" />
-          <path strokeLinecap="round" d="M8 3v4M16 3v4M4 10h16" />
-        </svg>
-      );
-    case 'echos':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 8.5h12M6 12h8M6 15.5h10" />
-          <rect x="4" y="4" width="16" height="16" rx="2" />
-        </svg>
-      );
-    case 'partenaires':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M7 11h10M7 15h6M5 5h14v14H5V5Z" />
-          <path strokeLinecap="round" d="M9 5V3h6v2" />
-        </svg>
-      );
-    case 'contacts':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16v12H4V6Z" />
-          <path strokeLinecap="round" d="m4 7 8 6 8-6" />
-        </svg>
-      );
-    case 'village':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5 12 3l9 7.5V21H8v-7H6v7H3v-10.5Z" />
-        </svg>
-      );
-    case 'lien':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10 13a5 5 0 0 0 7.07 0l1.41-1.41a5 5 0 0 0-7.07-7.07L10.5 5.5" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M14 11a5 5 0 0 0-7.07 0L5.52 12.41a5 5 0 0 0 7.07 7.07L13.5 18.5" />
-        </svg>
-      );
-  }
+const sidebarLinkClass =
+  'flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3.5 py-2.5 text-sm font-semibold text-stone-600 transition-all hover:border-stone-200/90 hover:bg-white/80 md:px-4';
+
+function HubSectionHeader({ id, kicker, title, subtitle }: { id: string; kicker: string; title: string; subtitle: string }) {
+  return (
+    <header className="mb-6 border-l-[3px] border-forest/50 pl-5 md:mb-8">
+      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-forest">{kicker}</p>
+      <h2 id={id} className="font-heading mt-2 text-2xl font-bold text-brand md:text-[1.75rem]">
+        {title}
+      </h2>
+      <p className="mt-2 text-sm leading-relaxed text-stone-500">{subtitle}</p>
+    </header>
+  );
 }
-
-const hubSections = [
-  {
-    id: 'roles',
-    title: 'Rôles de communautés',
-    subtitle: 'Missions, responsabilités et organisation des groupes au sein du royaume.',
-    items: [
-      {
-        label: 'Rôles de communautés',
-        href: '/communaute/roles',
-        icon: 'roles' as HubIconId,
-        description: 'Fonctions, mandats et articulation entre village, diaspora et institutions.',
-      },
-    ],
-  },
-  {
-    id: 'communautes',
-    title: 'Les communautés',
-    subtitle: 'Royaume de Bapa et diaspora — deux piliers de la solidarité Bapa.',
-    items: [
-      {
-        label: 'Communauté Bapa du Cameroun',
-        href: '/communaute/cameroun',
-        icon: 'cameroun' as HubIconId,
-        description: 'Vie locale, initiatives et ancrage au Royaume de Bapa.',
-      },
-      {
-        label: 'Communauté Bapa de la diaspora',
-        href: '/communaute/diaspora',
-        icon: 'diaspora' as HubIconId,
-        description: 'Réseau mondial, solidarité et projets à distance.',
-      },
-    ],
-  },
-  {
-    id: 'vivre',
-    title: 'Vivre la communauté',
-    subtitle: 'Actualités, événements et engagement au quotidien.',
-    items: [
-      {
-        label: 'Activités des communautés',
-        href: '/communaute/activites',
-        icon: 'activites' as HubIconId,
-        description: 'Agenda, chantiers et rencontres à Bapa et ailleurs.',
-      },
-      {
-        label: 'Échos de Bapa',
-        href: '/communaute/echos',
-        icon: 'echos' as HubIconId,
-        description: 'Actualités du royaume : culture, festival, développement.',
-        featured: true,
-      },
-    ],
-  },
-  {
-    id: 'engager',
-    title: 'S’engager',
-    subtitle: 'Partenariats et prise de contact.',
-    items: [
-      {
-        label: 'Partenaires',
-        href: '/communaute/partenaires',
-        icon: 'partenaires' as HubIconId,
-        description: 'Institutions et acteurs qui accompagnent Bapa.',
-      },
-      {
-        label: 'Contacts',
-        href: '/contacts',
-        icon: 'contacts' as HubIconId,
-        description: 'Écrire au secrétariat, rejoindre ou poser une question.',
-        featured: true,
-      },
-    ],
-  },
-] as const;
-
-const pillars = [
-  { label: 'Royaume de Bapa', icon: 'village' as HubIconId },
-  { label: 'Diaspora', icon: 'diaspora' as HubIconId },
-  { label: 'Solidarité', icon: 'lien' as HubIconId },
-] as const;
 
 export default function CommunauteHubPage() {
   const latestEcho = echoArticles[0];
+  const previewEchoes = echoArticles.slice(1, 3);
 
   return (
     <PageShell className="relative">
       <PagePremiumBackdrop variant="green" />
 
-      {/* Hero */}
-      <header className="relative isolate z-[1] overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          <Image
-            src="/images/festival-ngouook-procession.png"
-            alt=""
-            fill
-            priority
-            className="scale-[1.03] object-cover object-[center_40%]"
-            sizes="100vw"
-            aria-hidden
-          />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(14,9,6,0.72)_0%,rgba(42,95,58,0.55)_42%,rgba(61,34,16,0.82)_100%)]"
-          aria-hidden
-        />
-        <div className="pointer-events-none absolute inset-0 pattern-geo opacity-[0.06]" aria-hidden />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-36 bg-gradient-to-b from-transparent to-[#f2f0e9] sm:h-44"
-          aria-hidden
-        />
+      <PageHeroPremium
+        imageSrc="/images/festival-ngouook-procession.png"
+        imageClassName="scale-[1.03] object-cover object-[center_40%] select-none"
+        label="Solidarité"
+        title="Les Communautés"
+        description="Cohésion du Royaume de Bapa et de la diaspora — actualités, entraide et projets communs pour le territoire et ses fils dispersés."
+        descriptionClassName="mx-auto max-w-2xl text-lg leading-relaxed text-white/88 md:mx-0"
+        breadcrumbs={[{ label: 'Accueil', href: '/' }, { label: 'Les Communautés' }]}
+      >
+        <ul className="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-2 md:mx-0 md:justify-start">
+          {communauteHubPillars.map((p) => (
+            <li
+              key={p.label}
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-white/95 backdrop-blur-sm"
+            >
+              <CommunauteHubIcon id={p.icon} className="size-4 text-gold-light" />
+              {p.label}
+            </li>
+          ))}
+        </ul>
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 pb-14 page-top page-top-md text-center text-white sm:px-6 md:pb-18 md:text-left">
-          <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.22em] text-gold-light/95">Solidarité</p>
-          <h1
-            className="font-heading mb-4 text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl md:text-[3.15rem]"
-            
-          >
-            Les Communautés
-          </h1>
-          <p className="mx-auto max-w-2xl text-[1.05rem] leading-relaxed text-white/90 md:mx-0">
-            Cohésion du Royaume de Bapa et de la diaspora — actualités, entraide et projets communs pour le Royaume de
-            Bapa.
-          </p>
+        <nav
+          aria-label="Sections du hub"
+          className="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-2 border-t border-white/15 pt-8 md:mx-0 md:justify-start"
+        >
+          {communauteHubSections.map((section) => (
+            <a
+              key={section.id}
+              href={`#hub-${section.id}`}
+              className="rounded-full border border-white/20 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white/95 backdrop-blur-sm transition-colors hover:border-gold-light/45 hover:bg-white/15"
+            >
+              {section.title}
+            </a>
+          ))}
+        </nav>
+      </PageHeroPremium>
 
-          <ul className="mt-10 flex flex-wrap justify-center gap-3 md:justify-start">
-            {pillars.map((p) => (
-              <li
-                key={p.label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold backdrop-blur-sm"
-              >
-                <HubIcon id={p.icon} className="size-4 text-gold-light" />
-                {p.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </header>
-
-      <main className="relative z-[1] mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16 lg:max-w-6xl">
-        {/* Accès rapide */}
-        <div className="mb-14 grid gap-4 sm:grid-cols-2">
-          <Link
-            href="/communaute/echos"
-            className="group relative overflow-hidden rounded-2xl bg-brand p-6 text-white shadow-[0_16px_48px_-20px_rgba(61,34,16,0.5)] ring-1 ring-brand-dark/30 transition-transform hover:-translate-y-0.5 sm:p-8"
-          >
-            <div className="pointer-events-none absolute -right-6 -top-6 size-32 rounded-full bg-gold/20 blur-2xl" aria-hidden />
-            <span className="mb-4 flex size-12 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25">
-              <HubIcon id="echos" className="size-6 text-gold-light" />
-            </span>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-light/90">À ne pas manquer</p>
-            <p className="font-heading mt-2 text-xl font-bold sm:text-2xl">
-              Échos de Bapa
-            </p>
-            <p className="mt-2 max-w-sm text-sm text-white/75">Dernières nouvelles du village — culture, festival, diaspora.</p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-light">
-              Lire les actualités <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
-            </span>
-          </Link>
-
-          <Link
-            href="/contacts"
-            className="group flex flex-col justify-between rounded-2xl border border-stone-200/80 bg-white/95 p-6 shadow-sm ring-1 ring-stone-100 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-gold-dark/30 hover:shadow-md sm:p-8"
-          >
-            <div>
-              <span className="flex size-12 items-center justify-center rounded-xl bg-forest/10 text-forest ring-1 ring-forest/20">
-                <HubIcon id="contacts" className="size-6" />
-              </span>
-              <p className="font-heading mt-4 text-xl font-bold text-brand">
-                Nous rejoindre
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                Enfant du village, membre de la diaspora ou ami de Bapa — les portes vous sont ouvertes.
-              </p>
-            </div>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-dark">
-              Prendre contact <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
-            </span>
-          </Link>
-        </div>
-
-        {/* Rubriques par thème */}
-        <div className="space-y-14">
-          {hubSections.map((section) => (
-            <section key={section.id} aria-labelledby={`hub-${section.id}`}>
-              <div className="mb-6 border-b border-stone-200/70 pb-4">
-                <h2
-                  id={`hub-${section.id}`}
-                  className="font-heading text-2xl font-bold text-brand md:text-[1.75rem]"
-                  
-                >
-                  {section.title}
-                </h2>
-                <p className="mt-1 text-sm text-stone-500">{section.subtitle}</p>
+      <section
+        aria-label="Communautés en images"
+        className="relative z-[1] -mt-5 mx-auto max-w-6xl px-4 sm:px-6 lg:-mt-8 lg:px-10"
+      >
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          {communauteHubGallery.map(({ src, alt, caption }) => (
+            <figure
+              key={src}
+              className="overflow-hidden rounded-xl shadow-md ring-1 ring-stone-200/90 sm:rounded-2xl"
+            >
+              <div className="relative aspect-[4/3] w-full bg-stone-200">
+                <Image src={src} alt={alt} fill className="object-cover object-center" sizes="33vw" />
               </div>
-
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {section.items.map((item) => {
-                  const isFeatured = 'featured' in item && item.featured;
-                  return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`group flex h-full gap-4 rounded-2xl border p-5 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2 ${
-                        isFeatured
-                          ? 'border-gold-dark/25 bg-gradient-to-br from-white to-cream-dark/40 ring-1 ring-gold-dark/15'
-                          : 'border-stone-200/80 bg-white/95 shadow-sm ring-1 ring-stone-100 hover:border-gold-dark/25'
-                      }`}
-                    >
-                      <span
-                        className={`flex size-11 shrink-0 items-center justify-center rounded-xl ring-1 transition-colors ${
-                          isFeatured
-                            ? 'bg-brand/10 text-brand ring-brand/15 group-hover:bg-brand/15'
-                            : 'bg-stone-100 text-gold-dark ring-stone-200/80 group-hover:bg-gold/10 group-hover:text-brand'
-                        }`}
-                        aria-hidden
-                      >
-                        <HubIcon id={item.icon} className="size-6" />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-brand group-hover:text-brand-light">{item.label}</p>
-                        <p className="mt-1.5 text-sm leading-relaxed text-stone-600">{item.description}</p>
-                      </div>
-                      <span
-                        className="mt-1 shrink-0 self-start text-gold-dark opacity-60 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
-                        aria-hidden
-                      >
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                  );
-                })}
-              </ul>
-            </section>
+              <figcaption className="border-t border-stone-100 bg-white/95 px-2 py-1.5 text-center text-[11px] font-medium text-stone-600 sm:text-xs">
+                {caption}
+              </figcaption>
+            </figure>
           ))}
         </div>
+      </section>
 
-        {/* À la une — Échos */}
-        {latestEcho && (
-          <section className="mt-16 border-t border-stone-200/70 pt-14" aria-labelledby="hub-echos-une">
-            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2
-                  id="hub-echos-une"
-                  className="font-heading text-2xl font-bold text-brand md:text-3xl"
-                  
-                >
-                  Dernier écho
-                </h2>
-                <p className="mt-1 text-sm text-stone-500">Un aperçu des actualités — parcourez toute la rubrique.</p>
+      <main className="relative z-[1] mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-10">
+        <div className="lg:grid lg:grid-cols-[minmax(0,15rem)_1fr] lg:gap-x-10 xl:grid-cols-[minmax(0,17rem)_1fr] xl:gap-x-12">
+          <aside className="mb-10 lg:sticky lg:top-[calc(var(--navbar-offset)+1rem)] lg:mb-0 lg:self-start">
+            <div className="rounded-2xl border border-stone-200/80 bg-white p-4 shadow-sm ring-1 ring-stone-100/60 md:p-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Explorer</p>
+              <nav aria-label="Rubriques des communautés" className="mt-4 hidden space-y-1 lg:block">
+                {communauteHubNavItems.map((item) => (
+                  <Link key={item.href} href={item.href} className={sidebarLinkClass}>
+                    <CommunauteHubIcon id={item.icon} className="size-4 shrink-0 text-forest" />
+                    <span className="min-w-0 truncate">{item.label}</span>
+                  </Link>
+                ))}
+              </nav>
+              <nav aria-label="Rubriques des communautés" className="mt-4 flex gap-2 overflow-x-auto pb-1 lg:hidden">
+                {communauteHubNavItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="inline-flex shrink-0 items-center gap-2 rounded-full border border-stone-200/90 bg-cream/50 px-3.5 py-2 text-xs font-semibold text-brand"
+                  >
+                    <CommunauteHubIcon id={item.icon} className="size-3.5 text-forest" />
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="mt-5 border-t border-stone-100 pt-5">
+                <Button href="/contacts" variant="primary" size="sm" className="w-full justify-center">
+                  Nous contacter
+                </Button>
               </div>
-              <Link
-                href="/communaute/echos"
-                className="inline-flex shrink-0 items-center justify-center rounded-full border-2 border-brand/20 bg-white px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:border-gold-dark/40 hover:bg-cream"
-              >
-                Tous les échos →
-              </Link>
             </div>
-            <EchoCard article={latestEcho} variant="featured" />
-          </section>
-        )}
+          </aside>
 
-        <nav className="mt-16 flex flex-col items-center gap-4 border-t border-stone-200/70 pt-12 text-center sm:flex-row sm:justify-center sm:gap-10">
-          <Link href="/" className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline">
-            ← Accueil
-          </Link>
-          <Link href="/contacts" className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline">
-            Contacts
-          </Link>
-        </nav>
+          <div className="min-w-0 space-y-12 md:space-y-14">
+            {/* Accès prioritaires */}
+            <section aria-labelledby="hub-prioritaires">
+              <HubSectionHeader
+                id="hub-prioritaires"
+                kicker="À la une"
+                title="Accès prioritaires"
+                subtitle="Actualités du royaume et prise de contact avec le secrétariat."
+              />
+              <div className="grid gap-4 lg:grid-cols-5 lg:gap-5">
+                <Link
+                  href="/communaute/echos"
+                  className="group relative overflow-hidden rounded-3xl bg-brand p-7 text-white shadow-[0_20px_56px_-24px_rgba(61,34,16,0.55)] ring-1 ring-brand-dark/30 transition-transform hover:-translate-y-0.5 lg:col-span-3 lg:p-9"
+                >
+                  <div
+                    className="pointer-events-none absolute -right-8 -top-8 size-40 rounded-full bg-gold/25 blur-3xl"
+                    aria-hidden
+                  />
+                  <div className="pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden>
+                    <Image
+                      src="/images/hero-slide-cortege-traditionnel.png"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="600px"
+                    />
+                  </div>
+                  <div className="relative">
+                    <span className="flex size-12 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25">
+                      <CommunauteHubIcon id="echos" className="size-6 text-gold-light" />
+                    </span>
+                    <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold-light/90">
+                      À ne pas manquer
+                    </p>
+                    <p className="font-heading mt-2 text-2xl font-bold sm:text-3xl">Échos de Bapa</p>
+                    <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80">
+                      Dernières nouvelles du royaume — culture, festival, diaspora et développement.
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-gold-light ring-1 ring-white/20 transition-colors group-hover:bg-white/20">
+                      Lire les actualités
+                      <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+
+                <div className="flex flex-col gap-4 lg:col-span-2">
+                  <Link
+                    href="/contacts"
+                    className="group flex flex-1 flex-col justify-between rounded-3xl border border-stone-200/80 bg-white p-6 shadow-sm ring-1 ring-stone-100 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-gold-dark/30 hover:shadow-md"
+                  >
+                    <div>
+                      <span className="flex size-11 items-center justify-center rounded-xl bg-forest/10 text-forest ring-1 ring-forest/20">
+                        <CommunauteHubIcon id="contacts" className="size-5" />
+                      </span>
+                      <p className="font-heading mt-4 text-xl font-bold text-brand">Nous rejoindre</p>
+                      <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                        Enfant du royaume, membre de la diaspora ou ami de Bapa — le secrétariat vous accueille.
+                      </p>
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-dark">
+                      Prendre contact
+                      <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                        →
+                      </span>
+                    </span>
+                  </Link>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    {communauteHubSections[1].items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="group rounded-2xl border border-stone-200/80 bg-gradient-to-br from-cream/80 to-white p-4 shadow-sm ring-1 ring-stone-100 transition-all hover:border-forest/25 hover:shadow-md"
+                      >
+                        <CommunauteHubIcon id={item.icon} className="size-5 text-forest" />
+                        <p className="mt-3 text-xs font-bold leading-snug text-brand group-hover:text-forest">
+                          {item.label.replace('Communauté Bapa ', '')}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Rubriques */}
+            {communauteHubSections.map((section, sectionIndex) => (
+              <section
+                key={section.id}
+                id={`hub-${section.id}`}
+                className={`${scrollMt} rounded-3xl border border-stone-200/70 bg-white p-6 shadow-sm ring-1 ring-stone-100/60 md:p-8`}
+                aria-labelledby={`hub-title-${section.id}`}
+              >
+                <HubSectionHeader
+                  id={`hub-title-${section.id}`}
+                  kicker={`Rubrique ${String(sectionIndex + 1).padStart(2, '0')}`}
+                  title={section.title}
+                  subtitle={section.subtitle}
+                />
+
+                <ul className={`grid gap-4 ${section.items.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+                  {section.items.map((item, itemIndex) => {
+                    const isFeatured = Boolean(item.featured);
+                    const num = String(itemIndex + 1).padStart(2, '0');
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={`group flex h-full gap-4 rounded-2xl border p-5 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2 ${
+                            isFeatured
+                              ? 'border-gold-dark/25 bg-gradient-to-br from-cream/40 to-white ring-1 ring-gold-dark/15'
+                              : 'border-stone-200/80 bg-cream/30 ring-1 ring-stone-100/80 hover:border-gold-dark/25'
+                          }`}
+                        >
+                          <span
+                            className={`flex size-12 shrink-0 flex-col items-center justify-center rounded-xl ring-1 ${
+                              isFeatured
+                                ? 'bg-brand/10 text-brand ring-brand/15'
+                                : 'bg-white text-gold-dark ring-stone-200/80'
+                            }`}
+                            aria-hidden
+                          >
+                            <span className="font-heading text-[10px] font-bold text-stone-400">{num}</span>
+                            <CommunauteHubIcon id={item.icon} className="size-5" />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-brand group-hover:text-forest">{item.label}</p>
+                            <p className="mt-1.5 text-sm leading-relaxed text-stone-600">{item.description}</p>
+                          </div>
+                          <span
+                            className="mt-1 shrink-0 self-start text-gold-dark opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
+                            aria-hidden
+                          >
+                            →
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ))}
+
+            {/* Dernier écho */}
+            {latestEcho && (
+              <section
+                id="hub-echos-une"
+                className={`${scrollMt} rounded-3xl border border-stone-200/70 bg-gradient-to-br from-cream/90 via-white to-cream/50 p-6 shadow-sm ring-1 ring-stone-100/60 md:p-8`}
+                aria-labelledby="hub-echos-une-title"
+              >
+                <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-forest">Actualités</p>
+                    <h2
+                      id="hub-echos-une-title"
+                      className="font-heading mt-2 text-2xl font-bold text-brand md:text-3xl"
+                    >
+                      Dernier écho
+                    </h2>
+                    <p className="mt-2 text-sm text-stone-500">
+                      Un aperçu des nouvelles — parcourez toute la rubrique Échos de Bapa.
+                    </p>
+                  </div>
+                  <Button href="/communaute/echos" variant="secondary" size="sm" className="shrink-0">
+                    Tous les échos →
+                  </Button>
+                </div>
+
+                <EchoCard article={latestEcho} variant="featured" />
+
+                {previewEchoes.length > 0 && (
+                  <ul className="mt-8 grid gap-5 sm:grid-cols-2">
+                    {previewEchoes.map((article, index) => (
+                      <li key={article.slug}>
+                        <EchoCard article={article} index={index} variant="editorial" />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            )}
+          </div>
+        </div>
+
+        <PageFooterNav
+          links={[
+            { href: '/', label: '← Accueil' },
+            { href: '/communaute/echos', label: 'Échos de Bapa' },
+            { href: '/contacts', label: 'Contacts' },
+          ]}
+        />
       </main>
     </PageShell>
   );

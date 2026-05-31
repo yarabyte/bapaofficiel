@@ -41,6 +41,12 @@ export const ECHOS_BACKDROP_IMAGE = '/images/hero-slide-cortege-traditionnel.png
 /** Rochers / paysage Grassfields sous le dégradé du bandeau Echos (liste + article). */
 export const ECHOS_HEADER_ROCKS_IMAGE = '/images/hero-slide-architecture-patrimoine.png';
 
+export interface EchoRelatedLink {
+  href: string;
+  label: string;
+  description?: string;
+}
+
 export interface EchoArticle {
   slug: string;
   title: string;
@@ -49,6 +55,16 @@ export interface EchoArticle {
   date: string;
   category: EchoCategory;
   image: string;
+  /** Points clés affichés sous le chapô (optionnel). */
+  highlights?: readonly string[];
+  /** Liens utiles en fin d’article (optionnel). */
+  relatedLinks?: readonly EchoRelatedLink[];
+}
+
+export const ECHOS_LIST_PATH = '/communaute/echos' as const;
+
+export function echosCategoryFilterHref(category: EchoCategory): string {
+  return `${ECHOS_LIST_PATH}?categorie=${encodeURIComponent(category)}`;
 }
 
 export const echoArticles: EchoArticle[] = [
@@ -56,10 +72,36 @@ export const echoArticles: EchoArticle[] = [
     slug: 'preparatifs-paa-ngouook-2028',
     title: "Les préparatifs du Pa'a Ngouo'ok 2028 sont lancés",
     excerpt:
-      "Le comité d'organisation du festival biennal réunit chefs traditionnels, associations et diaspora pour une édition ambitieuse.",
+      "Le comité d'organisation du festival biennal réunit chefs traditionnels, associations et diaspora pour une édition ambitieuse au Royaume de Bapa.",
+    highlights: [
+      'Lancement officiel des préparatifs pour l’édition 2028',
+      'Concertation chefferie, quartiers, associations et diaspora',
+      'Priorités : accueil des visiteurs, troupes de danse et gastronomie locale',
+      'Chantiers communautaires annoncés dès le printemps',
+    ],
     content: [
-      "Le Royaume de Bapa a officiellement lancé les préparatifs de la prochaine édition du festival Pa'a Ngouo'ok, prévue en 2028. Une réunion plénière a réuni le conseil des notables, les responsables des associations culturelles et des représentants de la diaspora.",
-      "Au programme : renforcement des infrastructures d'accueil, coordination des troupes de danse traditionnelle et valorisation de la gastronomie locale. Les habitants et visiteurs sont invités à contribuer aux chantiers communautaires annoncés dès le printemps.",
+      "Le Royaume de Bapa a officiellement lancé les préparatifs de la prochaine édition du festival Pa'a Ngouo'ok, prévue en 2028. Ce grand rassemblement biennal célèbre l'identité bamiléké à travers les danses, les rituels, la gastronomie et la solidarité communautaire.",
+      "Une réunion plénière du comité d'organisation a réuni le conseil des notables, les responsables des associations culturelles, les représentants de quartier et des membres de la diaspora venus soutenir la dynamique du territoire. La coordination générale s'appuie sur la légitimité de la chefferie et sur les structures locales déjà engagées dans la valorisation du patrimoine.",
+      "Les axes de travail retenus pour les mois à venir couvrent le renforcement des infrastructures d'accueil (hébergement, accès, sanitaires), la programmation des troupes de danse traditionnelle et des sociétés initiatiques, ainsi que la mise en avant de la gastronomie locale et des savoir-faire artisanaux.",
+      "Le musée case patrimoniale, les sites touristiques du royaume et les espaces du palais royal seront intégrés au parcours proposé aux visiteurs. Une attention particulière sera portée à la sécurité des déplacements, au protocole coutumier et à la visibilité des symboles communautaires.",
+      "Les habitants, la diaspora et les partenaires sont invités à contribuer aux chantiers communautaires annoncés dès le printemps. Les annonces officielles (programme détaillé, calendrier des répétitions, appels à partenariat) seront publiées sur le portail et dans la rubrique Échos de Bapa au fil de l'organisation.",
+    ],
+    relatedLinks: [
+      {
+        href: '/economie/festival/2028',
+        label: "Page de l'édition 2028",
+        description: 'Thème, programme, comité et mot du PCO — dossier structuré du festival.',
+      },
+      {
+        href: '/economie/festival',
+        label: "Toutes les éditions Pa'a Ngouo'ok",
+        description: 'Retrouvez les éditions 2018, 2023 et la préparation 2028.',
+      },
+      {
+        href: '/tourisme/visitez-bapa',
+        label: 'Visitez Bapa',
+        description: 'Carte touristique et sites à découvrir pendant le festival.',
+      },
     ],
     date: '2026-04-12',
     category: 'Festival',

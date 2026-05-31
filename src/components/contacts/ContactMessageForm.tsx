@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import Button from '@/components/ui/Button';
 import { bapaContactEmail } from '@/lib/contacts';
 
 type FormState = {
@@ -45,15 +46,15 @@ export default function ContactMessageForm() {
   }
 
   const inputClass =
-    'w-full rounded-xl border border-stone-200/90 bg-white px-4 py-3 text-sm text-stone-800 shadow-sm transition-[border-color,box-shadow] placeholder:text-stone-400 focus:border-gold-dark/50 focus:outline-none focus:ring-2 focus:ring-gold-dark/20';
+    'w-full rounded-xl border border-stone-200/90 bg-cream/30 px-4 py-3 text-sm text-stone-800 shadow-sm transition-[border-color,box-shadow] placeholder:text-stone-400 focus:border-gold-dark/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-dark/20';
 
   if (submitted) {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-forest/25 bg-gradient-to-br from-white to-cream-dark/50 p-8 text-center"
+        className="rounded-2xl border border-forest/25 bg-gradient-to-br from-forest/[0.06] via-white to-cream/50 p-8 text-center"
       >
-        <p className="font-heading mb-2 text-xl font-bold text-forest">Message envoyé</p>
+        <p className="font-heading mb-2 text-2xl font-bold text-forest">Message envoyé</p>
         <p className="mx-auto max-w-md text-sm leading-relaxed text-stone-600">
           Merci, <span className="font-semibold text-brand">{form.name}</span>. Le secrétariat a bien reçu votre
           demande et vous répondra dans les meilleurs délais. Pour une urgence, appelez directement le secrétariat.
@@ -167,12 +168,9 @@ export default function ContactMessageForm() {
         .
       </p>
 
-      <button
-        type="submit"
-        className="w-full rounded-xl bg-brand px-6 py-3.5 text-sm font-bold text-white shadow-md transition-[background-color] hover:bg-brand-dark sm:w-auto sm:min-w-[12rem]"
-      >
+      <Button type="submit" size="lg" className="w-full sm:w-auto sm:min-w-[14rem]">
         Envoyer le message
-      </button>
+      </Button>
     </form>
   );
 }

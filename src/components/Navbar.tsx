@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { BAPA_LOGO, BAPA_LOGO_SIZE } from '@/lib/images';
 import { navItems, type NavItem, type NavChild } from '@/lib/navigation';
 
 function childKey(navItem: NavChild): string {
@@ -251,12 +252,48 @@ function SecondaryQuickNav({ variant, pathname }: { variant: 'header' | 'drawer'
   );
 }
 
-/* ── Dropdown desktop : une seule colonne (pas de méga-menu) ── */
+function partitionNavChildren(children: NavChild[]) {
+  const links: NavChild[] = [];
+  const groups: NavChild[] = [];
+  for (const child of children) {
+    if (child.children?.length) groups.push(child);
+    else links.push(child);
+  }
+  return { links, groups };
+}
+
+const desktopMenuLinkBase =
+  'block rounded-lg px-3 py-2 text-sm leading-snug transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark/40';
+
+function DesktopMenuLink({
+  href,
+  label,
+  pathname,
+}: {
+  href: string;
+  label: string;
+  pathname: string;
+}) {
+  const active = isHrefActive(pathname, href);
+  return (
+    <Link
+      href={href}
+      aria-current={active ? 'page' : undefined}
+      className={`${desktopMenuLinkBase} ${
+        active ? desktopDropdownLinkActive : desktopDropdownLinkInactive
+      }`}
+    >
+      {label}
+    </Link>
+  );
+}
+
+/* ── Dropdown desktop classique (une colonne) ── */
 function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }) {
   if (!item.children?.length) return null;
 
   return (
-    <div className="absolute top-full left-1/2 z-50 mt-1 -translate-x-1/2 translate-y-1 opacity-0 invisible transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible">
+    <div className="pointer-events-none absolute top-full left-1/2 z-50 mt-1 -translate-x-1/2 translate-y-1 opacity-0 invisible transition-all duration-150 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible">
       <div className="flex justify-center">
         <div className="-mb-1.5 h-3 w-3 rotate-45 border-l border-t border-stone-100 bg-white" />
       </div>
@@ -304,6 +341,84 @@ function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }
             ),
           )}
         </ul>
+      </div>
+    </div>
+  );
+}
+
+const DEVELOPPEMENT_MEGA_MENU_LABEL = 'Développement';
+
+/* ── Méga-menu : Développement uniquement ── */
+function DesktopMegaMenu({ item, pathname }: { item: NavItem; pathname: string }) {
+  if (!item.children?.length) return null;
+
+  const { links, groups } = partitionNavChildren(item.children);
+
+  return (
+    <div
+      className="pointer-events-none absolute left-0 top-full z-[60] pt-2 opacity-0 invisible transition-[opacity,visibility] duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100"
+      role="region"
+      aria-label="Sous-menu Développement"
+    >
+      <div className="absolute left-4 top-0 h-3 w-24" aria-hidden />
+
+      <div className="relative w-[min(640px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-[0_28px_64px_-24px_rgba(61,34,16,0.45)] ring-1 ring-stone-100/90">
+        <div
+          className="pointer-events-none absolute left-8 top-0 z-10 size-2.5 -translate-y-1/2 rotate-45 border border-stone-200/90 border-b-0 border-r-0 bg-white"
+          aria-hidden
+        />
+
+        <div className="border-b border-stone-100 bg-gradient-to-r from-cream/90 via-white to-cream/50 px-5 py-3.5">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-dark">{item.label}</p>
+        </div>
+
+        <div className="grid gap-x-8 gap-y-5 p-5 md:grid-cols-2">
+          {links.length > 0 && (
+            <div className={groups.length > 0 && links.length <= 4 ? 'min-w-0' : 'min-w-0 sm:col-span-1'}>
+              {groups.length > 0 && (
+                <p className="mb-2 px-1 text-[10px] font-bold uppercase tracking-[0.14em] text-stone-400">
+                  Accès directs
+                </p>
+              )}
+              <ul className="space-y-0.5">
+                {links.map((child) =>
+                  child.href ? (
+                    <li key={childKey(child)}>
+                      <DesktopMenuLink href={child.href} label={child.label} pathname={pathname} />
+                    </li>
+                  ) : null,
+                )}
+              </ul>
+            </div>
+          )}
+
+          {groups.map((group) => (
+            <div key={childKey(group)} className="min-w-0">
+              <p className="mb-2 border-b border-stone-100 px-1 pb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-brand">
+                {group.label}
+              </p>
+              <ul className="space-y-0.5">
+                {group.children?.map((leaf) =>
+                  leaf.href ? (
+                    <li key={childKey(leaf)}>
+                      <DesktopMenuLink href={leaf.href} label={leaf.label} pathname={pathname} />
+                    </li>
+                  ) : null,
+                )}
+              </ul>
+            </div>
+          ))}
+
+        </div>
+
+        <div className="border-t border-stone-100 bg-stone-50/80 px-5 py-3">
+          <Link
+            href="/developpement/adevipa"
+            className="text-xs font-semibold text-gold-dark transition-colors hover:text-brand"
+          >
+            ADEVIPA — moteur du développement local →
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -433,13 +548,18 @@ export default function Navbar() {
         aria-hidden
         className={`pointer-events-none fixed inset-x-0 top-0 z-[45] transition-all duration-300 ${
           scrolled
-            ? 'min-h-[calc(2.5rem+4.25rem)] border-b border-white/[0.07] bg-brand-dark/[0.38] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)] backdrop-blur-xl backdrop-saturate-150'
+            ? 'min-h-[4.5rem] border-b border-white/[0.07] bg-brand-dark/[0.38] shadow-[0_12px_40px_-16px_rgba(0,0,0,0.35)] backdrop-blur-xl backdrop-saturate-150'
             : 'min-h-[clamp(10rem,26vmin,14rem)] bg-gradient-to-b from-black/[0.58] via-black/[0.32] to-transparent'
         }`}
       />
 
-      {/* Barre secondaire — accès directs (marge haute conservée) */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-transparent pt-2">
+      {/* Barre secondaire — visible en haut de page, masquée au scroll (menu sticky = menu principal seul) */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-[60] bg-transparent pt-2 transition-[transform,opacity] duration-300 ${
+          scrolled ? 'pointer-events-none -translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+        }`}
+        aria-hidden={scrolled}
+      >
         <div className="relative mx-auto flex h-8 max-w-7xl items-center justify-between gap-2 px-3 sm:px-6">
           <div className="hidden min-w-0 items-center gap-2 md:flex">
             <span className="h-0.5 w-0.5 shrink-0 rounded-full bg-gold/90 shadow-[0_0_8px_rgba(212,148,62,0.55)]" aria-hidden />
@@ -454,20 +574,24 @@ export default function Navbar() {
       </div>
 
       <header
-        className={`fixed top-10 left-0 right-0 z-50 bg-transparent transition-all duration-300 ${
-          scrolled ? 'py-2.5' : 'py-5'
+        className={`fixed left-0 right-0 z-50 bg-transparent transition-[top,padding] duration-300 ${
+          scrolled ? 'top-0 py-2.5' : 'top-10 py-5'
         }`}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 sm:gap-6 sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 overflow-visible px-4 sm:gap-6 sm:px-6">
           <Link href="/" className="flex shrink-0 items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white/10">
+            <div
+              className={`flex shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/25 transition-[width,height] duration-300 ${
+                scrolled ? 'size-10' : 'size-12'
+              }`}
+            >
               <Image
-                src="/images/logo.png"
-                alt="Bapa Logo"
-                width={766}
-                height={780}
-                className="max-h-9 max-w-9 object-contain"
-                style={{ width: 'auto', height: 'auto' }}
+                src={BAPA_LOGO}
+                alt="Logo officiel du Royaume de Bapa"
+                width={BAPA_LOGO_SIZE}
+                height={BAPA_LOGO_SIZE}
+                className={`object-cover transition-[width,height] duration-300 ${scrolled ? 'size-10' : 'size-12'}`}
+                priority
               />
             </div>
             <div className="leading-tight">
@@ -478,7 +602,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <nav className="ml-auto hidden items-center gap-0.5 lg:flex xl:gap-1">
+          <nav className="ml-auto hidden items-center gap-0.5 overflow-visible lg:flex xl:gap-1">
             {navItems.map((navItem) => {
               const dropdownActive = Boolean(navItem.children && navSubtreeHasActiveHref(pathname, navItem.children));
               const simpleActive = Boolean(!navItem.children && activeSimpleLabel === navItem.label);
@@ -508,7 +632,12 @@ export default function Navbar() {
                       {navItem.label}
                     </Link>
                   )}
-                  {navItem.children && <DesktopDropdown item={navItem} pathname={pathname} />}
+                  {navItem.children &&
+                    (navItem.label === DEVELOPPEMENT_MEGA_MENU_LABEL ? (
+                      <DesktopMegaMenu item={navItem} pathname={pathname} />
+                    ) : (
+                      <DesktopDropdown item={navItem} pathname={pathname} />
+                    ))}
                 </div>
               );
             })}
@@ -533,8 +662,14 @@ export default function Navbar() {
           <div className="absolute top-0 right-0 bottom-0 z-[71] flex w-80 max-w-full flex-col overflow-y-auto bg-white shadow-2xl">
             <div className="flex items-center justify-between bg-brand px-4 py-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                  <Image src="/images/logo.png" alt="Logo" width={766} height={780} className="max-h-7 max-w-7 object-contain" />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/25">
+                  <Image
+                    src={BAPA_LOGO}
+                    alt="Logo officiel du Royaume de Bapa"
+                    width={BAPA_LOGO_SIZE}
+                    height={BAPA_LOGO_SIZE}
+                    className="size-8 object-cover"
+                  />
                 </div>
                 <span className="font-heading font-bold tracking-wide text-white">BAPA</span>
               </div>

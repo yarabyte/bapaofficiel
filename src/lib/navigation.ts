@@ -31,7 +31,7 @@ export const navItems: NavItem[] = [
       { label: 'ADEVIPA', href: '/developpement/adevipa' },
       { label: 'Santé', href: '/developpement/adevipa/sante' },
       { label: 'Éducation', href: '/developpement/adevipa/education' },
-      { label: 'Économie', href: '/developpement/tourisme' },
+      { label: 'Économie', href: '/tourisme/introductionenjeux' },
       {
         label: 'Projets',
         children: [
@@ -66,12 +66,12 @@ export const navItems: NavItem[] = [
   {
     label: 'Tourisme',
     children: [
-      { label: 'Introduction et Enjeux', href: '/developpement/tourisme' },
-      { label: 'Organisation et promotion', href: '/developpement/tourisme/organisation' },
+      { label: 'Introduction et Enjeux', href: '/tourisme/introductionenjeux' },
+      { label: 'Organisation et promotion', href: '/tourisme/organisation' },
       { label: 'Le Musée Case Patrimoniale', href: '/tourisme/musee' },
-      { label: 'Le Restaurant Patrimonial', href: '/developpement/tourisme/restaurant' },
-      { label: 'Les Sites Touristiques', href: '/developpement/tourisme/sites' },
-      { label: 'Visitez Bapa', href: '/developpement/tourisme/visitez-bapa' },
+      { label: 'Les Saveurs du Palais', href: '/tourisme/restaurant' },
+      { label: 'Les Sites Touristiques', href: '/tourisme/sites' },
+      { label: 'Visitez Bapa', href: '/tourisme/visitez-bapa' },
     ],
   },
   { label: 'Les Communautés', href: '/communaute' },

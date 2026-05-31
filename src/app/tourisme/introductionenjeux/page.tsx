@@ -1,7 +1,7 @@
 import { StubPage, stubMetadata } from '@/lib/stub-page';
 import { stubPagesByPath } from '@/lib/stub-pages-data';
 
-const config = stubPagesByPath['developpement/tourisme'];
+const config = stubPagesByPath['tourisme/introductionenjeux'];
 
 export const metadata = stubMetadata(config);
 

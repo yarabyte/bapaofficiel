@@ -69,6 +69,46 @@ export function echosCategoryFilterHref(category: EchoCategory): string {
 
 export const echoArticles: EchoArticle[] = [
   {
+    slug: 'ajeepa-congres-jeunesse-bapa-sponsoring',
+    title: "Congrès de la Jeunesse Bapa : l'AJEEPA lance son appel au sponsoring",
+    excerpt:
+      "L'Association des Jeunes Élèves et Étudiants Bapa (AJEEPA) mobilise entreprises et partenaires pour soutenir le Congrès de la Jeunesse Bapa et renforcer l'engagement des jeunes du royaume.",
+    highlights: [
+      'AJEEPA — Association des Jeunes Élèves et Étudiants Bapa',
+      'Congrès de la Jeunesse Bapa : appel au sponsoring ouvert',
+      'Visibilité accrue sur les supports de l’association',
+      'Réseautage avec les acteurs clés du territoire',
+      'Engagement citoyen et valorisation du patrimoine bapa',
+    ],
+    content: [
+      "L'Association des Jeunes Élèves et Étudiants Bapa (AJEEPA) porte la voix de la jeunesse scolarisée et universitaire du Royaume de Bapa. Dans cette dynamique, elle présente le Congrès de la Jeunesse Bapa, un rendez-vous fédérateur destiné à rassembler les jeunes autour des enjeux éducatifs, culturels et communautaires du territoire.",
+      "Pour mener à bien cette initiative, l'AJEEPA lance un appel au sponsoring auprès des entreprises, institutions, associations et mécènes sensibles à l'avenir de la jeunesse bapa. Chaque contribution permet d'amplifier la portée du congrès et de garantir des conditions d'organisation à la hauteur des ambitions affichées.",
+      "Les partenaires qui répondent à cet appel bénéficient d'une visibilité accrue sur les supports de communication de l'association, d'opportunités de réseautage avec les acteurs clés du royaume et d'une participation concrète à un projet d'engagement citoyen au service du patrimoine et de la cohésion communautaire.",
+      "Le Congrès de la Jeunesse Bapa s'inscrit dans la continuité des valeurs transmises par la chefferie et les structures locales : respect des traditions, excellence scolaire, solidarité intergénérationnelle et responsabilité citoyenne. L'AJEEPA entend en faire un espace de dialogue, de formation et de projection collective pour les générations à venir.",
+      "Les personnes et structures intéressées par le sponsoring peuvent contacter l'AJEEPA aux numéros +237 695 697 269 et +237 652 042 545. Les modalités de partenariat et le dossier de présentation du congrès seront communiqués directement aux sponsors potentiels.",
+    ],
+    relatedLinks: [
+      {
+        href: '/communaute',
+        label: 'Les Communautés',
+        description: 'Royaume de Bapa, diaspora, activités et engagement citoyen.',
+      },
+      {
+        href: '/contacts',
+        label: 'Contacts du secrétariat',
+        description: 'Coordonnées officielles du Royaume de Bapa pour toute démarche institutionnelle.',
+      },
+      {
+        href: '/royaume/traditions',
+        label: 'Traditions du royaume',
+        description: 'Patrimoine culturel et valeurs transmises aux jeunes générations.',
+      },
+    ],
+    date: '2026-05-19',
+    category: 'Communautés',
+    image: '/images/ajeepa-congres-jeunesse-bapa.png',
+  },
+  {
     slug: 'preparatifs-paa-ngouook-2028',
     title: "Les préparatifs du Pa'a Ngouo'ok 2028 sont lancés",
     excerpt:

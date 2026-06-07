@@ -5,6 +5,7 @@ import PageHeroPremium from '@/components/layout/PageHeroPremium';
 import PagePremiumBackdrop from '@/components/layout/PagePremiumBackdrop';
 import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
 import Button from '@/components/ui/Button';
+import { echosCategoryFilterHref } from '@/lib/echos';
 import {
   FESTIVAL_SECTION_LABELS,
   FESTIVAL_YEARS,
@@ -224,7 +225,7 @@ export default function FestivalHubPage() {
               <Button href="/mediatheque" variant="secondary" size="md">
                 Médiathèque
               </Button>
-              <Button href="/communaute/echos?categorie=Festival" size="md">
+              <Button href={echosCategoryFilterHref('Festival')} size="md">
                 Échos · Festival
               </Button>
             </div>

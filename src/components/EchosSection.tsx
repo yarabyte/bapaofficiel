@@ -39,7 +39,7 @@ export default function EchosSection() {
 
         <div className="flex justify-center mt-14 md:mt-16">
           <Link
-            href="/communaute/echos"
+            href="/echos"
             className="echo-cta group inline-flex items-center gap-2 px-8 py-3.5 bg-brand text-white font-semibold text-sm rounded-full hover:bg-brand-dark transition-all duration-300 shadow-lg shadow-brand/25 hover:shadow-xl hover:scale-[1.02]"
           >
             Toutes les actualités

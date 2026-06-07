@@ -217,7 +217,7 @@ export default function ContactsPage() {
             <p className="mt-8 text-sm text-stone-500">
               Actualités du Royaume :{' '}
               <Link
-                href="/communaute/echos"
+                href="/echos"
                 className="font-semibold text-gold-dark hover:text-brand hover:underline"
               >
                 Échos de Bapa

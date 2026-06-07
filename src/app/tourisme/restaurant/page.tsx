@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
+import MenuOrderForm from '@/components/restaurant/MenuOrderForm';
+import RestaurantHeroActions from '@/components/restaurant/RestaurantHeroActions';
 import { saveursDuPalais, SAVEURS_DU_PALAIS_IMAGE } from '@/lib/saveurs-du-palais';
+
+const scrollMt = 'scroll-mt-[calc(var(--navbar-offset)+5rem)]';
 
 export const metadata: Metadata = {
   title: 'Les Saveurs du Palais | Tourisme | Bapa',
@@ -64,6 +68,10 @@ export default function SaveursDuPalaisPage() {
           <h1 className="font-heading max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-white drop-shadow-sm md:text-5xl lg:text-[3.25rem]">
             {title}
           </h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/88">
+            Dégustez les mets traditionnels du Royaume de Bapa — précommandez votre repas avant la visite.
+          </p>
+          <RestaurantHeroActions />
         </div>
       </header>
 
@@ -105,6 +113,28 @@ export default function SaveursDuPalaisPage() {
               </div>
             </div>
           </div>
+
+          <section
+            id="precommande"
+            className={`${scrollMt} mt-14 md:mt-16`}
+            aria-labelledby="precommande-title"
+          >
+            <div className="overflow-hidden rounded-3xl border border-gold-dark/25 bg-gradient-to-br from-brand/[0.08] via-white to-cream-dark/50 shadow-[0_20px_50px_-28px_rgba(61,34,16,0.35)] ring-1 ring-gold-dark/15">
+              <div className="border-b border-stone-200/70 bg-white/80 px-6 py-8 md:px-10 md:py-10">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-dark">Commande en ligne</p>
+                <h2 id="precommande-title" className="font-heading mt-2 text-2xl font-bold text-brand md:text-3xl">
+                  Précommander un repas
+                </h2>
+                <p className="mt-3 max-w-2xl text-[1.0625rem] leading-relaxed text-stone-600">
+                  Choisissez un menu ou un plat de la carte, indiquez la date de votre visite et vos coordonnées.
+                  L&apos;équipe du restaurant vous recontacte pour confirmer la disponibilité.
+                </p>
+              </div>
+              <div className="px-6 py-8 md:px-10 md:py-10">
+                <MenuOrderForm />
+              </div>
+            </div>
+          </section>
 
           <section aria-labelledby="infos-pratiques" className="mt-14 md:mt-16">
             <div className="mb-8 text-center md:text-left">
@@ -156,7 +186,7 @@ export default function SaveursDuPalaisPage() {
 
           <PageFooterNav
             links={[
-              { href: '/tourisme/introductionenjeux', label: '← Introduction et Enjeux' },
+              { href: '/tourisme/introductionenjeux', label: '← Enjeux' },
               { href: '/tourisme/visitez-bapa', label: 'Visitez Bapa' },
               { href: '/tourisme/musee', label: 'Musée Case Patrimoniale' },
             ]}

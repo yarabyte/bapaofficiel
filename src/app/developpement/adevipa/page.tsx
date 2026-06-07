@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: 'ADEVIPA | Développement | Bapa',
   description:
-    'ADEVIPA — association pour le développement du Royaume de Bapa : historique, présidence, projets, réalisations et partenaires.',
+    'ADEVIPA — association pour le développement du Royaume de Bapa : présidence, projets, réalisations et partenaires.',
 };
 
 const scrollMt = 'scroll-mt-[calc(var(--navbar-offset)+5rem)]';
@@ -187,26 +187,6 @@ export default function AdevipaPage() {
                 <p className="rounded-xl border border-stone-200/70 bg-white/70 px-4 py-3 text-sm text-stone-600">
                   Ce contenu d&apos;introduction sera affiné par le bureau de l&apos;association (missions officielles,
                   statuts, contact).
-                </p>
-              </div>
-            </SectionPanel>
-
-            <SectionPanel id="historique">
-              <SectionTitle
-                id="historique-title"
-                kicker="Mémoire"
-                title="Historique"
-                subtitle="Genèse et évolution de l'association — texte à valider par le bureau."
-              />
-              <div className="space-y-4 text-[1.0625rem] leading-[1.88] text-stone-700">
-                <p>
-                  Insérez ici la genèse de l&apos;association : contexte de création, premières actions, évolutions des
-                  statuts ou du périmètre d&apos;intervention. Une frise chronologique (dates clés, assemblées, grands
-                  partenariats) peut compléter ce récit.
-                </p>
-                <p className="text-sm text-stone-500">
-                  Matière à fournir par ADEVIPA — section ouverte pour accueillir le récit validé par les membres
-                  fondateurs ou le conseil d&apos;administration.
                 </p>
               </div>
             </SectionPanel>

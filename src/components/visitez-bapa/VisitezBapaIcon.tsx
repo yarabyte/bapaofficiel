@@ -38,13 +38,6 @@ export default function VisitezBapaIcon({
           <path strokeLinecap="round" d="M9 21v-6h6v6" />
         </svg>
       );
-    case 'credits':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" d="M7 11h10M7 15h6M5 5h14v14H5V5Z" />
-          <path strokeLinecap="round" d="M9 5V3h6v2" />
-        </svg>
-      );
     case 'culture':
       return (
         <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>

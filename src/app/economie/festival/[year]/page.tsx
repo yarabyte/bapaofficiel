@@ -7,6 +7,7 @@ import PageHeroPremium from '@/components/layout/PageHeroPremium';
 import PagePremiumBackdrop from '@/components/layout/PagePremiumBackdrop';
 import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
 import Button from '@/components/ui/Button';
+import { echosCategoryFilterHref } from '@/lib/echos';
 import {
   FESTIVAL_HUB_PATH,
   FESTIVAL_THEMES,
@@ -259,7 +260,7 @@ export default async function FestivalYearPage({ params }: { params: Params }) {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/communaute/echos?categorie=Festival" variant="secondary" size="md">
+              <Button href={echosCategoryFilterHref('Festival')} variant="secondary" size="md">
                 Échos · Festival
               </Button>
               <Button href="/mediatheque" size="md">

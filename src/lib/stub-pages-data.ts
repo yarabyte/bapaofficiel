@@ -177,7 +177,7 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
   },
   'tourisme/introductionenjeux': {
     title: 'Tourisme',
-    heading: 'Introduction et Enjeux',
+    heading: 'Enjeux',
     label: 'Tourisme',
     description: 'Tourisme culturel et patrimonial au Royaume de Bapa.',
     intro: 'Enjeux, opportunités et stratégie de mise en valeur du Royaume de Bapa.',
@@ -185,7 +185,7 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
       { label: 'Tourisme', href: '/tourisme/introductionenjeux' },
-      { label: 'Introduction et Enjeux' },
+      { label: 'Enjeux' },
     ],
     footerLinks: [
       { href: '/tourisme/visitez-bapa', label: 'Visitez Bapa' },
@@ -205,7 +205,7 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
       { label: 'Tourisme', href: '/tourisme/introductionenjeux' },
       { label: 'Organisation et promotion' },
     ],
-    footerLinks: [{ href: '/tourisme/introductionenjeux', label: '← Introduction et Enjeux' }],
+    footerLinks: [{ href: '/tourisme/introductionenjeux', label: '← Enjeux' }],
   },
   'tourisme/sites': {
     title: 'Tourisme',
@@ -215,13 +215,13 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
     message: defaultMessage,
     breadcrumbs: [
       { label: 'Accueil', href: '/' },
-      { label: 'Introduction et Enjeux', href: '/tourisme/introductionenjeux' },
+      { label: 'Enjeux', href: '/tourisme/introductionenjeux' },
       { label: 'Sites touristiques' },
     ],
     footerLinks: [
       { href: '/tourisme/visitez-bapa', label: 'Carte — Visitez Bapa' },
       { href: '/tourisme/musee', label: 'Musée Case Patrimoniale' },
-      { href: '/tourisme/introductionenjeux', label: '← Introduction et Enjeux' },
+      { href: '/tourisme/introductionenjeux', label: '← Enjeux' },
     ],
   },
   mediatheque: {
@@ -232,7 +232,7 @@ export const stubPagesByPath: Record<string, StubPageConfig> = {
       'Médiathèque du Royaume de Bapa : photos, documentation PDF, vidéos et audio classés par thème.',
     message: defaultMessage,
     breadcrumbs: [{ label: 'Accueil', href: '/' }, { label: 'Médiathèque' }],
-    footerLinks: [{ href: '/communaute/echos', label: 'Échos de Bapa' }],
+    footerLinks: [{ href: '/echos', label: 'Échos de Bapa' }],
   },
   'communaute/roles': {
     title: 'Les Communautés',

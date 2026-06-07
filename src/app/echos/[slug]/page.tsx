@@ -70,7 +70,6 @@ export default async function EchoArticlePage({ params }: PageProps) {
         descriptionClassName="mx-auto max-w-2xl text-base leading-relaxed text-white/88 md:mx-0 md:text-lg line-clamp-4"
         breadcrumbs={[
           { label: 'Accueil', href: '/' },
-          { label: 'Les Communautés', href: '/communaute' },
           { label: 'Echos de Bapa', href: ECHOS_LIST_PATH },
           { label: article.category, href: categoryHref },
           { label: breadcrumbTitle(article.title) },

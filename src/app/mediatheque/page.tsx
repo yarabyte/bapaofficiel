@@ -73,7 +73,7 @@ export default function MediathequePage() {
 
         <nav className="mt-16 flex flex-col items-center gap-4 border-t border-stone-200/70 pt-12 text-center sm:flex-row sm:justify-center sm:gap-10">
           <Link
-            href="/communaute/echos"
+            href="/echos"
             className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline"
           >
             Échos de Bapa

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { EchoArticle } from '@/lib/echos';
-import { formatEchoDate, getCategoryStyle } from '@/lib/echos';
+import { echoArticlePath, formatEchoDate, getCategoryStyle } from '@/lib/echos';
 
 interface EchoCardProps {
   article: EchoArticle;
@@ -13,7 +13,7 @@ export default function EchoCard({ article, index = 0, variant = 'editorial' }: 
   if (variant === 'featured') {
     return (
       <Link
-        href={`/communaute/echos/${article.slug}`}
+        href={echoArticlePath(article.slug)}
         className="group flex flex-col overflow-hidden rounded-3xl border border-stone-200/80 bg-white shadow-[0_20px_50px_-28px_rgba(61,34,16,0.35)] ring-1 ring-stone-100/80 transition-all card-lift hover:border-gold-dark/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2 md:flex-row md:items-stretch"
       >
         <div className="relative h-56 w-full shrink-0 overflow-hidden bg-stone-200 sm:h-64 md:h-auto md:min-h-[22rem] md:w-[44%] lg:w-[46%]">
@@ -67,7 +67,7 @@ export default function EchoCard({ article, index = 0, variant = 'editorial' }: 
 
   return (
     <Link
-      href={`/communaute/echos/${article.slug}`}
+      href={echoArticlePath(article.slug)}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm ring-1 ring-stone-100/60 transition-all card-lift hover:border-gold-dark/25 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark focus-visible:ring-offset-2"
     >
       <div className="relative h-48 overflow-hidden sm:h-52">

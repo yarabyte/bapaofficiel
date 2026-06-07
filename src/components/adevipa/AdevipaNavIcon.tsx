@@ -16,13 +16,6 @@ export default function AdevipaNavIcon({
           <path strokeLinecap="round" d="M12 11v5M12 8h.01" />
         </svg>
       );
-    case 'history':
-      return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-          <path strokeLinecap="round" d="M5 5h14v14H5V5Z" />
-          <path strokeLinecap="round" d="M9 3v4M15 3v4M8 11h8" />
-        </svg>
-      );
     case 'people':
       return (
         <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>

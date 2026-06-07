@@ -4,6 +4,8 @@ export type EchoCategory =
   | 'Tourisme'
   | 'Développement'
   | 'Festival'
+  | 'Échos du palais'
+  | 'Annonces'
   | 'Communautés'
   | 'Diaspora';
 
@@ -13,6 +15,8 @@ export const ECHO_CATEGORIES: EchoCategory[] = [
   'Tourisme',
   'Développement',
   'Festival',
+  'Échos du palais',
+  'Annonces',
   'Communautés',
   'Diaspora',
 ];
@@ -61,10 +65,18 @@ export interface EchoArticle {
   relatedLinks?: readonly EchoRelatedLink[];
 }
 
-export const ECHOS_LIST_PATH = '/communaute/echos' as const;
+export const ECHOS_LIST_PATH = '/echos' as const;
+
+export function echoArticlePath(slug: string): string {
+  return `${ECHOS_LIST_PATH}/${slug}`;
+}
+
+export function echosListHashHref(hash = 'liste-echos'): string {
+  return `${ECHOS_LIST_PATH}#${hash}`;
+}
 
 export function echosCategoryFilterHref(category: EchoCategory): string {
-  return `${ECHOS_LIST_PATH}?categorie=${encodeURIComponent(category)}`;
+  return `${ECHOS_LIST_PATH}?categorie=${encodeURIComponent(category)}#liste-echos`;
 }
 
 export const echoArticles: EchoArticle[] = [
@@ -105,7 +117,7 @@ export const echoArticles: EchoArticle[] = [
       },
     ],
     date: '2026-05-19',
-    category: 'Communautés',
+    category: 'Annonces',
     image: '/images/ajeepa-congres-jeunesse-bapa.png',
   },
   {
@@ -196,7 +208,7 @@ export const echoArticles: EchoArticle[] = [
       "Le souverain a invité les fils et filles du royaume à honorer les valeurs ancestrales tout en embrassant les opportunités offertes par l'éducation et l'innovation.",
     ],
     date: '2025-12-30',
-    category: 'Communautés',
+    category: 'Échos du palais',
     image: '/images/hero-slide-cortege-traditionnel.png',
   },
   {
@@ -248,6 +260,8 @@ const categoryStyles: Record<EchoCategory, string> = {
   Tourisme: 'bg-sky-100 text-sky-900',
   Développement: 'bg-blue-100 text-blue-800',
   Festival: 'bg-gold/15 text-gold-dark',
+  'Échos du palais': 'bg-gold/20 text-brand',
+  Annonces: 'bg-rose-100 text-rose-900',
   Communautés: 'bg-brand/10 text-brand',
   Diaspora: 'bg-purple-100 text-purple-800',
 };

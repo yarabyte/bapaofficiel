@@ -34,6 +34,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/communaute/echos',
+        destination: '/echos',
+        permanent: true,
+      },
+      {
+        source: '/communaute/echos/:path*',
+        destination: '/echos/:path*',
+        permanent: true,
+      },
+      {
         source: '/developpement/tourisme/restaurant',
         destination: '/tourisme/restaurant',
         permanent: true,

@@ -8,15 +8,17 @@ import {
   memberInitials,
   siteConcepteursIntro,
   siteConcepteursMission,
+  siteCoordination,
   siteRealisationTeam,
   siteSupervisionGeneral,
   siteTechnologies,
+  type SiteLeadershipRole,
 } from '@/lib/site-credits';
 
 export const metadata: Metadata = {
   title: 'Concepteurs du site | Bapa Officiel',
   description:
-    'Supervision et équipe de réalisation du portail officiel Bapa Officiel — Dr Joseph Kemmegne, Jasmine Mabe, Narcisse Noumegni, Henri-Mill Fetchouang.',
+    'Supervision, coordination et équipe de réalisation du portail officiel Bapa Officiel — Sa Majesté SIMEU David II, Dr Joseph Kemmegne, Henri-Mill Fetchouang, Jasmine Mabe, Narcisse Noumegni.',
 };
 
 function MissionIcon({ className = 'size-5' }: { className?: string }) {
@@ -36,21 +38,61 @@ function CodeIcon({ className = 'size-5' }: { className?: string }) {
   );
 }
 
-function MemberAvatar({ name, variant = 'team' }: { name: string; variant?: 'supervision' | 'team' }) {
-  const initials = memberInitials(name);
+function MemberAvatar({
+  name,
+  initials: initialsOverride,
+  variant = 'team',
+}: {
+  name: string;
+  initials?: string;
+  variant?: 'supervision' | 'coordination' | 'team';
+}) {
+  const initials = initialsOverride ?? memberInitials(name);
   const isSupervision = variant === 'supervision';
+  const isCoordination = variant === 'coordination';
 
   return (
     <span
       className={`flex shrink-0 items-center justify-center rounded-2xl font-heading font-bold ring-1 ${
         isSupervision
           ? 'size-16 bg-gold/20 text-gold-dark ring-gold-dark/25 text-xl sm:size-[4.5rem] sm:text-2xl'
-          : 'size-14 bg-brand/8 text-brand ring-brand/15 text-lg'
+          : isCoordination
+            ? 'size-16 bg-forest/10 text-forest ring-forest/20 text-xl sm:size-[4.5rem] sm:text-2xl'
+            : 'size-14 bg-brand/8 text-brand ring-brand/15 text-lg'
       }`}
       aria-hidden
     >
       {initials}
     </span>
+  );
+}
+
+function LeadershipCard({ role, variant }: { role: SiteLeadershipRole; variant: 'supervision' | 'coordination' }) {
+  const isSupervision = variant === 'supervision';
+
+  return (
+    <article
+      className={`overflow-hidden rounded-3xl border p-8 shadow-sm ring-1 sm:p-10 ${
+        isSupervision
+          ? 'border-gold-dark/20 bg-gradient-to-br from-cream via-white to-cream-dark/50 shadow-[0_20px_50px_-28px_rgba(61,34,16,0.35)] ring-gold-dark/15'
+          : 'border-forest/15 bg-gradient-to-br from-white via-cream/40 to-white ring-forest/10'
+      }`}
+    >
+      <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
+        <MemberAvatar name={role.name} initials={role.initials} variant={variant} />
+        <div className="min-w-0 flex-1">
+          <p
+            className={`text-[10px] font-bold uppercase tracking-[0.2em] ${
+              isSupervision ? 'text-gold-dark' : 'text-forest'
+            }`}
+          >
+            {role.title}
+          </p>
+          <p className="font-heading mt-2 text-2xl font-bold text-brand sm:text-3xl">{role.name}</p>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-600">{role.description}</p>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -95,31 +137,19 @@ export default function ConcepteursPage() {
           {siteConcepteursIntro}
         </p>
 
-        {/* Supervision */}
-        <section className="mt-14" aria-labelledby="supervision-title">
+        {/* Supervision & coordination */}
+        <section className="mt-14" aria-labelledby="direction-title">
           <header className="mb-8 border-l-[3px] border-gold-dark/50 pl-5">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-dark">Direction du projet</p>
-            <h2 id="supervision-title" className="font-heading mt-2 text-2xl font-bold text-brand md:text-3xl">
-              {siteSupervisionGeneral.title}
+            <h2 id="direction-title" className="font-heading mt-2 text-2xl font-bold text-brand md:text-3xl">
+              Supervision & coordination
             </h2>
           </header>
 
-          <article className="overflow-hidden rounded-3xl border border-gold-dark/20 bg-gradient-to-br from-cream via-white to-cream-dark/50 p-8 shadow-[0_20px_50px_-28px_rgba(61,34,16,0.35)] ring-1 ring-gold-dark/15 sm:p-10">
-            <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:text-left">
-              <MemberAvatar name={siteSupervisionGeneral.name} variant="supervision" />
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-dark">
-                  {siteSupervisionGeneral.title}
-                </p>
-                <p className="font-heading mt-2 text-2xl font-bold text-brand sm:text-3xl">
-                  {siteSupervisionGeneral.name}
-                </p>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-600">
-                  Coordination éditoriale et validation des orientations du portail au service du Royaume de Bapa.
-                </p>
-              </div>
-            </div>
-          </article>
+          <div className="space-y-5">
+            <LeadershipCard role={siteSupervisionGeneral} variant="supervision" />
+            <LeadershipCard role={siteCoordination} variant="coordination" />
+          </div>
         </section>
 
         {/* Équipe de réalisation */}

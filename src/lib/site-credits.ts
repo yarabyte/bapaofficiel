@@ -12,15 +12,30 @@ export type RealisationMember = {
 export const siteConcepteursIntro =
   'Le portail bapa-officiel.com valorise le patrimoine, les institutions et les dynamiques de développement du Royaume de Bapa. Cette page rend hommage à l’équipe qui en assure la supervision et la réalisation technique.';
 
-export const siteSupervisionGeneral = {
+export type SiteLeadershipRole = {
+  title: string;
+  name: string;
+  description: string;
+  initials?: string;
+};
+
+export const siteSupervisionGeneral: SiteLeadershipRole = {
   title: 'Supervision générale',
+  name: 'Sa Majesté SIMEU David II, Roi des Bapas',
+  description: 'Haute autorité du Royaume et parrainage institutionnel du portail officiel.',
+  initials: 'SD',
+};
+
+export const siteCoordination: SiteLeadershipRole = {
+  title: 'Coordination',
   name: 'Dr Joseph Kemmegne',
-} as const;
+  description: 'Coordination éditoriale et validation des orientations du portail au service du Royaume de Bapa.',
+};
 
 export const siteRealisationTeam: RealisationMember[] = [
+  { id: 'henri-mill-fetchouang', name: 'Henri-Mill Fetchouang' },
   { id: 'jasmine-mabe', name: 'Jasmine Mabe' },
   { id: 'narcisse-noumegni', name: 'Narcisse Noumegni' },
-  { id: 'henri-mill-fetchouang', name: 'Henri-Mill Fetchouang' },
 ];
 
 export const siteConcepteursMission = [

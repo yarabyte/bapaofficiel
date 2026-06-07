@@ -2,7 +2,6 @@ export const ADEVIPA_PATH = '/developpement/adevipa' as const;
 
 export const adevipaNavSections = [
   { id: 'a-propos', label: "À propos", icon: 'about' as const },
-  { id: 'historique', label: 'Historique', icon: 'history' as const },
   { id: 'presidents', label: 'Présidents', icon: 'people' as const },
   { id: 'interview', label: 'Interview', icon: 'interview' as const },
   { id: 'realisations', label: 'Réalisations', icon: 'projects' as const },

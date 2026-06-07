@@ -2,18 +2,16 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import CommunauteHubIcon from '@/components/communaute/CommunauteHubIcon';
-import EchoCard from '@/components/EchoCard';
 import PageHeroPremium from '@/components/layout/PageHeroPremium';
 import PagePremiumBackdrop from '@/components/layout/PagePremiumBackdrop';
 import PageShell, { PageFooterNav } from '@/components/layout/PageShell';
-import Button from '@/components/ui/Button';
 import {
   communauteHubGallery,
-  communauteHubNavItems,
+  communauteHubSidebarNavItems,
   communauteHubPillars,
   communauteHubSections,
 } from '@/lib/communaute-hub';
-import { echoArticles } from '@/lib/echos';
+import { ECHOS_LIST_PATH } from '@/lib/echos';
 
 export const metadata: Metadata = {
   title: 'Les Communautés | Bapa Officiel',
@@ -39,9 +37,6 @@ function HubSectionHeader({ id, kicker, title, subtitle }: { id: string; kicker:
 }
 
 export default function CommunauteHubPage() {
-  const latestEcho = echoArticles[0];
-  const previewEchoes = echoArticles.slice(1, 3);
-
   return (
     <PageShell className="relative">
       <PagePremiumBackdrop variant="green" />
@@ -110,7 +105,7 @@ export default function CommunauteHubPage() {
             <div className="rounded-2xl border border-stone-200/80 bg-white p-4 shadow-sm ring-1 ring-stone-100/60 md:p-5">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Explorer</p>
               <nav aria-label="Rubriques des communautés" className="mt-4 hidden space-y-1 lg:block">
-                {communauteHubNavItems.map((item) => (
+                {communauteHubSidebarNavItems.map((item) => (
                   <Link key={item.href} href={item.href} className={sidebarLinkClass}>
                     <CommunauteHubIcon id={item.icon} className="size-4 shrink-0 text-forest" />
                     <span className="min-w-0 truncate">{item.label}</span>
@@ -118,7 +113,7 @@ export default function CommunauteHubPage() {
                 ))}
               </nav>
               <nav aria-label="Rubriques des communautés" className="mt-4 flex gap-2 overflow-x-auto pb-1 lg:hidden">
-                {communauteHubNavItems.map((item) => (
+                {communauteHubSidebarNavItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -129,11 +124,6 @@ export default function CommunauteHubPage() {
                   </Link>
                 ))}
               </nav>
-              <div className="mt-5 border-t border-stone-100 pt-5">
-                <Button href="/contacts" variant="primary" size="sm" className="w-full justify-center">
-                  Nous contacter
-                </Button>
-              </div>
             </div>
           </aside>
 
@@ -148,7 +138,7 @@ export default function CommunauteHubPage() {
               />
               <div className="grid gap-4 lg:grid-cols-5 lg:gap-5">
                 <Link
-                  href="/communaute/echos"
+                  href={ECHOS_LIST_PATH}
                   className="group relative overflow-hidden rounded-3xl bg-brand p-7 text-white shadow-[0_20px_56px_-24px_rgba(61,34,16,0.55)] ring-1 ring-brand-dark/30 transition-transform hover:-translate-y-0.5 lg:col-span-3 lg:p-9"
                 >
                   <div
@@ -281,52 +271,13 @@ export default function CommunauteHubPage() {
                 </ul>
               </section>
             ))}
-
-            {/* Dernier écho */}
-            {latestEcho && (
-              <section
-                id="hub-echos-une"
-                className={`${scrollMt} rounded-3xl border border-stone-200/70 bg-gradient-to-br from-cream/90 via-white to-cream/50 p-6 shadow-sm ring-1 ring-stone-100/60 md:p-8`}
-                aria-labelledby="hub-echos-une-title"
-              >
-                <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-forest">Actualités</p>
-                    <h2
-                      id="hub-echos-une-title"
-                      className="font-heading mt-2 text-2xl font-bold text-brand md:text-3xl"
-                    >
-                      Dernier écho
-                    </h2>
-                    <p className="mt-2 text-sm text-stone-500">
-                      Un aperçu des nouvelles — parcourez toute la rubrique Échos de Bapa.
-                    </p>
-                  </div>
-                  <Button href="/communaute/echos" variant="secondary" size="sm" className="shrink-0">
-                    Tous les échos →
-                  </Button>
-                </div>
-
-                <EchoCard article={latestEcho} variant="featured" />
-
-                {previewEchoes.length > 0 && (
-                  <ul className="mt-8 grid gap-5 sm:grid-cols-2">
-                    {previewEchoes.map((article, index) => (
-                      <li key={article.slug}>
-                        <EchoCard article={article} index={index} variant="editorial" />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
-            )}
           </div>
         </div>
 
         <PageFooterNav
           links={[
             { href: '/', label: '← Accueil' },
-            { href: '/communaute/echos', label: 'Échos de Bapa' },
+            { href: ECHOS_LIST_PATH, label: 'Échos de Bapa' },
             { href: '/contacts', label: 'Contacts' },
           ]}
         />

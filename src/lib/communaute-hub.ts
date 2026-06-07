@@ -76,7 +76,7 @@ export const communauteHubSections: CommunauteHubSection[] = [
       },
       {
         label: 'Échos de Bapa',
-        href: '/communaute/echos',
+        href: '/echos',
         icon: 'echos',
         description: 'Actualités du royaume : culture, festival, développement.',
         featured: true,
@@ -129,6 +129,17 @@ export const communauteHubNavItems = communauteHubSections.flatMap((section) =>
     sectionId: section.id,
     sectionTitle: section.title,
   })),
+);
+
+/** Liens exclus de la sous-navigation « Explorer » du hub communauté. */
+const communauteHubSidebarExcludedHrefs = new Set([
+  '/echos',
+  '/communaute/partenaires',
+  '/contacts',
+]);
+
+export const communauteHubSidebarNavItems = communauteHubNavItems.filter(
+  (item) => !communauteHubSidebarExcludedHrefs.has(item.href),
 );
 
 export const COMMUNAUTE_HUB_LINK_COUNT = communauteHubNavItems.length;

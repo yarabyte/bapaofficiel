@@ -5,7 +5,10 @@ import EchosHeaderBackdrop from '@/components/EchosHeaderBackdrop';
 import Button from '@/components/ui/Button';
 import {
   ECHO_CATEGORIES,
+  ECHOS_LIST_PATH,
   echoArticles,
+  echosCategoryFilterHref,
+  echosListHashHref,
   formatEchoDate,
   normalizeEchoCategory,
   type EchoCategory,
@@ -76,9 +79,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
   const showFallbackEmpty = Boolean(activeCategory && filtered.length === 0);
 
   const filterHref = (cat?: EchoCategory) =>
-    cat
-      ? `/communaute/echos?categorie=${encodeURIComponent(cat)}#liste-echos`
-      : '/communaute/echos#liste-echos';
+    cat ? echosCategoryFilterHref(cat) : echosListHashHref();
 
   const displayCount = showFallbackEmpty ? echoArticles.length : filtered.length;
 
@@ -96,15 +97,6 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
                   className="rounded-md px-1.5 py-1 transition-colors hover:text-white hover:underline"
                 >
                   Accueil
-                </Link>
-              </li>
-              <li className="flex items-center gap-1">
-                <ChevronRight className="text-white/45" />
-                <Link
-                  href="/communaute"
-                  className="rounded-md px-1.5 py-1 transition-colors hover:text-white hover:underline"
-                >
-                  Les Communautés
                 </Link>
               </li>
               <li className="flex items-center gap-1">
@@ -177,7 +169,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
                 <nav aria-label="Filtrer par thème" className="mt-4 hidden lg:block">
                   <ul className="space-y-1">
                     <li>
-                      <Link href="/communaute/echos#liste-echos" scroll={false} className={filterLinkClass(!activeCategory)}>
+                      <Link href={echosListHashHref()} scroll={false} className={filterLinkClass(!activeCategory)}>
                         <span>Tous</span>
                         <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[11px] font-bold text-stone-600">
                           {echoArticles.length}
@@ -205,7 +197,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
               <nav aria-label="Filtrer par thème (mobile)" className="mt-4 lg:hidden">
                 <ul className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
                   <li>
-                    <Link href="/communaute/echos#liste-echos" scroll={false} className={filterPillClass(!activeCategory)}>
+                    <Link href={echosListHashHref()} scroll={false} className={filterPillClass(!activeCategory)}>
                       Tous
                     </Link>
                   </li>
@@ -287,7 +279,7 @@ export default async function EchosPage({ searchParams }: EchosPageProps) {
                     <p className="rounded-2xl border border-stone-200/80 bg-white px-5 py-8 text-center text-sm text-stone-600 shadow-sm">
                       Il n&apos;y a qu&apos;un seul article pour ce filtre.{' '}
                       <Link
-                        href="/communaute/echos"
+                        href={ECHOS_LIST_PATH}
                         className="font-semibold text-brand underline-offset-4 hover:underline"
                       >
                         Voir tous les Echos

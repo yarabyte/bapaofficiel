@@ -68,7 +68,7 @@ export default function MenuOrderForm() {
           }}
           className="mt-6 text-sm font-semibold text-gold-dark hover:text-brand hover:underline"
         >
-          Passer une autre commande
+          Passer une autre précommande
         </button>
       </div>
     );
@@ -216,7 +216,7 @@ export default function MenuOrderForm() {
         type="submit"
         className="w-full rounded-xl bg-brand px-6 py-3.5 text-sm font-bold text-white shadow-md transition-[background-color,transform] hover:bg-brand-dark active:scale-[0.99] sm:w-auto sm:min-w-[14rem]"
       >
-        Envoyer la commande
+        Envoyer la précommande
       </button>
     </form>
   );

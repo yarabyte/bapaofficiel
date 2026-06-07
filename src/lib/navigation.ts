@@ -13,7 +13,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { label: 'Accueil', href: '/' },
-  { label: 'Échos de Bapa', href: '/communaute/echos' },
+  { label: 'Échos de Bapa', href: '/echos' },
   {
     label: 'Le Royaume',
     children: [
@@ -66,7 +66,7 @@ export const navItems: NavItem[] = [
   {
     label: 'Tourisme',
     children: [
-      { label: 'Introduction et Enjeux', href: '/tourisme/introductionenjeux' },
+      { label: 'Enjeux', href: '/tourisme/introductionenjeux' },
       { label: 'Organisation et promotion', href: '/tourisme/organisation' },
       { label: 'Le Musée Case Patrimoniale', href: '/tourisme/musee' },
       { label: 'Les Saveurs du Palais', href: '/tourisme/restaurant' },

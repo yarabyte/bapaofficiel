@@ -6,7 +6,6 @@ export type VisitezSectionIconId =
   | 'localisation'
   | 'quartiers'
   | 'sites'
-  | 'credits'
   | 'culture'
   | 'nature'
   | 'hotel'
@@ -21,7 +20,6 @@ export const visitezBapaNavSections = [
   { id: 'localisation', label: 'Localisation', icon: 'localisation' as VisitezSectionIconId },
   { id: 'quartiers', label: 'Quartiers', icon: 'quartiers' as VisitezSectionIconId },
   { id: 'sites', label: 'Sites', icon: 'sites' as VisitezSectionIconId },
-  { id: 'credits', label: 'Crédits', icon: 'credits' as VisitezSectionIconId },
 ] as const;
 
 export const bapaGaleriePhotos = [
@@ -182,7 +180,7 @@ export const visitezBapaQuickLinks = [
     icon: 'hotel' as VisitezSectionIconId,
   },
   {
-    title: 'Introduction tourisme',
+    title: 'Enjeux',
     desc: 'Enjeux et stratégie de développement touristique.',
     href: '/tourisme/introductionenjeux',
     image: '/images/hero-slide-architecture-patrimoine.png',

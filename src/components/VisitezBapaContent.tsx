@@ -315,65 +315,6 @@ export default function VisitezBapaContent() {
           </div>
         </SectionPanel>
 
-        <SectionPanel id="visitez-credits" variant="cream">
-          <div className="overflow-hidden rounded-2xl border border-gold-dark/20 bg-white">
-            <div className="grid md:grid-cols-5">
-              <div className="relative min-h-[14rem] md:col-span-2 md:min-h-full">
-                <Image
-                  src={carteCredits.festivalImage}
-                  alt="Festival Pa'a Ngouo'ok"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width:768px) 100vw, 40vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-white/90" />
-                <p className="absolute bottom-4 left-4 right-4 font-heading text-lg font-bold text-white md:hidden">
-                  Crédits & contexte
-                </p>
-              </div>
-              <div className="p-6 md:col-span-3 md:p-8">
-                <SectionHeading icon="credits" title="Crédits & contexte" />
-                <dl className="grid gap-5 sm:grid-cols-2">
-                  <div className="rounded-xl border border-stone-100 bg-cream/30 p-4 sm:col-span-2">
-                    <dt className="mb-1.5 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-brand">
-                      <VisitezBapaIcon id="culture" className="size-4" />
-                      Festival
-                    </dt>
-                    <dd className="text-sm leading-relaxed text-stone-600">{carteCredits.festival}</dd>
-                  </div>
-                  {(
-                    [
-                      ['Conception', carteCredits.conception],
-                      ['Contribution', carteCredits.contribution],
-                    ] as const
-                  ).map(([label, value]) => (
-                    <div key={label} className="rounded-xl border border-stone-100 bg-white p-4">
-                      <dt className="text-xs font-bold uppercase tracking-wide text-brand">{label}</dt>
-                      <dd className="mt-1 text-sm text-stone-600">{value}</dd>
-                    </div>
-                  ))}
-                  <div className="rounded-xl border border-stone-100 bg-white p-4 sm:col-span-2">
-                    <dt className="text-xs font-bold uppercase tracking-wide text-brand">Supervision</dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-stone-600">
-                      {carteCredits.supervisionTechnique}
-                      <br />
-                      <span className="font-medium text-brand">{carteCredits.supervisionGenerale}</span>
-                    </dd>
-                  </div>
-                  <div className="rounded-xl border border-stone-100 bg-white p-4 sm:col-span-2">
-                    <dt className="text-xs font-bold uppercase tracking-wide text-brand">Technique & sources</dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-stone-600">
-                      {carteCredits.coordonnees} · {carteCredits.echelle} · {carteCredits.version}
-                      <br />
-                      <span className="text-stone-500">Sources : {carteCredits.sources}</span>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </SectionPanel>
-
         <section aria-label="Poursuivre la visite" className={scrollMt}>
           <div className="mb-6 text-center md:mb-8">
             <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-dark">Tourisme</p>

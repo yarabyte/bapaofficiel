@@ -127,7 +127,7 @@ export default function VisitezBapaPage() {
 
           <PageFooterNav
             links={[
-              { href: '/tourisme/introductionenjeux', label: '← Introduction et Enjeux' },
+              { href: '/tourisme/introductionenjeux', label: '← Enjeux' },
               { href: '/tourisme/musee', label: 'Musée Case Patrimoniale' },
               { href: '/tourisme/restaurant', label: 'Les Saveurs du Palais' },
             ]}

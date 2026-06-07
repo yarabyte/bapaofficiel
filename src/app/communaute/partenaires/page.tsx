@@ -89,7 +89,7 @@ export default function PartenairesPage() {
             Contacts
           </Link>
           <Link
-            href="/communaute/echos"
+            href="/echos"
             className="text-sm font-semibold text-gold-dark hover:text-brand hover:underline"
           >
             Échos de Bapa

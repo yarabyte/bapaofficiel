@@ -24,7 +24,7 @@ export default function NotFound() {
           </div>
         </Card>
         <p className="mt-8 text-sm text-stone-500">
-          <Link href="/communaute/echos" className="font-medium text-gold-dark hover:text-brand hover:underline">
+          <Link href="/echos" className="font-medium text-gold-dark hover:text-brand hover:underline">
             Voir les actualités
           </Link>
         </p>

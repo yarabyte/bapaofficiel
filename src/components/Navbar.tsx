@@ -28,7 +28,7 @@ function navSubtreeHasActiveHref(pathname: string, nodes: NavChild[]): boolean {
   });
 }
 
-/** Rubrique L1 sans sous-menu : résoud les chevauchements (/communaute vs /communaute/echos) par préfixe le plus long. */
+/** Rubrique L1 sans sous-menu : résoud les chevauchements (/communaute vs /echos) par préfixe le plus long. */
 function useActiveSimpleNavLabel(pathname: string): string | null {
   return useMemo(() => {
     const simple = navItems

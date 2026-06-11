@@ -81,6 +81,46 @@ export function echosCategoryFilterHref(category: EchoCategory): string {
 
 export const echoArticles: EchoArticle[] = [
   {
+    slug: 'bapa-sports-culture-vacances-2026',
+    title: 'Bapa Sports et Culture Vacances — 3ᵉ édition lancée',
+    excerpt:
+      'Du 21 juin au 8 août 2026, le Royaume de Bapa accueille les enfants de 5 à 17 ans pour une troisième édition mêlant sports, langue maternelle et danse patrimoniale. Inscriptions au Musée de Bapa.',
+    highlights: [
+      '3ᵉ édition — du 21 juin au 8 août 2026',
+      'Public : enfants de 5 à 17 ans',
+      'Jours : Chèptés, Temgous et Ndindjeues — 08h00 à 11h30',
+      'Inscriptions au Musée de Bapa',
+      'Contacts : +237 656 64 29 56 · +237 677 58 32 93',
+    ],
+    content: [
+      "Le Royaume de Bapa lance la 3ᵉ édition de Bapa Sports et Culture Vacances, un programme estival dédié aux enfants et adolescents du territoire. Cette initiative associe activités sportives, transmission de la langue maternelle et découverte des danses patrimoniales, dans l'esprit de cohésion et de valorisation culturelle porté par la chefferie.",
+      "Le programme se déroule du 21 juin au 8 août 2026, les jours Chèptés, Temgous et Ndindjeues, de 08h00 à 11h30. Il s'adresse aux jeunes de 5 à 17 ans souhaitant profiter des vacances pour bouger, apprendre et renforcer leurs racines bapa.",
+      "Au programme : athlétisme, football, basket-ball, volley-ball, handball, tennis, badminton, ioung ndeung, lancer de tcha'a, cours de langue maternelle et danse patrimoniale. Une palette d'activités pensée pour allier forme physique, plaisir collectif et ancrage dans les traditions des Grassfields.",
+      "Les inscriptions sont ouvertes au Musée de Bapa. Les familles intéressées peuvent se renseigner et inscrire leurs enfants sur place. Pour toute question, contactez les organisateurs au +237 656 64 29 56 ou au +237 677 58 32 93.",
+      "Bapa Sports et Culture Vacances s'inscrit dans la dynamique éducative et communautaire du royaume : offrir aux jeunes un cadre structuré pendant les vacances, favoriser l'épanouissement par le sport et transmettre les savoirs culturels qui fondent l'identité bapa. Inscrivez-vous dès maintenant pour participer à cette 3ᵉ édition.",
+    ],
+    relatedLinks: [
+      {
+        href: '/tourisme/musee',
+        label: 'Musée Case Patrimoniale',
+        description: 'Lieu des inscriptions et vitrine du patrimoine bapa.',
+      },
+      {
+        href: '/communaute',
+        label: 'Les Communautés',
+        description: 'Engagement citoyen et vie associative du royaume.',
+      },
+      {
+        href: '/contacts',
+        label: 'Contacts du secrétariat',
+        description: 'Coordonnées officielles du Royaume de Bapa.',
+      },
+    ],
+    date: '2026-05-19',
+    category: 'Sport et loisir',
+    image: '/images/bapa-sports-culture-vacances-2026.png',
+  },
+  {
     slug: 'ajeepa-congres-jeunesse-bapa-sponsoring',
     title: "Congrès de la Jeunesse Bapa : l'AJEEPA lance son appel au sponsoring",
     excerpt:
